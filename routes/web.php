@@ -9,3 +9,7 @@ Route::get('/', function () {
 Route::get('/masyarakat/dashboard', function () {
     return view('masyarakat.dashboard');
 });
+
+Route::get('/masyarakat/form-laporan', function () {
+    return view('masyarakat.form-laporan');
+})->name('masyarakat.form-laporan');

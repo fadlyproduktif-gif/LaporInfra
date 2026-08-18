@@ -1,0 +1,392 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #12264a;
+}
+
+
+
+
+
+/* =========================
+   MAIN
+========================= */
+
+.form-container {
+    max-width: 850px;
+    margin: auto;
+
+    padding: 38px 24px 70px;
+}
+
+.back-link {
+    display: inline-block;
+
+    color: #4f6280;
+
+    text-decoration: none;
+
+    margin-bottom: 22px;
+
+    font-size: 14px;
+}
+
+.page-header h1 {
+    font-size: 26px;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #64708a;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   FORM CARD
+========================= */
+
+.form-card {
+    margin-top: 28px;
+
+    background: white;
+
+    border: 1px solid #dce2ea;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+}
+
+.form-header {
+    padding: 20px 32px;
+
+    border-bottom: 1px solid #e2e6ed;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+.form-icon {
+    width: 34px;
+    height: 34px;
+
+    background: #edf3fc;
+
+    color: #24539c;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-header h2 {
+    font-size: 16px;
+
+    margin-bottom: 4px;
+}
+
+.form-header p {
+    font-size: 13px;
+
+    color: #9aa3b2;
+}
+
+.form-header p span {
+    color: #e87500;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+form {
+    padding: 32px;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+.form-group label {
+    display: block;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    margin-bottom: 8px;
+}
+
+.form-group label span {
+    color: #e87500;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+
+    border: 1px solid #cfd6e0;
+
+    border-radius: 8px;
+
+    padding: 12px 14px;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    color: #12264a;
+
+    outline: none;
+}
+
+.form-group input,
+.form-group select {
+    height: 44px;
+}
+
+.form-group textarea {
+    min-height: 135px;
+
+    resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: #9aa8bd;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #5578ad;
+}
+
+.form-group small {
+    display: block;
+
+    margin-top: 6px;
+
+    color: #9aa8bd;
+
+    font-size: 12px;
+}
+
+.description-footer {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+}
+
+.description-footer small {
+    margin-top: 6px;
+}
+
+#counter {
+    color: #8993a7;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.form-actions {
+    border-top: 1px solid #e2e6ed;
+
+    margin: 32px -32px -32px;
+
+    padding: 20px 32px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+}
+
+.btn-cancel,
+.btn-submit {
+    height: 42px;
+
+    padding: 0 20px;
+
+    border-radius: 8px;
+
+    font-family: inherit;
+
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-cancel {
+    background: white;
+
+    border: 1px solid #d1d7df;
+
+    color: #59677d;
+}
+
+.btn-submit {
+    background: #ff8500;
+
+    border: 1px solid #ff8500;
+
+    color: white;
+}
+
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .navbar-menu {
+        display: none;
+    }
+
+    .form-container {
+        padding: 30px 16px 50px;
+    }
+
+    .form-header,
+    form {
+        padding: 22px;
+    }
+
+    .form-actions {
+        margin: 28px -22px -22px;
+
+        padding: 18px 22px;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 8px;
+    }
+}
+
+/* =========================
+   PHOTO UPLOAD
+========================= */
+
+.photo-upload {
+    min-height: 195px;
+
+    border: 1px solid #cfd7e3;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    margin-top: 8px;
+}
+
+.photo-upload-icon {
+    width: 40px;
+    height: 40px;
+
+    background: #edf3fc;
+
+    color: #24539c;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 20px;
+
+    margin-bottom: 4px;
+}
+
+.photo-upload strong {
+    font-size: 14px;
+    color: #12264a;
+}
+
+.photo-upload-info {
+    font-size: 12px;
+    color: #8998b0;
+}
+
+.btn-photo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 8px 14px;
+
+    margin-top: 4px;
+
+    border: 1px solid #cfd7e3;
+    border-radius: 8px;
+
+    background: white;
+
+    color: #52627b;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-photo:hover {
+    background: #f5f7fa;
+    border-color: #aebbd0;
+}
+
+.photo-name {
+    display: none;
+
+    font-size: 12px;
+    color: #24539c;
+
+    margin-top: 4px;
+
+    max-width: 90%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.form-help {
+    display: block;
+    margin-bottom: 8px;
+}
