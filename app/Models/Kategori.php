@@ -2,9 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use App\Models\Devisi;
+
+#[Fillable([
+    'nama_kategori',
+    'id_devisi',
+])]
 
 class Kategori extends Model
 {
@@ -16,3 +22,4 @@ class Kategori extends Model
      return $this->belongsTo(Devisi::class, 'id_devisi', 'id_devisi');
     }
 }
+
