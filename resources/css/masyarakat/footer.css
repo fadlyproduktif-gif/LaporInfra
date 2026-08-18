@@ -1,0 +1,19 @@
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    border-top: 1px solid #e1e5eb;
+
+    background: white;
+
+    padding: 22px 6%;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    color: #9aa3b2;
+
+    font-size: 13px;
+}
