@@ -1,0 +1,327 @@
+.container {
+    max-width: 1150px;
+    margin: auto;
+
+    padding: 42px 24px 60px;
+}
+
+.welcome h1 {
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.welcome p {
+    color: #64708a;
+    line-height: 1.6;
+}
+
+
+/* =========================
+   REPORT BANNER
+========================= */
+
+.report-banner {
+    margin-top: 30px;
+
+    background: #10254b;
+    color: white;
+
+    border-radius: 16px;
+
+    padding: 28px 32px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+}
+
+.report-banner-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.report-icon {
+    width: 44px;
+    height: 44px;
+
+    background: #3d3b35;
+
+    border-radius: 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-banner h2 {
+    margin-bottom: 6px;
+}
+
+.report-banner p {
+    color: #cbd5e7;
+    line-height: 1.5;
+
+    max-width: 600px;
+}
+
+.btn-create {
+    background: #ff8a00;
+    color: white;
+
+    padding: 14px 22px;
+
+    border-radius: 12px;
+
+    text-decoration: none;
+
+    font-weight: bold;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   REPORT SECTION
+========================= */
+
+.reports-section {
+    margin-top: 34px;
+}
+
+.reports-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.reports-header h2 {
+    font-size: 20px;
+}
+
+.report-count {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    margin-left: 5px;
+
+    background: #edf3fc;
+    color: #244889;
+
+    border-radius: 50%;
+
+    font-size: 13px;
+}
+
+.view-all {
+    color: #17458d;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.status-legend {
+    display: flex;
+    gap: 22px;
+
+    margin: 16px 0;
+    
+    color: #8993a7;
+    font-size: 14px;
+}
+
+.status-legend span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+.waiting {
+    background: #ffb000;
+}
+
+.processing {
+    background: #2854a4;
+}
+
+.completed {
+    background: #00b879;
+}
+
+
+/* =========================
+   REPORT CARD
+========================= */
+
+.report-card {
+    background: white;
+
+    border: 1px solid #dce2ea;
+    border-radius: 14px;
+
+    margin-bottom: 12px;
+
+    padding: 20px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 16px;
+}
+
+.processing-card {
+    border-left: 4px solid #2854a4;
+}
+
+.waiting-card {
+    border-left: 4px solid #ffb000;
+}
+
+.completed-card {
+    border-left: 4px solid #00b879;
+}
+
+.report-number {
+    width: 30px;
+    height: 30px;
+
+    background: #f0f2f6;
+
+    color: #7c8799;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+}
+
+.report-info {
+    flex: 1;
+}
+
+.report-info h3 {
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.report-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    color: #9aa3b2;
+
+    font-size: 13px;
+}
+
+.category {
+    background: #edf3fc;
+
+    color: #24539c;
+
+    padding: 5px 9px;
+
+    border-radius: 5px;
+}
+
+.report-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.status {
+    padding: 7px 12px;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.processing-status {
+    background: #edf3fc;
+    color: #24539c;
+}
+
+.waiting-status {
+    background: #fff8e5;
+    color: #d18a00;
+}
+
+.completed-status {
+    background: #e7faf3;
+    color: #00a66f;
+}
+
+.btn-detail {
+    border: 1px solid #b9c9e2;
+
+    color: #17458d;
+
+    padding: 8px 14px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 768px) {
+
+    .navbar {
+        padding: 0 20px;
+    }
+
+    .navbar-menu {
+        display: none;
+    }
+
+    .user-menu span:not(.user-avatar) {
+        display: none;
+    }
+
+    .report-banner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .report-card {
+        align-items: flex-start;
+    }
+
+    .report-action {
+        align-items: flex-start;
+    }
+
+    .footer {
+        flex-direction: column;
+        gap: 8px;
+        
+    }
+}

@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f5f7fa;
+    color: #12264a;
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    height: 80px;
+    background: white;
+    border-bottom: 1px solid #e2e6ed;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 6%;
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-icon {
+    width: 34px;
+    height: 34px;
+
+    background: #10254b;
+    color: #ff9200;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.logo-text span {
+    color: #ff8700;
+}
+
+.navbar-menu {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #64708a;
+
+    padding: 12px 18px;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+}
+
+.navbar-menu a.active {
+    background: #edf3fc;
+    color: #173b76;
+}
+
+.user-menu {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    border: 1px solid #dce2ea;
+
+    padding: 8px 14px 8px 8px;
+
+    border-radius: 10px;
+
+    font-weight: 600;
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    background: #244889;
+    color: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.arrow {
+    color: #64708a;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer {
+    border-top: 1px solid #e1e5eb;
+
+    background: white;
+
+    padding: 22px 6%;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #9aa3b2;
+
+    font-size: 13px;
+}
+
+
+
+

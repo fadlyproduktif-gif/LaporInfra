@@ -1,0 +1,513 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6fa;
+    color: #12264a;
+}
+
+
+/* =========================
+   AUTH PAGE
+========================= */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================
+   LEFT SIDE
+========================= */
+
+.auth-left {
+    width: 50%;
+
+    position: relative;
+
+    background:
+        linear-gradient(
+            rgba(16, 37, 75, 0.88),
+            rgba(16, 37, 75, 0.88)
+        ),
+        url('/images/auth-background.jpg');
+
+    background-size: cover;
+    background-position: center;
+
+    color: white;
+}
+
+.overlay {
+    position: absolute;
+
+    inset: 0;
+
+    background: rgba(16, 37, 75, 0.2);
+}
+
+.left-content {
+    position: relative;
+
+    z-index: 1;
+
+    height: 100%;
+
+    padding: 55px 70px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+}
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.brand span span {
+    color: #ff8700;
+}
+
+.brand-icon {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #10254b;
+
+    border-radius: 9px;
+
+    color: #ff9200;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero-content {
+    max-width: 540px;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+
+    color: #ff9200;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.hero-content h1 {
+    margin-bottom: 20px;
+
+    font-family: Georgia, serif;
+
+    font-size: 42px;
+
+    line-height: 1.2;
+}
+
+.hero-description {
+    max-width: 480px;
+
+    color: #d3dbea;
+
+    font-size: 14px;
+
+    line-height: 1.7;
+}
+
+
+/* =========================
+   STATISTICS
+========================= */
+
+.statistics {
+    display: flex;
+
+    gap: 45px;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+.stat strong {
+    font-size: 20px;
+}
+
+.stat span {
+    color: #c4cede;
+
+    font-size: 11px;
+}
+
+
+/* =========================
+   RIGHT SIDE
+========================= */
+
+.auth-right {
+    width: 50%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+}
+
+
+/* =========================
+   AUTH CARD
+========================= */
+
+.auth-card {
+    width: 100%;
+
+    max-width: 430px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.auth-header {
+    margin-bottom: 30px;
+}
+
+.auth-header h2 {
+    margin-bottom: 7px;
+
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+
+    color: #12264a;
+}
+
+.auth-header p {
+    color: #7c8799;
+
+    font-size: 13px;
+}
+
+.auth-header a {
+    color: #ff8700;
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    color: #12264a;
+}
+
+.label-row {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.label-row a {
+    color: #6d7b92;
+
+    font-size: 11px;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.input-wrapper {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+
+    left: 13px;
+
+    color: #9ba6b7;
+
+    font-size: 13px;
+}
+
+.input-wrapper input {
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 40px;
+
+    border: 1px solid #d5dce6;
+
+    border-radius: 8px;
+
+    background: white;
+
+    outline: none;
+
+    color: #12264a;
+
+    font-size: 13px;
+}
+
+.input-wrapper input::placeholder {
+    color: #a7b0bf;
+}
+
+.input-wrapper input:focus {
+    border-color: #244889;
+
+    box-shadow: 0 0 0 3px rgba(36, 72, 137, 0.08);
+}
+
+.password-toggle {
+    position: absolute;
+
+    right: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    color: #9ba6b7;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   REMEMBER
+========================= */
+
+.remember {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    margin-bottom: 20px;
+
+    color: #68758a;
+
+    font-size: 12px;
+}
+
+.remember input {
+    width: 14px;
+    height: 14px;
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.btn-login {
+    width: 100%;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #244889;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+}
+
+.btn-login:hover {
+    background: #1d3c76;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 20px 0;
+}
+
+.divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background: #dfe3e9;
+}
+
+.divider p {
+    color: #a0a9b7;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   GOOGLE
+========================= */
+
+.btn-google {
+    width: 100%;
+
+    height: 45px;
+
+    border: 1px solid #d5dce6;
+
+    border-radius: 8px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #45536a;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.google-icon {
+    font-weight: bold;
+
+    font-size: 17px;
+
+    color: #4285f4;
+}
+
+
+/* =========================
+   TERMS
+========================= */
+
+.terms {
+    margin-top: 22px;
+
+    text-align: center;
+
+    color: #a0a9b7;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+}
+
+.terms a {
+    color: #8995a7;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .auth-left {
+        display: none;
+    }
+
+    .auth-right {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .auth-right {
+        padding: 25px 20px;
+    }
+
+    .auth-header h2 {
+        font-size: 26px;
+    }
+}
