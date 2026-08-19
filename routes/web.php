@@ -21,3 +21,19 @@ Route::get('/masyarakat/detail-laporan', function () {
 Route::get('/masyarakat/laporan-saya', function () {
     return view('masyarakat.laporan-saya');
 })->name('masyarakat.laporan-saya');
+
+Route::get('/auth/login-admin', function () {
+    return view('auth.admin.login');
+})->name('auth.admin.login');
+
+Route::get('/auth/login-devisi', function () {
+    return view('auth.devisi.login');
+})->name('auth.devisi.login');
+
+Route::get('/auth/login-masyarakat', function () {
+    return view('auth.masyarakat.login');
+})->name('auth.masyarakat.login');
+
+Route::get('/auth/register-masyarakat', function () {
+    return view('auth.masyarakat.register');
+})->name('auth.masyarakat.register');
