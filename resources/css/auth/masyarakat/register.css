@@ -1,0 +1,434 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+
+    background: #f4f6fa;
+
+    color: #12264a;
+}
+
+
+/* =========================
+   PAGE
+========================= */
+
+.register-page {
+    min-height: 100vh;
+
+    display: flex;
+}
+
+
+/* =========================
+   LEFT
+========================= */
+
+.register-left {
+    width: 50%;
+
+    min-height: 100vh;
+
+    padding: 55px 70px;
+
+    background: #10254b;
+
+    color: white;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.brand > span > span {
+    color: #ff8700;
+}
+
+.brand-icon {
+    width: 34px;
+    height: 34px;
+
+    border-radius: 9px;
+
+    background: #172f5d;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: #ff9200;
+}
+
+
+/* =========================
+   CONTENT
+========================= */
+
+.left-content {
+    margin: auto 0;
+
+    max-width: 500px;
+}
+
+.eyebrow {
+    margin-bottom: 18px;
+
+    color: #ff9200;
+
+    font-size: 13px;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+}
+
+.left-content h1 {
+    margin-bottom: 20px;
+
+    font-family: Georgia, serif;
+
+    font-size: 45px;
+
+    line-height: 1.2;
+}
+
+.left-content > p:not(.eyebrow) {
+    max-width: 450px;
+
+    color: #cbd5e7;
+
+    line-height: 1.7;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   BENEFITS
+========================= */
+
+.benefits {
+    margin-top: 35px;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 16px;
+}
+
+.benefit {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+}
+
+.benefit span {
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.1);
+
+    color: #ff9200;
+
+    font-weight: bold;
+}
+
+.benefit p {
+    color: #d5ddeb;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   RIGHT
+========================= */
+
+.register-right {
+    width: 50%;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+}
+
+.register-card {
+    width: 100%;
+
+    max-width: 430px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.register-header {
+    margin-bottom: 28px;
+}
+
+.register-header h2 {
+    margin-bottom: 7px;
+
+    font-family: Georgia, serif;
+
+    font-size: 30px;
+}
+
+.register-header p {
+    color: #7c8799;
+
+    font-size: 13px;
+}
+
+.register-header a {
+    color: #ff8700;
+
+    text-decoration: none;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #12264a;
+
+    font-size: 13px;
+
+    font-weight: bold;
+}
+
+.form-group input {
+    width: 100%;
+
+    height: 45px;
+
+    padding: 0 14px;
+
+    border: 1px solid #d5dce6;
+
+    border-radius: 8px;
+
+    background: white;
+
+    outline: none;
+
+    font-size: 13px;
+
+    color: #12264a;
+}
+
+.form-group input::placeholder {
+    color: #a7b0bf;
+}
+
+.form-group input:focus {
+    border-color: #244889;
+
+    box-shadow: 0 0 0 3px rgba(36, 72, 137, 0.08);
+}
+
+
+/* =========================
+   AGREEMENT
+========================= */
+
+.agreement {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 8px;
+
+    margin: 8px 0 20px;
+
+    color: #7c8799;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+.agreement input {
+    width: 14px;
+    height: 14px;
+
+    flex-shrink: 0;
+
+    margin-top: 2px;
+}
+
+.agreement a {
+    color: #52627b;
+
+    text-decoration: none;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn-register {
+    width: 100%;
+
+    height: 45px;
+
+    border: none;
+
+    border-radius: 8px;
+
+    background: #244889;
+
+    color: white;
+
+    font-weight: bold;
+
+    cursor: pointer;
+}
+
+.btn-register:hover {
+    background: #1d3c76;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin: 20px 0;
+}
+
+.divider span {
+    flex: 1;
+
+    height: 1px;
+
+    background: #dfe3e9;
+}
+
+.divider p {
+    color: #a0a9b7;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   GOOGLE
+========================= */
+
+.btn-google {
+    width: 100%;
+
+    height: 45px;
+
+    border: 1px solid #d5dce6;
+
+    border-radius: 8px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 10px;
+
+    color: #45536a;
+
+    font-size: 13px;
+
+    cursor: pointer;
+}
+
+.google-icon {
+    color: #4285f4;
+
+    font-size: 17px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .register-left {
+        display: none;
+    }
+
+    .register-right {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .register-right {
+        padding: 25px 20px;
+    }
+
+    .register-header h2 {
+        font-size: 26px;
+    }
+}
