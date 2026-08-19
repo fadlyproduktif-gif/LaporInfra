@@ -27,7 +27,7 @@
         </a>
 
         <a
-            href="#"
+            href="{{ url('/masyarakat/laporan-saya') }}"
             class="{{ request()->is('masyarakat/laporan*') ? 'active' : '' }}"
         >
             Laporan Saya

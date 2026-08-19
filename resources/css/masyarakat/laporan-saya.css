@@ -1,0 +1,290 @@
+/* =========================
+   LAPORAN SAYA
+========================= */
+
+.laporan-container {
+    max-width: 850px;
+    margin: 0 auto;
+
+    padding: 34px 24px 70px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.laporan-header h1 {
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.laporan-header p {
+    color: #64708a;
+    margin-bottom: 14px;
+}
+
+
+.laporan-count {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+
+    padding: 7px 12px;
+
+    background: #edf3fc;
+    color: #24539c;
+
+    border: 1px solid #d8e5f7;
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   STATUS LEGEND
+========================= */
+
+.laporan-container .status-legend {
+    display: flex;
+    gap: 22px;
+
+    margin: 25px 0 20px;
+
+    color: #8993a7;
+    font-size: 13px;
+}
+
+.laporan-container .status-legend span {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.laporan-container .dot {
+    width: 8px;
+    height: 8px;
+
+    border-radius: 50%;
+
+    display: inline-block;
+}
+
+.laporan-container .waiting {
+    background: #ffb000;
+}
+
+.laporan-container .processing {
+    background: #2854a4;
+}
+
+.laporan-container .completed {
+    background: #00b879;
+}
+
+
+/* =========================
+   LAPORAN CARD
+========================= */
+
+.laporan-card {
+    background: white;
+
+    border: 1px solid #dce2ea;
+    border-radius: 14px;
+
+    padding: 20px;
+
+    margin-bottom: 12px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+}
+
+
+.processing-card {
+    border-left: 4px solid #2854a4;
+}
+
+.waiting-card {
+    border-left: 4px solid #ffb000;
+}
+
+.completed-card {
+    border-left: 4px solid #00b879;
+}
+
+
+/* =========================
+   NUMBER
+========================= */
+
+.laporan-number {
+    width: 30px;
+    height: 30px;
+
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #f0f2f6;
+    color: #7c8799;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   INFO
+========================= */
+
+.laporan-info {
+    flex: 1;
+}
+
+.laporan-info h2 {
+    font-size: 16px;
+
+    margin-bottom: 9px;
+
+    color: #12264a;
+}
+
+
+.laporan-meta {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+
+    color: #9aa3b2;
+
+    font-size: 12px;
+}
+
+
+.kategori {
+    background: #edf3fc;
+
+    color: #24539c;
+
+    padding: 5px 8px;
+
+    border-radius: 5px;
+}
+
+
+/* =========================
+   ACTION
+========================= */
+
+.laporan-action {
+    display: flex;
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 8px;
+}
+
+
+.status {
+    padding: 6px 11px;
+
+    border-radius: 20px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.processing-status {
+    background: #edf3fc;
+    color: #24539c;
+
+    border: 1px solid #d8e5f7;
+}
+
+.waiting-status {
+    background: #fff8e5;
+    color: #d18a00;
+
+    border: 1px solid #ffe4a3;
+}
+
+.completed-status {
+    background: #e7faf3;
+    color: #00a66f;
+
+    border: 1px solid #a8efd4;
+}
+
+
+.btn-detail {
+    border: 1px solid #b9c9e2;
+
+    color: #17458d;
+
+    padding: 7px 13px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    background: white;
+}
+
+.btn-detail:hover {
+    background: #f4f7fc;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 700px) {
+
+    .laporan-card {
+        align-items: flex-start;
+    }
+
+    .laporan-action {
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 560px) {
+
+    .laporan-card {
+        flex-wrap: wrap;
+    }
+
+    .laporan-info {
+        min-width: calc(100% - 50px);
+    }
+
+    .laporan-action {
+        width: 100%;
+
+        margin-left: 44px;
+    }
+
+    .laporan-meta {
+        flex-wrap: wrap;
+    }
+
+}
