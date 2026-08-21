@@ -49,6 +49,6 @@ class AuthController extends Controller
 
     public function registerMasyarakat (Request $request){
            
-    }
+    } 
 
 }
