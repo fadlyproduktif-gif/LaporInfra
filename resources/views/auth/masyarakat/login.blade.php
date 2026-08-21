@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -84,117 +85,117 @@
 
                     <p>
                         Belum punya akun?
-                        <a href="{{ url('/register') }}">Daftar di sini</a>
+                        <a href="{{ route('masyarakat.register') }}">Daftar di sini</a>
                     </p>
 
                 </div>
 
 
                 <!-- EMAIL -->
+                <form class="login-form" method="POST" action="{{ route('login.masyarakat') }}">
+                    @csrf
+                    <div class="form-group">
 
-                <div class="form-group">
-
-                    <label for="email">
-                        Alamat Email
-                    </label>
-
-                    <div class="input-wrapper">
-
-                        <span class="input-icon">✉</span>
-
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="nama@email.com"
-                        >
-
-                    </div>
-
-                </div>
-
-
-                <!-- PASSWORD -->
-
-                <div class="form-group">
-
-                    <div class="label-row">
-
-                        <label for="password">
-                            Kata Sandi
+                        <label for="email">
+                            Alamat Email
                         </label>
 
-                        <a href="#">
-                            Lupa kata sandi?
-                        </a>
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">✉</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="nama@email.com">
+
+                        </div>
 
                     </div>
 
-                    <div class="input-wrapper">
 
-                        <span class="input-icon">🔒</span>
+                    <!-- PASSWORD -->
 
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Masukkan kata sandi"
-                        >
+                    <div class="form-group">
 
-                        <button
-                            type="button"
-                            class="password-toggle"
-                        >
-                            ◉
-                        </button>
+                        <div class="label-row">
+
+                            <label for="password">
+                                Kata Sandi
+                            </label>
+
+                            <a href="#">
+                                Lupa kata sandi?
+                            </a>
+
+                        </div>
+
+                        <div class="input-wrapper">
+
+                            <span class="input-icon">🔒</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Masukkan kata sandi">
+
+                            <button
+                                type="button"
+                                class="password-toggle">
+                                ◉
+                            </button>
+
+                        </div>
 
                     </div>
 
-                </div>
+
+                    <!-- REMEMBER -->
+
+                    <label class="remember">
+
+                        <input type="checkbox">
+
+                        <span>Ingat saya di perangkat ini</span>
+
+                    </label>
 
 
-                <!-- REMEMBER -->
+                    <!-- LOGIN -->
 
-                <label class="remember">
-
-                    <input type="checkbox">
-
-                    <span>Ingat saya di perangkat ini</span>
-
-                </label>
+                    <button type="submit" class="btn-login">
+                        Masuk
+                    </button>
+                </form>
 
 
-                <!-- LOGIN -->
+                    <!-- DIVIDER -->
 
-                <button type="button" class="btn-login">
-                    Masuk
-                </button>
+                    <div class="divider">
 
+                        <span></span>
 
-                <!-- DIVIDER -->
+                        <p>atau masuk dengan</p>
 
-                <div class="divider">
+                        <span></span>
 
-                    <span></span>
-
-                    <p>atau masuk dengan</p>
-
-                    <span></span>
-
-                </div>
+                    </div>
 
 
-                <!-- GOOGLE -->
+                    <!-- GOOGLE -->
 
-                <button type="button" class="btn-google">
+                    <button type="button" class="btn-google">
 
-                    <span class="google-icon">G</span>
+                        <span class="google-icon">G</span>
 
-                    <span>
-                        Lanjutkan dengan Google
-                    </span>
+                        <span>
+                            Lanjutkan dengan Google
+                        </span>
 
-                </button>
+                    </button>
+                <!-- end form -->
 
 
                 <!-- TERMS -->
@@ -214,4 +215,5 @@
     </div>
 
 </body>
+
 </html>
