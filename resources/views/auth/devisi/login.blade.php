@@ -98,19 +98,19 @@
                      LOGIN FORM
                 ========================== -->
 
-                <form class="login-form">
-
+                <form class="login-form" method="POST" action="{{ route('login.devisi') }}">
+                    @csrf
                     <div class="form-group">
 
-                        <label for="nim">
-                            NIM
+                        <label for="nip">
+                            NIP
                         </label>
 
                         <input
                             type="text"
-                            id="nim"
-                            name="nim"
-                            placeholder="Masukkan NIM Anda"
+                            id="nip"
+                            name="nip"
+                            placeholder="Masukkan NIP Anda"
                         >
 
                     </div>
