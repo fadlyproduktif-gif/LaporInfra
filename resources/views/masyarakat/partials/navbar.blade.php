@@ -97,17 +97,17 @@ $user = auth()->user();
             <div class="dropdown-divider"></div>
 
 
-            <form  action="{{ route('logout.masyarakat') }}" method="POST">
+            <form action="{{ route('logout.masyarakat') }}" method="POST">
                 @csrf
-                <button  type="submit">logout</button>
-                <!-- <span class="dropdown-icon">
-                    ↪
-                </span>
+                <button type="submit" class="dropdown-item logout">
+                    <span class="dropdown-icon">
+                        ↪
+                    </span>
 
-                <span>
-                    Keluar
-                </span> -->
-
+                    <span>
+                        Keluar
+                    </span>
+                </button>
             </form>
 
         </div>
