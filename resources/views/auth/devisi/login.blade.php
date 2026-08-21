@@ -98,8 +98,8 @@
                      LOGIN FORM
                 ========================== -->
 
-                <form class="login-form">
-
+                <form class="login-form" method="POST" action="{{ route('login.devisi') }}">
+                    @csrf
                     <div class="form-group">
 
                         <label for="nim">

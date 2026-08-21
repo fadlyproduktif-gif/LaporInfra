@@ -1,3 +1,6 @@
+@php
+$user = auth()->user();
+@endphp
 <header class="navbar">
 
     <div class="navbar-left">
@@ -21,15 +24,13 @@
 
         <a
             href="{{ url('/masyarakat/dashboard') }}"
-            class="{{ request()->is('masyarakat/dashboard') ? 'active' : '' }}"
-        >
+            class="{{ request()->is('masyarakat/dashboard') ? 'active' : '' }}">
             Beranda
         </a>
 
         <a
             href="{{ url('/masyarakat/laporan-saya') }}"
-            class="{{ request()->is('masyarakat/laporan*') ? 'active' : '' }}"
-        >
+            class="{{ request()->is('masyarakat/laporan*') ? 'active' : '' }}">
             Laporan Saya
         </a>
 
@@ -42,19 +43,18 @@
             type="button"
             class="user-menu"
             id="userMenuButton"
-            aria-expanded="false"
-        >
+            aria-expanded="false">
 
             <div class="user-avatar">
-                F
+                {{ strtoupper(substr($user->nama_user, 0, 1)) }}
             </div>
 
             <span class="user-name">
-                Fadly
+                {{ $user->nama_user }}
             </span>
 
             <span class="arrow" id="userMenuArrow">
-               ⌄
+                ⌄
             </span>
 
         </button>
@@ -62,8 +62,7 @@
 
         <div
             class="user-dropdown"
-            id="userDropdown"
-        >
+            id="userDropdown">
 
             <div class="user-dropdown-header">
 
@@ -72,11 +71,11 @@
                 </span>
 
                 <strong>
-                    Fadly Maulana
+                    {{$user->nama_user}}
                 </strong>
 
                 <span>
-                    fadly.maulana@email.com
+                    {{$user->email}}
                 </span>
 
             </div>
@@ -98,17 +97,18 @@
             <div class="dropdown-divider"></div>
 
 
-            <a href="#" class="dropdown-item logout">
-
-                <span class="dropdown-icon">
+            <form  action="{{ route('logout.masyarakat') }}" method="POST">
+                @csrf
+                <button  type="submit">logout</button>
+                <!-- <span class="dropdown-icon">
                     ↪
                 </span>
 
                 <span>
                     Keluar
-                </span>
+                </span> -->
 
-            </a>
+            </form>
 
         </div>
 
@@ -118,7 +118,7 @@
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
+    document.addEventListener('DOMContentLoaded', function() {
 
         const button = document.getElementById('userMenuButton');
         const dropdown = document.getElementById('userDropdown');
@@ -128,7 +128,7 @@
             return;
         }
 
-        button.addEventListener('click', function (event) {
+        button.addEventListener('click', function(event) {
 
             event.stopPropagation();
 
@@ -147,7 +147,7 @@
         });
 
 
-        document.addEventListener('click', function () {
+        document.addEventListener('click', function() {
 
             dropdown.classList.remove('show');
 

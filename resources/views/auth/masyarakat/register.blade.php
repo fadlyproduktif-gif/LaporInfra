@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -85,7 +86,7 @@
 
                     <p>
                         Sudah punya akun?
-                        <a href="{{ url('/login') }}">
+                        <a href="{{ route('masyarakat.login') }}">
                             Masuk di sini
                         </a>
                     </p>
@@ -94,101 +95,98 @@
 
 
                 <!-- NAMA -->
+                <form action="{{ route('register.masyarakat') }}" method="POST" class="login-form">
+                    @csrf
+                    <div class="form-group">
 
-                <div class="form-group">
+                        <label for="name">
+                            Nama Lengkap
+                        </label>
 
-                    <label for="name">
-                        Nama Lengkap
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="Masukkan nama lengkap">
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Alamat Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="nama@email.com">
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password">
+                            Kata Sandi
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password"
+                            name="password"
+                            placeholder="Buat kata sandi">
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+
+                    <div class="form-group">
+
+                        <label for="password_confirmation">
+                            Konfirmasi Kata Sandi
+                        </label>
+
+                        <input
+                            type="password"
+                            id="password_confirmation"
+                            name="password_confirmation"
+                            placeholder="Ulangi kata sandi">
+
+                    </div>
+
+
+                    <!-- TERMS -->
+
+                    <label class="agreement">
+
+                        <input type="checkbox">
+
+                        <span>
+                            Saya menyetujui
+                            <a href="#">Syarat Layanan</a>
+                            dan
+                            <a href="#">Kebijakan Privasi</a>
+                            LAPORINFRA.
+                        </span>
+
                     </label>
 
-                    <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        placeholder="Masukkan nama lengkap"
-                    >
 
-                </div>
+                    <!-- REGISTER -->
 
+                    <button type="submit" class="btn-register">
+                        Daftar
+                    </button>
 
-                <!-- EMAIL -->
-
-                <div class="form-group">
-
-                    <label for="email">
-                        Alamat Email
-                    </label>
-
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        placeholder="nama@email.com"
-                    >
-
-                </div>
-
-
-                <!-- PASSWORD -->
-
-                <div class="form-group">
-
-                    <label for="password">
-                        Kata Sandi
-                    </label>
-
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        placeholder="Buat kata sandi"
-                    >
-
-                </div>
-
-
-                <!-- CONFIRM PASSWORD -->
-
-                <div class="form-group">
-
-                    <label for="password_confirmation">
-                        Konfirmasi Kata Sandi
-                    </label>
-
-                    <input
-                        type="password"
-                        id="password_confirmation"
-                        name="password_confirmation"
-                        placeholder="Ulangi kata sandi"
-                    >
-
-                </div>
-
-
-                <!-- TERMS -->
-
-                <label class="agreement">
-
-                    <input type="checkbox">
-
-                    <span>
-                        Saya menyetujui
-                        <a href="#">Syarat Layanan</a>
-                        dan
-                        <a href="#">Kebijakan Privasi</a>
-                        LAPORINFRA.
-                    </span>
-
-                </label>
-
-
-                <!-- REGISTER -->
-
-                <button type="button" class="btn-register">
-                    Daftar
-                </button>
-
-
+                </form>
                 <!-- DIVIDER -->
 
                 <div class="divider">
@@ -223,4 +221,5 @@
     </div>
 
 </body>
+
 </html>
