@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -48,7 +50,20 @@ class AuthController extends Controller
     }
 
     public function registerMasyarakat (Request $request){
-           
+           $request->validate([
+            'name'=>'required',
+            'email'=>'required|email|unique:users,email',
+            'password'=>'required|min:8|confirmed'
+           ]);
+
+           User::create([
+            'nama_user' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'role' => 'masyarakat'
+           ]);
+
+           return redirect()->route('masyarakat.login');
     } 
 
 }
