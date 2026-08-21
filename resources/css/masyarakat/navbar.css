@@ -120,7 +120,7 @@
 
 .user-dropdown {
     position: absolute;
-
+    margin: 0;
     top: calc(100% + 8px);
     right: 0;
 
@@ -185,20 +185,26 @@
 }
 
 .dropdown-item {
+    width: 100%;
+    border: none;
+    background: none;
+    text-decoration: none;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    box-sizing: border-box;
     min-height: 48px;
-
     padding: 0 16px;
-
     display: flex;
     align-items: center;
-
     gap: 12px;
-
     color: #52627b;
-
     text-decoration: none;
-
     font-size: 14px;
+}
+
+.dropdown-item.logout {
+    color: #dc2626;
 }
 
 .dropdown-item:hover {
