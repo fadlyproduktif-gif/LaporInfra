@@ -102,14 +102,14 @@
                     @csrf
                     <div class="form-group">
 
-                        <label for="nip">
+                        <label for="nim">
                             NIP
                         </label>
 
                         <input
                             type="text"
-                            id="nip"
-                            name="nip"
+                            id="nim"
+                            name="nim"
                             placeholder="Masukkan NIP Anda"
                         >
 
