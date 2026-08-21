@@ -103,14 +103,14 @@
                     <div class="form-group">
 
                         <label for="nim">
-                            NIM
+                            NIP
                         </label>
 
                         <input
                             type="text"
                             id="nim"
                             name="nim"
-                            placeholder="Masukkan NIM Anda"
+                            placeholder="Masukkan NIP Anda"
                         >
 
                     </div>
