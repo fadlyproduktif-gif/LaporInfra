@@ -19,10 +19,15 @@ class AuthController extends Controller
         if (Auth::attempt([
             'nip' => $request->nip,
             'password' => $request->password,
+            'role' => 'devisi',
         ])) {
             $request->session()->regenerate();
             return redirect()->route('devisi.dashboard');
         }
+        else
+            {
+                return back()->with('errorLogin', 'NIP atau password salah');
+            }
     }
 
     public function loginMasyarakat(Request $request)
@@ -38,6 +43,9 @@ class AuthController extends Controller
         ])) {
             $request->session()->regenerate();
             return redirect()->route('masyarakat.dashboard');
+        }
+        else{
+            return back()->with('loginError', 'email atau password salah');
         }
     }
 

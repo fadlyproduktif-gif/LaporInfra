@@ -50,7 +50,7 @@
 
                 <div class="statistics">
 
-                    <div class="stat">
+                    <!-- <div class="stat">
                         <strong>48.200+</strong>
                         <span>Laporan Diterima</span>
                     </div>
@@ -63,7 +63,7 @@
                     <div class="stat">
                         <strong>72%</strong>
                         <span>Laporan Ditindaklanjuti</span>
-                    </div>
+                    </div> -->
 
                 </div>
 
@@ -87,6 +87,10 @@
                         Belum punya akun?
                         <a href="{{ route('masyarakat.register') }}">Daftar di sini</a>
                     </p>
+                    <br>
+                    @if (session('loginError'))
+                        <p><u>{{session('loginError')}}</u></p>
+                    @endif
 
                 </div>
 
@@ -104,13 +108,13 @@
 
                             <span class="input-icon">✉</span>
 
-                            <input
-                                type="email"
-                                id="email"
-                                name="email"
-                                placeholder="nama@email.com">
+                            <input type="email" id="email" name="email" placeholder="nama@email.com">
 
                         </div>
+
+                        @error('email')
+                            <p>{{ $message }}</p>
+                        @enderror
 
                     </div>
 
@@ -135,19 +139,17 @@
 
                             <span class="input-icon">🔒</span>
 
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Masukkan kata sandi">
+                            <input type="password" id="password" name="password" placeholder="Masukkan kata sandi">
 
-                            <button
-                                type="button"
-                                class="password-toggle">
+                            <button type="button" class="password-toggle">
                                 ◉
                             </button>
 
                         </div>
+
+                        @error('password')
+                            <p>{{$message}}</p>
+                        @enderror
 
                     </div>
 
@@ -171,30 +173,30 @@
                 </form>
 
 
-                    <!-- DIVIDER -->
+                <!-- DIVIDER -->
 
-                    <div class="divider">
+                <div class="divider">
 
-                        <span></span>
+                    <span></span>
 
-                        <p>atau masuk dengan</p>
+                    <p>atau masuk dengan</p>
 
-                        <span></span>
+                    <span></span>
 
-                    </div>
+                </div>
 
 
-                    <!-- GOOGLE -->
+                <!-- GOOGLE -->
 
-                    <button type="button" class="btn-google">
+                <button type="button" class="btn-google">
 
-                        <span class="google-icon">G</span>
+                    <span class="google-icon">G</span>
 
-                        <span>
-                            Lanjutkan dengan Google
-                        </span>
+                    <span>
+                        Lanjutkan dengan Google
+                    </span>
 
-                    </button>
+                </button>
                 <!-- end form -->
 
 
