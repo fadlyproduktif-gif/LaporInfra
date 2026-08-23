@@ -38,6 +38,10 @@ Route::middleware(['auth', 'role:masyarakat'])->group(function () {
     Route::get('/masyarakat/laporan-saya', function () {
         return view('masyarakat.laporan-saya');
     })->name('masyarakat.laporan-saya');
+    
+    Route::get('/masyarakat/profil-saya', function() {
+        return view('masyarakat.profil');
+    })->name('profil');
 });
 
 //[MASYARAKAT LOGOUT]

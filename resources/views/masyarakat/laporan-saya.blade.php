@@ -89,7 +89,7 @@
                 </span>
 
                 <a
-                    href="#"
+                    href="{{route('masyarakat.detail-laporan')}}"
                     class="btn-detail"
                 >
                     Lihat Detail
