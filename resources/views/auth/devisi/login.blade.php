@@ -54,7 +54,7 @@
 
                 <div class="brand-statistics">
 
-                    <div class="stat">
+                    {{-- <div class="stat">
                         <strong>48.200+</strong>
                         <span>Laporan Diterima</span>
                     </div>
@@ -67,7 +67,7 @@
                     <div class="stat">
                         <strong>72%</strong>
                         <span>Laporan Ditindaklanjuti</span>
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -98,6 +98,10 @@
                      LOGIN FORM
                 ========================== -->
 
+                @if (session('errorLogin'))
+                    <p><u>{{session('errorLogin')}}</u></p>
+                    <br>
+                @endif
                 <form class="login-form" method="POST" action="{{ route('login.devisi') }}">
                     @csrf
                     <div class="form-group">
@@ -112,6 +116,10 @@
                             name="nip"
                             placeholder="Masukkan NIP Anda"
                         >
+
+                        @error('nip')
+                            <p>{{$message}}</p>                            
+                        @enderror
 
                     </div>
 
@@ -146,9 +154,14 @@
                             >
                                 ◉
                             </button>
+                            
 
                         </div>
 
+                        @error('password')
+                            <p>{{$message}}</p>                            
+                        @enderror
+                    
                     </div>
 
 

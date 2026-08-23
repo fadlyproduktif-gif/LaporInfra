@@ -103,11 +103,11 @@
                             Nama Lengkap
                         </label>
 
-                        <input
-                            type="text"
-                            id="name"
-                            name="name"
-                            placeholder="Masukkan nama lengkap">
+                        <input type="text" id="name" name="name" placeholder="Masukkan nama lengkap">
+                        
+                        @error('name')
+                            <p>{{$message}}</p>
+                        @enderror
 
                     </div>
 
@@ -120,11 +120,11 @@
                             Alamat Email
                         </label>
 
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            placeholder="nama@email.com">
+                        <input type="email" id="email" name="email" placeholder="nama@email.com">
+
+                        @error('email')
+                            <p>{{ $message }}</p>
+                        @enderror
 
                     </div>
 
@@ -137,11 +137,11 @@
                             Kata Sandi
                         </label>
 
-                        <input
-                            type="password"
-                            id="password"
-                            name="password"
-                            placeholder="Buat kata sandi">
+                        <input type="password" id="password" name="password" placeholder="Buat kata sandi">
+
+                        @error('password')
+                            <p>{{ $message }}</p>
+                        @enderror
 
                     </div>
 
@@ -154,11 +154,9 @@
                             Konfirmasi Kata Sandi
                         </label>
 
-                        <input
-                            type="password"
-                            id="password_confirmation"
-                            name="password_confirmation"
+                        <input type="password" id="password_confirmation" name="password_confirmation"
                             placeholder="Ulangi kata sandi">
+
 
                     </div>
 
