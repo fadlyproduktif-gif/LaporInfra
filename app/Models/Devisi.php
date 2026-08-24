@@ -24,7 +24,7 @@ class Devisi extends Model
         );
     }
 
-    public function users(): HasMany
+    public function user(): HasMany
     {
         return $this->hasMany(
             User::class,

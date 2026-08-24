@@ -14,7 +14,7 @@
         <section class="welcome">
 
             <h1>
-                Selamat datang, Fadly!
+                Selamat datang, {{ strtok(Auth::User()->nama_user, ' ') }}!
             </h1>
 
             <p>
@@ -64,10 +64,10 @@
 
                 <h2>
                     Laporan Saya
-                    <span class="report-count">3</span>
+                    <span class="report-count">{{ $laporan->count() }}</span>
                 </h2>
 
-                <a href="#" class="view-all">
+                <a href="{{ route('masyarakat.laporan-saya') }}" class="view-all">
                     Lihat Semua
                 </a>
 
@@ -96,129 +96,50 @@
 
 
             <!-- Report 1 -->
-            <article class="report-card processing-card">
+            @forelse ($laporan as $index => $item)
+                <article class="report-card processing-card">
 
-                <div class="report-number">
-                    1
-                </div>
+                    <div class="report-number">
+                        {{ $index + 1 }}
+                    </div>
 
-                <div class="report-info">
+                    <div class="report-info">
 
-                    <h3>
-                        Jalan Berlubang di Jl. Merdeka No. 12
-                    </h3>
+                        <h3>
+                            {{ $item->nama_laporan }}
+                        </h3>
 
-                    <div class="report-meta">
+                        <div class="report-meta">
 
-                        <span class="category">
-                            ◇ Jalan & Trotoar
-                        </span>
+                            <span class="category">
+                                {{ $item->kategori->nama_kategori }}
+                            </span>
 
-                        <span>
-                            ▣ 10 Agustus 2026
-                        </span>
+                            <span>
+                                {{ $item->created_at }}
+                            </span>
+
+                        </div>
 
                     </div>
 
-                </div>
+                    <div class="report-action">
 
-                <div class="report-action">
-
-                    <span class="status processing-status">
-                        ● Sedang Diproses
-                    </span>
-
-                    <a href="#" class="btn-detail">
-                        Lihat Detail
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- Report 2 -->
-            <article class="report-card waiting-card">
-
-                <div class="report-number">
-                    2
-                </div>
-
-                <div class="report-info">
-
-                    <h3>
-                        Lampu Jalan Mati Sejak 2 Minggu Lalu
-                    </h3>
-
-                    <div class="report-meta">
-
-                        <span class="category">
-                            ◇ Penerangan Jalan
+                        <span class="status processing-status">
+                            {{ $item->status_laporan }}
                         </span>
 
-                        <span>
-                            ▣ 5 Agustus 2026
-                        </span>
+                        <a href="#" class="btn-detail">
+                            Lihat Detail
+                        </a>
 
                     </div>
 
-                </div>
+                </article>
+                @empty 
+                <p>kosong</p>
+            @endforelse
 
-                <div class="report-action">
-
-                    <span class="status waiting-status">
-                        ● Menunggu
-                    </span>
-
-                    <a href="#" class="btn-detail">
-                        Lihat Detail
-                    </a>
-
-                </div>
-
-            </article>
-
-
-            <!-- Report 3 -->
-            <article class="report-card completed-card">
-
-                <div class="report-number">
-                    3
-                </div>
-
-                <div class="report-info">
-
-                    <h3>
-                        Saluran Air Tersumbat di Gang Melati RT 04
-                    </h3>
-
-                    <div class="report-meta">
-
-                        <span class="category">
-                            ◇ Drainase & Sanitasi
-                        </span>
-
-                        <span>
-                            ▣ 28 Juli 2026
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <div class="report-action">
-
-                    <span class="status completed-status">
-                        ● Selesai
-                    </span>
-
-                    <a href="#" class="btn-detail">
-                        Lihat Detail
-                    </a>
-
-                </div>
-
-            </article>
 
         </section>
 
