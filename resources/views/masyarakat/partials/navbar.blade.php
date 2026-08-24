@@ -81,7 +81,7 @@ $user = auth()->user();
             </div>
 
 
-            <a href="#" class="dropdown-item">
+            <a href="{{ route('profil') }}" class="dropdown-item">
 
                 <span class="dropdown-icon">
                     ♙

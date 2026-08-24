@@ -1,133 +1,17 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+@extends('masyarakat.layouts.app')
 
-    <title>Profil Saya - LAPORINFRA</title>
+@section('title', 'Profil Saya')
 
+@push('styles')
     @vite('resources/css/masyarakat/profil.css')
-</head>
+@endpush
 
-<body>
-
-    <!-- =========================
-         NAVBAR
-    ========================== -->
-
-    <nav class="navbar">
-
-        <div class="navbar-left">
-
-            <a href="#" class="brand">
-                <div class="logo-icon">
-                    ⚡
-                </div>
-
-                <div class="logo-text">
-                    LAPOR<span>INFRA</span>
-                </div>
-            </a>
-
-        </div>
-
-
-        <div class="navbar-menu">
-
-            <a href="#" class="nav-link">
-                Beranda
-            </a>
-
-            <a href="#" class="nav-link">
-                Laporan Saya
-            </a>
-
-        </div>
-
-
-        <!-- USER MENU -->
-
-        <div class="user-menu-wrapper">
-
-            <button class="user-menu" type="button">
-
-                <div class="user-avatar">
-                    F
-                </div>
-
-                <span class="user-name">
-                    Fadly
-                </span>
-
-                <span class="arrow">
-                   ⌄
-                </span>
-
-            </button>
-
-
-            <div class="user-dropdown">
-
-                <div class="user-dropdown-header">
-
-                    <span class="dropdown-label">
-                        Akun
-                    </span>
-
-                    <strong>
-                        Fadly Maulana
-                    </strong>
-
-                    <span>
-                        fadly.maulana@email.com
-                    </span>
-
-                </div>
-
-                <div class="dropdown-divider"></div>
-
-                <a href="#" class="dropdown-item active">
-
-                    <span class="dropdown-icon">
-                        👤
-                    </span>
-
-                    Profil Saya
-
-                </a>
-
-                <a href="#" class="dropdown-item">
-
-                    <span class="dropdown-icon">
-                        📄
-                    </span>
-
-                    Laporan Saya
-
-                </a>
-
-                <div class="dropdown-divider"></div>
-
-                <a href="#" class="dropdown-item logout">
-
-                    <span class="dropdown-icon">
-                        ↪
-                    </span>
-
-                    Keluar
-
-                </a>
-
-            </div>
-
-        </div>
-
-    </nav>
+@section('content')
 
 
     <!-- =========================
-         MAIN
-    ========================== -->
+             MAIN
+        ========================== -->
 
     <main class="profile-container">
 
@@ -154,8 +38,8 @@
 
 
         <!-- =========================
-             INFORMASI PROFIL
-        ========================== -->
+                 INFORMASI PROFIL
+            ========================== -->
 
         <section class="profile-card">
 
@@ -205,8 +89,8 @@
 
 
         <!-- =========================
-             KEAMANAN AKUN
-        ========================== -->
+                 KEAMANAN AKUN
+            ========================== -->
 
         <section class="profile-card security-card">
 
@@ -235,11 +119,7 @@
 
                     <div class="password-input">
 
-                        <input
-                            type="password"
-                            id="current-password"
-                            placeholder="Masukkan password saat ini"
-                        >
+                        <input type="password" id="current-password" placeholder="Masukkan password saat ini">
 
                         <button type="button" class="password-toggle">
                             ◉
@@ -260,11 +140,7 @@
 
                     <div class="password-input">
 
-                        <input
-                            type="password"
-                            id="new-password"
-                            placeholder="Minimal 8 karakter"
-                        >
+                        <input type="password" id="new-password" placeholder="Minimal 8 karakter">
 
                         <button type="button" class="password-toggle">
                             ◉
@@ -285,11 +161,7 @@
 
                     <div class="password-input">
 
-                        <input
-                            type="password"
-                            id="confirm-password"
-                            placeholder="Ulangi password baru"
-                        >
+                        <input type="password" id="confirm-password" placeholder="Ulangi password baru">
 
                         <button type="button" class="password-toggle">
                             ◉
@@ -313,77 +185,4 @@
         </section>
 
     </main>
-
-
-    <!-- =========================
-         FOOTER
-    ========================== -->
-
-    <footer class="footer">
-
-        <span>
-            © 2026 LAPORINFRA — Sistem Pengaduan Infrastruktur Publik
-        </span>
-
-        <span>
-            Layanan Publik Republik Indonesia
-        </span>
-
-    </footer>
-
-
-    <!-- =========================
-         DROPDOWN SCRIPT
-    ========================== -->
-
-    <script>
-
-        const userMenu = document.querySelector('.user-menu');
-        const dropdown = document.querySelector('.user-dropdown');
-
-        userMenu.addEventListener('click', function () {
-
-            dropdown.classList.toggle('show');
-
-        });
-
-
-        document.addEventListener('click', function (event) {
-
-            if (!event.target.closest('.user-menu-wrapper')) {
-
-                dropdown.classList.remove('show');
-
-            }
-
-        });
-
-
-        const passwordButtons =
-            document.querySelectorAll('.password-toggle');
-
-        passwordButtons.forEach(button => {
-
-            button.addEventListener('click', function () {
-
-                const input =
-                    this.parentElement.querySelector('input');
-
-                if (input.type === 'password') {
-
-                    input.type = 'text';
-
-                } else {
-
-                    input.type = 'password';
-
-                }
-
-            });
-
-        });
-
-    </script>
-
-</body>
-</html>
+@endsection

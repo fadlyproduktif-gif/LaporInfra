@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\Masyarakat\DashboardController;
 
 Route::get('/', function () {
     return view('auth.masyarakat.login');
@@ -23,9 +24,8 @@ Route::Post('/register-masyarakat', [AuthController::class, 'registerMasyarakat'
 
 //[MASYARAKAT CONTENT]
 Route::middleware(['auth', 'role:masyarakat'])->group(function () {
-    Route::get('/masyarakat/dashboard', function () {
-        return view('masyarakat.dashboard');
-    })->name('masyarakat.dashboard');
+    Route::get('/masyarakat/dashboard', [DashboardController::class, 'index'])
+    ->name('masyarakat.dashboard');
 
     Route::get('/masyarakat/form-laporan', function () {
         return view('masyarakat.form-laporan');
@@ -38,6 +38,10 @@ Route::middleware(['auth', 'role:masyarakat'])->group(function () {
     Route::get('/masyarakat/laporan-saya', function () {
         return view('masyarakat.laporan-saya');
     })->name('masyarakat.laporan-saya');
+
+    Route::get('/masyarakat/profil-saya', function () {
+        return view('masyarakat.profil');
+    })->name('profil');
 });
 
 //[MASYARAKAT LOGOUT]

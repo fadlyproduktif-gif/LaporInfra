@@ -13,16 +13,16 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
     'lokasi',
     'foto_lokasi',
     'status_laporan',
-    'keterangan proggress',
+    'keterangan_proggress',
     'id_kategori',
 ])]
 
 class Laporan extends Model
 {
     protected  $table = 'laporan';
-    protected $primarykey = 'id_laporan';
+    protected $primaryKey = 'id_laporan';
 
-    public function users():BelongsTo
+    public function user():BelongsTo
     {
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
