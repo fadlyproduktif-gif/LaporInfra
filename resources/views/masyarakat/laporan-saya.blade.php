@@ -8,193 +8,100 @@
 
 @section('content')
 
-<main class="laporan-container">
+    <main class="laporan-container">
 
-    <!-- Header -->
-    <section class="laporan-header">
+        <!-- Header -->
+        <section class="laporan-header">
 
-        <h1>Laporan Saya</h1>
+            <h1>Laporan Saya</h1>
 
-        <p>
-            Lihat dan pantau laporan yang telah Anda kirim.
-        </p>
+            <p>
+                Lihat dan pantau laporan yang telah Anda kirim.
+            </p>
 
-        <div class="laporan-count">
-            <span>▣</span>
-            <strong>3</strong>
-            <span>Laporan</span>
+            <div class="laporan-count">
+                <span>▣</span>
+                <strong>{{$laporan->count()}}</strong>
+                <span>Laporan</span>
+            </div>
+
+        </section>
+
+
+        <!-- Status Legend -->
+        <div class="status-legend">
+
+            <span>
+                <i class="dot waiting"></i>
+                Menunggu
+            </span>
+
+            <span>
+                <i class="dot processing"></i>
+                Sedang Diproses
+            </span>
+
+            <span>
+                <i class="dot completed"></i>
+                Selesai
+            </span>
+
         </div>
 
-    </section>
+
+        <!-- Daftar Laporan -->
+        <section class="laporan-list">
 
 
-    <!-- Status Legend -->
-    <div class="status-legend">
+            <!-- Laporan 1 -->
+            @forelse ($laporan as $index => $item)
+                <article class="laporan-card processing-card">
 
-        <span>
-            <i class="dot waiting"></i>
-            Menunggu
-        </span>
-
-        <span>
-            <i class="dot processing"></i>
-            Sedang Diproses
-        </span>
-
-        <span>
-            <i class="dot completed"></i>
-            Selesai
-        </span>
-
-    </div>
+                    <div class="laporan-number">
+                        {{$index + 1}}
+                    </div>
 
 
-    <!-- Daftar Laporan -->
-    <section class="laporan-list">
+                    <div class="laporan-info">
+
+                        <h2>
+                            {{$item->nama_laporan}}
+                        </h2>
+
+                        <div class="laporan-meta">
+
+                            <span class="kategori">
+                                {{$item->kategori->nama_kategori}}
+                            </span>
+
+                            <span>
+                               {{$item->created_at}}
+                            </span>
+
+                        </div>
+
+                    </div>
 
 
-        <!-- Laporan 1 -->
-        <article class="laporan-card processing-card">
+                    <div class="laporan-action">
 
-            <div class="laporan-number">
-                1
-            </div>
+                        <span class="status processing-status">
+                            {{$item->StatusLaporan->nama_status}}
+                        </span>
 
+                            <a href="{{ route('masyarakat.detail-laporan', $item->id_laporan) }}" class="btn-detail">
+                                Lihat Detail
+                            </a>
 
-            <div class="laporan-info">
+                    </div>
 
-                <h2>
-                    Jalan Berlubang di Jl. Merdeka No. 12
-                </h2>
-
-                <div class="laporan-meta">
-
-                    <span class="kategori">
-                        ◇ Jalan & Trotoar
-                    </span>
-
-                    <span>
-                        ▣ 10 Agustus 2026
-                    </span>
-
-                </div>
-
-            </div>
+                </article>
+            @empty
+            @endforelse
 
 
-            <div class="laporan-action">
+        </section>
 
-                <span class="status processing-status">
-                    ● Sedang Diproses
-                </span>
-
-                <a
-                    href="{{route('masyarakat.detail-laporan')}}"
-                    class="btn-detail"
-                >
-                    Lihat Detail
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- Laporan 2 -->
-        <article class="laporan-card waiting-card">
-
-            <div class="laporan-number">
-                2
-            </div>
-
-
-            <div class="laporan-info">
-
-                <h2>
-                    Lampu Jalan Mati Sejak 2 Minggu Lalu
-                </h2>
-
-                <div class="laporan-meta">
-
-                    <span class="kategori">
-                        ◇ Penerangan Jalan
-                    </span>
-
-                    <span>
-                        ▣ 5 Agustus 2026
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="laporan-action">
-
-                <span class="status waiting-status">
-                    ● Menunggu
-                </span>
-
-                <a
-                    href="#"
-                    class="btn-detail"
-                >
-                    Lihat Detail
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- Laporan 3 -->
-        <article class="laporan-card completed-card">
-
-            <div class="laporan-number">
-                3
-            </div>
-
-
-            <div class="laporan-info">
-
-                <h2>
-                    Saluran Air Tersumbat di Gang Melati RT 04
-                </h2>
-
-                <div class="laporan-meta">
-
-                    <span class="kategori">
-                        ◇ Drainase & Sanitasi
-                    </span>
-
-                    <span>
-                        ▣ 28 Juli 2026
-                    </span>
-
-                </div>
-
-            </div>
-
-
-            <div class="laporan-action">
-
-                <span class="status completed-status">
-                    ● Selesai
-                </span>
-
-                <a
-                    href="#"
-                    class="btn-detail"
-                >
-                    Lihat Detail
-                </a>
-
-            </div>
-
-        </article>
-
-    </section>
-
-</main>
+    </main>
 
 @endsection

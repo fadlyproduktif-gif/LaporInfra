@@ -11,8 +11,8 @@
 <main class="detail-container">
 
     <!-- Back -->
-    <a href="#" class="back-link">
-        ← Kembali ke Laporan Saya
+    <a href="{{ route('masyarakat.laporan-saya') }}" class="back-link">
+        ← Kembali ke Laporan Saya 
     </a>
 
 
@@ -22,20 +22,20 @@
         <div>
 
             <h1>
-                Jalan Berlubang di Jl. Merdeka No. 12
+                {{$laporan->nama_laporan}}
             </h1>
 
             <p>
-                Dilaporkan pada 10 Agustus 2026
+                Dilaporkan pada {{$laporan->created_at->translatedFormat('l, d F Y')}}
                 ·
-                Diperbarui 12 Agustus 2026
+                Diperbarui {{$laporan->updated_at->translatedFormat('l, d F Y')}}
             </p>
 
         </div>
 
 
         <span class="detail-status">
-            ● Sedang Diproses
+            ● {{$laporan->StatusLaporan->nama_status}}
         </span>
 
     </section>
@@ -74,7 +74,7 @@
                         </span>
 
                         <span>
-                            Jalan & Trotoar
+                            {{$laporan->kategori->nama_kategori}}
                         </span>
 
                     </div>
@@ -87,9 +87,7 @@
                         </span>
 
                         <span>
-                            Jl. Merdeka No. 12,
-                            Kel. Sudirman,
-                            Kec. Menteng
+                            {{$laporan->lokasi}}
                         </span>
 
                     </div>
@@ -102,7 +100,7 @@
                         </span>
 
                         <span>
-                            10 Agustus 2026
+                            {{$laporan->created_at->translatedFormat('l, d F Y')}}
                         </span>
 
                     </div>
@@ -115,9 +113,10 @@
                         </span>
 
                         <span>
-                            12 Agustus 2026
+                            {{$laporan->updated_at->translatedFormat('l, d F Y')}}
                         </span>
 
+                        
                     </div>
 
                 </div>
@@ -144,7 +143,7 @@
                 <div class="photo-wrapper">
 
                     <img
-                        src="https://images.unsplash.com/photo-1519501025264-65ba15a82390"
+                        src="{{ asset('storage/'.$laporan->foto_lokasi) }}"
                         alt="Foto lokasi laporan"
                     >
 
@@ -172,12 +171,7 @@
                 <div class="description-content">
 
                     <p>
-                        Terdapat beberapa lubang pada badan jalan
-                        yang cukup mengganggu pengguna jalan.
-                        Lubang berukuran sekitar 30–50 cm dengan
-                        kedalaman ±10 cm. Kondisi ini berpotensi
-                        menyebabkan kecelakaan terutama pada malam
-                        hari saat penerangan minim.
+                        {{$laporan->deskripsi}}
                     </p>
 
                 </div>
@@ -212,7 +206,7 @@
                     </span>
 
                     <span class="detail-status">
-                        ● Sedang Diproses
+                        ● {{$laporan->StatusLaporan->nama_status}}
                     </span>
 
 
@@ -222,8 +216,7 @@
 
                     <div class="progress-box">
 
-                        Sedang dilakukan pemeriksaan
-                        lokasi oleh petugas Dinas PUPR.
+                        {{$laporan->keterangan_proggress}}
 
                     </div>
 
@@ -231,7 +224,7 @@
                     <div class="updated-info">
 
                         Terakhir diperbarui pada
-                        12 Agustus 2026
+                        {{$laporan->updated_at->translatedFormat('l, d F Y')}}
 
                     </div>
 

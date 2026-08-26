@@ -20,7 +20,9 @@ return new class extends Migration
             $table->string('deskripsi');
             $table->string('lokasi');
             $table->string('foto_lokasi');
-            $table->string('status_laporan');
+            $table->foreignId('id_laporan')
+                ->constrained('status_laporan', 'id_status', 'id_status')
+                ->onDelete('cascade');
             $table->string('keterangan_proggress');
             $table->foreignId('id_kategori')
                 ->constrained('kategori', 'id_kategori', 'id_kategori')

@@ -7,7 +7,17 @@
 @endpush
 
 @section('content')
+    @if ($errors->any())
+        <div>
+            <strong>Ada error:</strong>
 
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="form-container">
 
         <a href="{{ url('/masyarakat/dashboard') }}" class="back-link">
@@ -52,7 +62,7 @@
             </div>
 
 
-            <form method="POST" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('masyarakat.form-laporan') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
 
@@ -60,7 +70,8 @@
                         Judul Laporan <span>*</span>
                     </label>
 
-                    <input type="text" id="judul" name="judul" placeholder="Contoh: Jalan berlubang di Jalan Merdeka">
+                    <input type="text" id="judul" name="nama_laporan"
+                        placeholder="Contoh: Jalan berlubang di Jalan Merdeka" value="{{ old('nama_laporan') }}">
 
                     <small>
                         Tuliskan judul yang singkat dan menggambarkan masalah.
@@ -75,27 +86,18 @@
                         Kategori <span>*</span>
                     </label>
 
-                    <select id="kategori" name="kategori">
+                    <select id="kategori" name="id_kategori">
 
                         <option value="">
                             Pilih kategori
                         </option>
 
-                        <option value="jalan">
-                            Jalan & Trotoar
-                        </option>
-
-                        <option value="penerangan">
-                            Penerangan Jalan
-                        </option>
-
-                        <option value="drainase">
-                            Drainase & Sanitasi
-                        </option>
-
-                        <option value="lainnya">
-                            Lainnya
-                        </option>
+                        @foreach ($kategori as $item)
+                            <option value="{{ $item->id_kategori }}">
+                                @selected(old('id_kategori') == $item->id_kategori)
+                                {{ $item->nama_kategori }}
+                            </option>
+                        @endforeach
 
                     </select>
 
@@ -112,7 +114,8 @@
                         Lokasi Infrastruktur <span>*</span>
                     </label>
 
-                    <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan alamat atau lokasi kerusakan...">
+                    <input type="text" id="lokasi" name="lokasi"
+                        placeholder="Masukkan alamat atau lokasi kerusakan..." value="{{ old('lokasi') }}">
 
                     <small>
                         Contoh: Jl. Merdeka No. 12, dekat Kantor Desa
@@ -147,7 +150,8 @@
                             Pilih Foto
                         </label>
 
-                        <input type="file" id="foto" name="foto" accept=".jpg,.jpeg,.png,image/jpeg,image/png" hidden>
+                        <input type="file" id="foto" name="foto_lokasi"
+                            accept=".jpg,.jpeg,.png,image/jpeg,image/png" hidden>
 
                         <span id="photo-name" class="photo-name"></span>
 
@@ -162,7 +166,7 @@
                     </label>
 
                     <textarea id="deskripsi" name="deskripsi" maxlength="1000"
-                        placeholder="Jelaskan masalah infrastruktur yang Anda temukan secara singkat dan jelas..."></textarea>
+                        placeholder="Jelaskan masalah infrastruktur yang Anda temukan secara singkat dan jelas...">{{ old('deskripsi') }}</textarea>
 
                     <div class="description-footer">
 
@@ -199,7 +203,7 @@
 
     @push('scripts')
         <script>
-            document.addEventListener('DOMContentLoaded', function () {
+            document.addEventListener('DOMContentLoaded', function() {
 
                 const photoInput = document.getElementById('foto');
                 const photoName = document.getElementById('photo-name');
@@ -208,7 +212,7 @@
                     return;
                 }
 
-                photoInput.addEventListener('change', function () {
+                photoInput.addEventListener('change', function() {
 
                     const file = this.files[0];
 

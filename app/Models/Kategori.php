@@ -20,13 +20,19 @@ class Kategori extends Model
 
     public function devisi(): BelongsTo
     {
-     return $this->belongsTo(Devisi::class, 'id_devisi', 'id_devisi');
+        return $this->belongsTo(
+            Devisi::class,
+            'id_devisi',
+            'id_devisi',
+        );
     }
 
-     public function laporan():HasMany
+    public function laporan(): HasMany
     {
-        return $this->hasMany(Laporan::class, 'id_kategori', 'id_kategori');
+        return $this->hasMany(
+            Laporan::class,
+            'id_kategori',
+            'id_kategori',
+        );
     }
-
 }
-
