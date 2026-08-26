@@ -126,10 +126,10 @@
                     <div class="report-action">
 
                         <span class="status processing-status">
-                            {{ $item->status_laporan }}
+                            {{ $item->statusLaporan->nama_status }}
                         </span>
 
-                        <a href="#" class="btn-detail">
+                        <a href="{{ route('masyarakat.detail-laporan', $item->id_laporan) }}" class="btn-detail">
                             Lihat Detail
                         </a>
 

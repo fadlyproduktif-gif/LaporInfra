@@ -17,7 +17,7 @@
 
         <!-- BACK -->
 
-        <a href="#" class="back-link">
+        <a href="{{route('masyarakat.dashboard')}}" class="back-link">
             ← Kembali ke Dashboard
         </a>
 
@@ -57,21 +57,21 @@
                 <div class="profile-user">
 
                     <div class="large-avatar">
-                        F
+                          {{ strtoupper(substr($user->nama_user, 0, 1)) }}
                     </div>
 
                     <div class="profile-user-info">
 
                         <h3>
-                            Fadly Maulana
+                            {{$user->nama_user}}
                         </h3>
 
                         <p>
-                            fadly.maulana@email.com
+                            {{$user->email}}
                         </p>
 
                         <span class="role-badge">
-                            Masyarakat
+                            {{$user->role}}
                         </span>
 
                     </div>

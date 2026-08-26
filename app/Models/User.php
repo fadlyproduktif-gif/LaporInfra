@@ -31,13 +31,23 @@ class User extends Authenticatable
 
     public function devisi(): BelongsTo
     {
-        return $this->belongsTo(Devisi::class, 'id_devisi', 'id_devisi');
+        return $this->belongsTo(
+            Devisi::class, 
+            'id_devisi', 
+            'id_devisi',
+            );
     }
 
-     public function laporan():HasMany
+    public function laporan(): HasMany
     {
-        return $this->hasMany(Laporan::class, 'id_user', 'id_user');
+        return $this->hasMany(
+            Laporan::class, 
+            'id_user', 
+            'id_user',
+            );
     }
+
+    
 
 
     /**

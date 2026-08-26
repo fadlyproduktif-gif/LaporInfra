@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Masyarakat\DashboardController;
+use App\Http\Controllers\Masyarakat\LaporanController;
+use App\Http\Controllers\Masyarakat\ProfilController;
 
 Route::get('/', function () {
     return view('auth.masyarakat.login');
@@ -27,21 +29,17 @@ Route::middleware(['auth', 'role:masyarakat'])->group(function () {
     Route::get('/masyarakat/dashboard', [DashboardController::class, 'index'])
     ->name('masyarakat.dashboard');
 
-    Route::get('/masyarakat/form-laporan', function () {
-        return view('masyarakat.form-laporan');
-    })->name('masyarakat.form-laporan');
+    Route::get('/masyarakat/form-laporan', [LaporanController::class, 'create'])
+    ->name('masyarakat.form-laporan');
 
-    Route::get('/masyarakat/detail-laporan', function () {
-        return view('masyarakat.detail-laporan');
-    })->name('masyarakat.detail-laporan');
+    Route::Post('/masyarakat/form-laporan', [LaporanController::class, 'store'])
+    ->name('masyarakat.form-laporan.store');
 
-    Route::get('/masyarakat/laporan-saya', function () {
-        return view('masyarakat.laporan-saya');
-    })->name('masyarakat.laporan-saya');
+    Route::get('/masyarakat/detail-laporan/{id_laporan}', [LaporanController::class, 'detailLaporan'])->name('masyarakat.detail-laporan');
 
-    Route::get('/masyarakat/profil-saya', function () {
-        return view('masyarakat.profil');
-    })->name('profil');
+    Route::get('/masyarakat/laporan-saya', [LaporanController::class, 'index'])->name('masyarakat.laporan-saya');
+
+    Route::get('/masyarakat/profil-saya', [ProfilController::class, 'index'])->name('profil');
 });
 
 //[MASYARAKAT LOGOUT]
