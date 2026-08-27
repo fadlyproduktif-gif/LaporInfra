@@ -62,6 +62,22 @@ Route::post('/login-devisi', [AuthController::class, 'loginDevisi'])->name('logi
 //[DEVISI CONTENT]
 Route::middleware(['auth', 'role:devisi'])->group(function () {});
 
+Route::get('/devisi/dashboard', function () {
+    return view('devisi.pages.dashboard');
+})->name('devisi.dashboard');
+
+Route::get('/devisi/form-laporan', function () {
+    return view('devisi.form-laporan');
+})->name('devisi.form-laporan');
+
+Route::get('/devisi/laporan', function () {
+    return view('devisi.pages.laporan');
+})->name('devisi.laporan');
+
+Route::get('/devisi/detail-laporan', function () {
+    return view('devisi.pages.detail-laporan');
+})->name('devisi.detail-laporan');
+
 
 //[DEVISI END]
 

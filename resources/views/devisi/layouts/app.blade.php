@@ -1,33 +1,47 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@yield('title', 'Dashboard Devisi') - LAPORINFRA</title>
+    <title>
+        @yield('title', 'Dashboard Devisi')
+    </title>
 
-    @vite('resources/css/app.css')
+    @vite([
+        'resources/css/devisi/app.css',
+        'resources/css/devisi/sidebar.css',
+        'resources/css/devisi/topbar.css',
+        'resources/css/devisi/dashboard.css',
+        'resources/css/devisi/footer.css'
+    ])
 
     @stack('styles')
 </head>
 
 <body>
 
-    @include('devisi.partials.sidebar')
+    <div class="devisi-layout">
 
-    <div class="devisi-main">
+        @include('devisi.partials.sidebar')
 
-        @include('devisi.partials.navbar')
+        <div class="devisi-main">
 
-        <main class="devisi-content">
-            @yield('content')
-        </main>
+            @include('devisi.partials.topbar')
 
-        @include('devisi.partials.footer')
+            <main class="devisi-content">
+                @yield('content')
+            </main>
+
+            @include('devisi.partials.footer')
+
+        </div>
 
     </div>
 
     @stack('scripts')
 
 </body>
+
 </html>

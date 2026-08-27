@@ -1,0 +1,253 @@
+.page-intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 10px;
+    padding: 20px;
+}
+
+.page-intro h2 {
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.page-intro p {
+    color: #9aa5b7;
+    font-size: 12px;
+}
+
+.total-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    border: 1px solid #d7e3f5;
+    border-radius: 18px;
+    background: #f4f8ff;
+    color: #24539c;
+    font-size: 11px;
+}
+
+.filter-card,
+.report-table-card {
+    background: #fff;
+    border: 1px solid #dce2ea;
+    border-radius: 12px;
+}
+
+.filter-card {
+    padding: 14px;
+    margin-bottom: 14px;
+}
+
+.filter-form {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) 180px 90px;
+    gap: 10px;
+}
+
+.search-box {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 0 12px;
+    border: 1px solid #d7deea;
+    border-radius: 7px;
+    color: #9aa5b7;
+}
+
+.search-box input {
+    width: 100%;
+    border: 0;
+    outline: 0;
+    font: inherit;
+    font-size: 12px;
+    color: #12264a;
+    background: transparent;
+}
+
+.search-box input::placeholder {
+    color: #a5afbf;
+}
+
+.filter-form select,
+.btn-filter {
+    height: 38px;
+    border: 1px solid #d7deea;
+    border-radius: 7px;
+    background: #fff;
+    color: #52617a;
+    padding: 0 11px;
+    font: inherit;
+    font-size: 12px;
+}
+
+.btn-filter {
+    background: #10254b;
+    color: #fff;
+    border-color: #10254b;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 920px;
+}
+
+.report-table th {
+    padding: 12px 12px;
+    background: #f8f9fb;
+    color: #8996aa;
+    border-bottom: 1px solid #e5e9ef;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+}
+
+.report-table td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #edf0f4;
+    color: #263a5e;
+    font-size: 11px;
+    vertical-align: middle;
+}
+
+.report-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.number-cell {
+    width: 42px;
+    color: #9ba6b7 !important;
+}
+
+.name-cell {
+    width: 205px;
+    font-weight: 700;
+    color: #10254b !important;
+    line-height: 1.4;
+}
+
+.category-pill {
+    display: inline-block;
+    max-width: 130px;
+    padding: 5px 8px;
+    border-radius: 5px;
+    background: #eef4fd;
+    color: #24539c;
+    font-size: 10px;
+    line-height: 1.2;
+}
+
+.location-cell {
+    color: #63718a !important;
+}
+
+.date-cell {
+    white-space: nowrap;
+    color: #8996aa !important;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+    border-radius: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-pill i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-waiting {
+    background: #fff8e5;
+    color: #d18a00;
+}
+
+.status-waiting i {
+    background: #ffb000;
+}
+
+.status-processing {
+    background: #edf3fc;
+    color: #24539c;
+}
+
+.status-processing i {
+    background: #2854a4;
+}
+
+.status-completed {
+    background: #e7faf3;
+    color: #00a66f;
+}
+
+.status-completed i {
+    background: #00b879;
+}
+
+.btn-detail {
+    min-width: 104px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 10px;
+    border-radius: 7px;
+    background: #10254b;
+    color: #fff;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 700;
+}
+
+.btn-detail:hover {
+    background: #173563;
+}
+
+.empty-state {
+    padding: 34px !important;
+    text-align: center;
+    color: #9aa5b7 !important;
+}
+
+.table-footer {
+    padding: 11px 14px;
+    border-top: 1px solid #edf0f4;
+    color: #9aa5b7;
+    text-align: right;
+    font-size: 10px;
+}
+
+.table-footer strong {
+    color: #68768d;
+}
+
+@media (max-width: 760px) {
+    .page-intro {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .filter-form {
+        grid-template-columns: 1fr;
+    }
+}
