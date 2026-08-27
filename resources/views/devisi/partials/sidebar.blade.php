@@ -1,19 +1,28 @@
 <aside class="devisi-sidebar">
 
-    <div class="sidebar-brand">
-        <div class="brand-icon">
-            ⚡
-        </div>
+    <!-- Logo -->
+    <div class="sidebar-logo">
 
-        <span>
-            LAPOR<span>INFRA</span>
-        </span>
+        <a href="{{ url('/devisi/dashboard') }}" class="sidebar-logo-link">
+
+            <div class="sidebar-logo-icon">
+                ⚡
+            </div>
+
+            <div class="sidebar-logo-text">
+                LAPOR<span>INFRA</span>
+            </div>
+
+        </a>
+
     </div>
 
-    <div class="sidebar-profile">
 
-        <span class="sidebar-role">
-            ADMIN DIVISI
+    <!-- Admin Info -->
+    <div class="sidebar-admin-card">
+
+        <span class="sidebar-admin-label">
+            ADMIN DEVİSI
         </span>
 
         <strong>
@@ -23,30 +32,70 @@
 
     </div>
 
-    <nav class="sidebar-menu">
 
-        <a href="/devisi/dashboard" class="sidebar-menu-item active">
-            <span class="menu-icon">⌂</span>
-            <span>Dashboard</span>
+    <!-- Navigation -->
+    <nav class="sidebar-navigation">
+
+        <a
+            href="{{ url('/devisi/dashboard') }}"
+            class="sidebar-nav-item {{ request()->is('devisi/dashboard') ? 'active' : '' }}"
+        >
+
+            <span class="sidebar-nav-icon">
+                ⌂
+            </span>
+
+            <span>
+                Dashboard
+            </span>
+
         </a>
 
-        <a href="/devisi/laporan" class="sidebar-menu-item">
-            <span class="menu-icon">▤</span>
-            <span>Laporan</span>
+
+        <a
+            href="{{ url('/devisi/laporan') }}"
+            class="sidebar-nav-item {{ request()->is('devisi/laporan*') ? 'active' : '' }}"
+        >
+
+            <span class="sidebar-nav-icon">
+                ▣
+            </span>
+
+            <span>
+                Laporan
+            </span>
+
         </a>
 
     </nav>
 
+
+    <!-- Bottom Navigation -->
     <div class="sidebar-bottom">
 
-        <a href="#" class="portal-link">
-            <span>↗</span>
-            Portal Masyarakat
+        <a href="#" class="sidebar-bottom-item portal">
+
+            <span>
+                ↗
+            </span>
+
+            <span>
+                Portal Masyarakat
+            </span>
+
         </a>
 
-        <a href="#" class="logout-link">
-            <span>↪</span>
-            Logout
+
+        <a href="#" class="sidebar-bottom-item logout">
+
+            <span>
+                ↪
+            </span>
+
+            <span>
+                Logout
+            </span>
+
         </a>
 
     </div>

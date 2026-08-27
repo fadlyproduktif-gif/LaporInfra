@@ -1,0 +1,30 @@
+.devisi-footer {
+    min-height: 54px;
+
+    padding: 16px 24px;
+
+    background: white;
+
+    border-top: 1px solid #dce2ea;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    color: #9aa6ba;
+
+    font-size: 10px;
+}
+
+
+@media (max-width: 600px) {
+
+    .devisi-footer {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 6px;
+    }
+
+}
