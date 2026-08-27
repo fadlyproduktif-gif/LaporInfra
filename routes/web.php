@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Masyarakat\DashboardController;
+use App\Http\Controllers\Masyarakat\DashboardController as MasyarakatDashboardController;
 use App\Http\Controllers\Masyarakat\LaporanController;
 use App\Http\Controllers\Masyarakat\ProfilController;
+use App\Http\Controllers\Devisi\DashboardController as DevisiDashboardController;
 
 Route::get('/', function () {
     return view('auth.masyarakat.login');
@@ -26,7 +27,7 @@ Route::Post('/register-masyarakat', [AuthController::class, 'registerMasyarakat'
 
 //[MASYARAKAT CONTENT]
 Route::middleware(['auth', 'role:masyarakat'])->group(function () {
-    Route::get('/masyarakat/dashboard', [DashboardController::class, 'index'])
+    Route::get('/masyarakat/dashboard', [MasyarakatDashboardController::class, 'index'])
     ->name('masyarakat.dashboard');
 
     Route::get('/masyarakat/form-laporan', [LaporanController::class, 'create'])
@@ -60,7 +61,10 @@ Route::post('/login-devisi', [AuthController::class, 'loginDevisi'])->name('logi
 
 
 //[DEVISI CONTENT]
-Route::middleware(['auth', 'role:devisi'])->group(function () {});
+Route::middleware(['auth', 'role:devisi'])->group(function () {
+    Route::get('/devisi/dashboard', 
+    [DevisiDashboardController::class, 'index'])->name('devisi.dashboard');
+});
 
 Route::get('/devisi/dashboard', function () {
     return view('devisi.pages.dashboard');

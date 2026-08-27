@@ -112,8 +112,8 @@
 
                         <input
                             type="text"
-                            id="nim"
-                            name="nim"
+                            id="nip"
+                            name="nip"
                             placeholder="Masukkan NIP Anda"
                         >
 
