@@ -40,6 +40,11 @@ Route::middleware(['auth', 'role:masyarakat'])->group(function () {
     Route::get('/masyarakat/laporan-saya', [LaporanController::class, 'index'])->name('masyarakat.laporan-saya');
 
     Route::get('/masyarakat/profil-saya', [ProfilController::class, 'index'])->name('profil');
+
+    Route::Put('/masyarakat/profil-saya/update-email', [ProfilController::class, 'updateEmail'])
+    ->name('masyarakat.profil.update.email');
+    Route::Put('/masyarakat/profil-saya/update-password', [ProfilController::class, 'updatePassword'])
+    ->name('masyarakat.profil.update.password');
 });
 
 //[MASYARAKAT LOGOUT]
