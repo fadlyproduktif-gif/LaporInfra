@@ -1,3 +1,6 @@
+@php
+    $user = Auth::user();
+@endphp
 <header class="devisi-header">
 
     <div class="header-title">
@@ -7,7 +10,7 @@
         </h1>
 
         <p>
-            Kelola dan pantau laporan infrastruktur untuk divisi PUPR.
+            Kelola dan pantau laporan infrastruktur untuk divisi {{ $user->devisi->nama_devisi }}.
         </p>
 
     </div>
@@ -16,16 +19,17 @@
 
         <div class="division-badge">
             🏢
-            <span>PUPR</span>
+            <span>{{ $user->devisi->nama_devisi }}</span>
         </div>
 
         <div class="user-info">
             <strong>Admin Divisi</strong>
-            <span>pupr@laporinfra.co.id</span>
+            <span>{{ $user->email }}</span>
         </div>
 
         <div class="user-avatar">
-            P
+            {{ strtoupper(substr($user->nama_user, 0, 1)) }}
+
         </div>
 
     </div>

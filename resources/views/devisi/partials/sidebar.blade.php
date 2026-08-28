@@ -1,3 +1,6 @@
+@php
+    $user = Auth::user();
+@endphp
 <aside class="devisi-sidebar">
 
     <!-- Logo -->
@@ -26,8 +29,7 @@
         </span>
 
         <strong>
-            Dinas Pekerjaan Umum dan
-            Penataan Ruang (PUPR)
+            {{$user->devisi->nama_devisi}}
         </strong>
 
     </div>

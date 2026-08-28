@@ -5,6 +5,7 @@
 .detail-page {
     width: 100%;
     max-width: 100%;
+    padding: 10px;
 }
 
 
@@ -13,7 +14,7 @@
 ================================================== */
 
 .detail-top {
-    margin-bottom: 15x;
+    margin-bottom: 10x;
     padding: 20px;
 }
 
