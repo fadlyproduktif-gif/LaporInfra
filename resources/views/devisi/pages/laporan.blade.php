@@ -80,7 +80,7 @@
                             </td>
 
                             <td>
-                                <span class="status-pill status-{{ $item->statusLaporan->nama_status }}">
+                                <span class="status-pill status-{{ $status_key }}">
                                     {{ $item->statusLaporan->nama_status }}
                                 </span>
                             </td>
