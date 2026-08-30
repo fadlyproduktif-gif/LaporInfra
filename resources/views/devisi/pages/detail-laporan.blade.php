@@ -16,7 +16,7 @@
             4 => 'accepted',
             5 => 'processing',
             6 => 'completed',
-            default => unknow,
+            default => 'unknow',
         };
     @endphp
 
@@ -288,7 +288,7 @@
                                 </label>
 
                                 <select name='id_status'>
-                                    <option value="" selected>Perbarui Status</option>
+                                    <option value="">Perbarui Status</option>
                                     @forelse ($status as $item)
                                         <option value="{{ $item->id_status }}" @selected($item->id_status == $laporan->id_status)>
                                             {{ $item->nama_status }}
@@ -309,7 +309,7 @@
                                     KETERANGAN PROGRESS
                                 </label>
 
-                                <textarea name="keterangan_proggress" rows="5" placeholder="{{ $laporan->keterangan_proggress }}"></textarea>
+                                <textarea name="keterangan_proggress" rows="5" placeholder="">{{ $laporan->keterangan_proggress }}</textarea>
                                 <br>
                                 @error('keterangan_proggress')
                                     <label style="font-weight: bold; text-decoration: underline">{{$message}}</label>
