@@ -309,7 +309,7 @@
                                     KETERANGAN PROGRESS
                                 </label>
 
-                                <textarea name="keterangan_proggress" rows="5" placeholder="">{{ $laporan->keterangan_proggress }}</textarea>
+                                <textarea name="keterangan_proggress" rows="5" placeholder="Masukkan keterangan progress...">{{ $laporan->keterangan_proggress }}</textarea>
                                 <br>
                                 @error('keterangan_proggress')
                                     <label style="font-weight: bold; text-decoration: underline">{{$message}}</label>
