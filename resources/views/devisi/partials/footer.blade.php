@@ -1,3 +1,6 @@
+@php
+    $user = Auth::User();
+@endphp
 <footer class="devisi-footer">
 
     <span>
@@ -5,7 +8,7 @@
     </span>
 
     <span>
-        Admin Devisi · PUPR
+        Admin Devisi · {{$user->devisi->nama_devisi}}
     </span>
 
 </footer>

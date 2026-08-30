@@ -3,9 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Masyarakat\DashboardController as MasyarakatDashboardController;
-use App\Http\Controllers\Masyarakat\LaporanController;
+use App\Http\Controllers\Masyarakat\LaporanController as MasyarakatLaporanController;
 use App\Http\Controllers\Masyarakat\ProfilController;
 use App\Http\Controllers\Devisi\DashboardController as DevisiDashboardController;
+use App\Http\Controllers\Devisi\LaporanController as DevisiLaporanController;
 
 Route::get('/', function () {
     return view('auth.masyarakat.login');
@@ -28,24 +29,24 @@ Route::Post('/register-masyarakat', [AuthController::class, 'registerMasyarakat'
 //[MASYARAKAT CONTENT]
 Route::middleware(['auth', 'role:masyarakat'])->group(function () {
     Route::get('/masyarakat/dashboard', [MasyarakatDashboardController::class, 'index'])
-    ->name('masyarakat.dashboard');
+        ->name('masyarakat.dashboard');
 
-    Route::get('/masyarakat/form-laporan', [LaporanController::class, 'create'])
-    ->name('masyarakat.form-laporan');
+    Route::get('/masyarakat/form-laporan', [MasyarakatLaporanController::class, 'create'])
+        ->name('masyarakat.form-laporan');
 
-    Route::Post('/masyarakat/form-laporan', [LaporanController::class, 'store'])
-    ->name('masyarakat.form-laporan.store');
+    Route::Post('/masyarakat/form-laporan', [MasyarakatLaporanController::class, 'store'])
+        ->name('masyarakat.form-laporan.store');
 
-    Route::get('/masyarakat/detail-laporan/{id_laporan}', [LaporanController::class, 'detailLaporan'])->name('masyarakat.detail-laporan');
+    Route::get('/masyarakat/detail-laporan/{id_laporan}', [MasyarakatLaporanController::class, 'detailLaporan'])->name('masyarakat.detail-laporan');
 
-    Route::get('/masyarakat/laporan-saya', [LaporanController::class, 'index'])->name('masyarakat.laporan-saya');
+    Route::get('/masyarakat/laporan-saya', [MasyarakatLaporanController::class, 'index'])->name('masyarakat.laporan-saya');
 
     Route::get('/masyarakat/profil-saya', [ProfilController::class, 'index'])->name('profil');
 
     Route::Put('/masyarakat/profil-saya/update-email', [ProfilController::class, 'updateEmail'])
-    ->name('masyarakat.profil.update.email');
+        ->name('masyarakat.profil.update.email');
     Route::Put('/masyarakat/profil-saya/update-password', [ProfilController::class, 'updatePassword'])
-    ->name('masyarakat.profil.update.password');
+        ->name('masyarakat.profil.update.password');
 });
 
 //[MASYARAKAT LOGOUT]
@@ -62,26 +63,21 @@ Route::post('/login-devisi', [AuthController::class, 'loginDevisi'])->name('logi
 
 //[DEVISI CONTENT]
 Route::middleware(['auth', 'role:devisi'])->group(function () {
-    Route::get('/devisi/dashboard', 
-    [DevisiDashboardController::class, 'index'])->name('devisi.dashboard');
+    Route::get(
+        '/devisi/dashboard',
+        [DevisiDashboardController::class, 'index']
+    )->name('devisi.dashboard');
+
+    Route::get('/devisi/laporan', [DevisiLaporanController::class, 'index'])->name('devisi.laporan');
+
+    Route::put('/devisi/laporan/update', [DevisiLaporanController::class, 'update'])->name('devisi.laporan.update');
+
+    Route::get('/devisi/detail-laporan/{id_laporan}', [DevisiLaporanController::class, 'detail'])->name('devisi.detail-laporan');
 });
 
-Route::get('/devisi/dashboard', function () {
-    return view('devisi.pages.dashboard');
-})->name('devisi.dashboard');
-
-Route::get('/devisi/form-laporan', function () {
-    return view('devisi.form-laporan');
-})->name('devisi.form-laporan');
-
-Route::get('/devisi/laporan', function () {
-    return view('devisi.pages.laporan');
-})->name('devisi.laporan');
-
-Route::get('/devisi/detail-laporan', function () {
-    return view('devisi.pages.detail-laporan');
-})->name('devisi.detail-laporan');
-
+//[DEVISI LOGOUT]
+Route::Post('/logout-devisi', [AuthController::class, 'logoutDevisi'])->name('logout.devisi');
+//[DEVISI END]
 
 //[DEVISI END]
 

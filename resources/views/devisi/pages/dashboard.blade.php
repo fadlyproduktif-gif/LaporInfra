@@ -6,346 +6,339 @@
 
 @section('content')
 
-<div class="dashboard-container">
+    <div class="dashboard-container">
 
 
-    <!-- Division Active -->
-    <section class="division-active-card">
+        <!-- Division Active -->
+        <section class="division-active-card">
 
-        <div class="division-active-left">
+            <div class="division-active-left">
 
-            <div class="division-active-icon">
-                ▦
-            </div>
-
-            <div>
-
-                <span class="section-label">
-                    DIVISI AKTIF
-                </span>
-
-                <h2>
-                    Dinas Pekerjaan Umum dan Penataan Ruang (PUPR)
-                </h2>
-
-            </div>
-
-        </div>
-
-
-        <span class="active-badge">
-            ● AKTIF
-        </span>
-
-    </section>
-
-
-
-    <!-- Summary -->
-    <section class="summary-section">
-
-        <h2 class="summary-title">
-            Ringkasan
-        </h2>
-
-
-        <div class="summary-grid">
-
-
-            <!-- Total -->
-            <article class="summary-card">
-
-                <div class="summary-icon">
-                    ▣
+                <div class="division-active-icon">
+                    ▦
                 </div>
 
-                <div class="summary-info">
+                <div>
 
-                    <strong>
-                        25
-                    </strong>
-
-                    <span>
-                        Total Laporan
+                    <span class="section-label">
+                        DIVISI AKTIF
                     </span>
 
-                </div>
-
-            </article>
-
-
-
-            <!-- Waiting -->
-            <article class="summary-card">
-
-                <div class="summary-icon waiting-icon">
-                    ◷
-                </div>
-
-                <div class="summary-info">
-
-                    <strong>
-                        8
-                    </strong>
-
-                    <span>
-                        Menunggu
-                    </span>
+                    <h2>
+                        {{ Auth::User()->devisi->nama_devisi }}
+                    </h2>
 
                 </div>
-
-            </article>
-
-
-
-            <!-- Processing -->
-            <article class="summary-card">
-
-                <div class="summary-icon processing-icon">
-                    ⚙
-                </div>
-
-                <div class="summary-info">
-
-                    <strong>
-                        5
-                    </strong>
-
-                    <span>
-                        Sedang Diproses
-                    </span>
-
-                </div>
-
-            </article>
-
-
-
-            <!-- Completed -->
-            <article class="summary-card">
-
-                <div class="summary-icon completed-icon">
-                    ✓
-                </div>
-
-                <div class="summary-info">
-
-                    <strong>
-                        12
-                    </strong>
-
-                    <span>
-                        Selesai
-                    </span>
-
-                </div>
-
-            </article>
-
-        </div>
-
-    </section>
-
-
-
-    <!-- Latest Reports -->
-    <section class="latest-reports-card">
-
-        <div class="latest-reports-header">
-
-            <div>
-
-                <h2>
-                    Laporan Terbaru
-                </h2>
-
-                <p>
-                    Laporan terbaru yang ditujukan kepada divisi PUPR.
-                </p>
 
             </div>
 
 
-            <a href="#" class="view-all-reports">
-                Lihat Semua
-                <span>›</span>
-            </a>
+            <span class="active-badge">
+                ● AKTIF
+            </span>
 
-        </div>
+        </section>
 
 
 
-        <!-- Table -->
-        <div class="reports-table-wrapper">
+        <!-- Summary -->
+        <section class="summary-section">
 
-            <table class="reports-table">
+            <h2 class="summary-title">
+                Ringkasan
+            </h2>
 
-                <thead>
 
-                    <tr>
+            <div class="summary-grid">
 
-                        <th>
-                            NAMA LAPORAN
-                        </th>
 
-                        <th>
-                            KATEGORI
-                        </th>
+                <!-- Total -->
+                <article class="summary-card">
 
-                        <th>
-                            LOKASI
-                        </th>
+                    <div class="summary-icon">
+                        ▣
+                    </div>
 
-                        <th>
-                            STATUS
-                        </th>
+                    <div class="summary-info">
 
-                        <th>
-                            TANGGAL
-                        </th>
+                        <strong>
+                            {{ $total }}
+                        </strong>
 
-                        <th>
-                            AKSI
-                        </th>
+                        <span>
+                            Total Laporan
+                        </span>
 
-                    </tr>
+                    </div>
 
-                </thead>
+                </article>
 
 
-                <tbody>
 
+                <!-- Waiting -->
+                <article class="summary-card">
 
-                    <!-- Report 1 -->
-                    <tr>
+                    <div class="summary-icon waiting-icon">
+                        ◷
+                    </div>
 
-                        <td>
-                            Jalan Berlubang di Jl. Merdeka...
-                        </td>
+                    <div class="summary-info">
 
-                        <td>
-                            <span class="category-badge">
-                                Jalan & Trotoar
-                            </span>
-                        </td>
+                        <strong>
+                            {{ $menunggu }}
+                        </strong>
 
-                        <td>
-                            Jl. Merdeka No. 12
-                        </td>
+                        <span>
+                            Menunggu
+                        </span>
 
-                        <td>
+                    </div>
 
-                            <span class="status-badge status-waiting">
-                                ● Menunggu
-                            </span>
+                </article>
 
-                        </td>
 
-                        <td>
-                            10 Agustus 2026
-                        </td>
 
-                        <td>
+                <!-- Processing -->
+                <article class="summary-card">
 
-                            <a href="#" class="report-action-button">
-                                ✎ &nbsp; Lihat & Tangani
-                            </a>
+                    <div class="summary-icon processing-icon">
+                        ⚙
+                    </div>
 
-                        </td>
+                    <div class="summary-info">
 
-                    </tr>
+                        <strong>
+                            {{ $dikerjakan }}
+                        </strong>
 
+                        <span>
+                            Sedang Diproses
+                        </span>
 
+                    </div>
 
-                    <!-- Report 2 -->
-                    <tr>
+                </article>
 
-                        <td>
-                            Drainase Rusak di Jl. Sudirman...
-                        </td>
 
-                        <td>
-                            <span class="category-badge">
-                                Drainase & Sanitasi
-                            </span>
-                        </td>
 
-                        <td>
-                            Jl. Sudirman
-                        </td>
+                <!-- Completed -->
+                <article class="summary-card">
 
-                        <td>
+                    <div class="summary-icon completed-icon">
+                        ✓
+                    </div>
 
-                            <span class="status-badge status-processing">
-                                ● Sedang Diproses
-                            </span>
+                    <div class="summary-info">
 
-                        </td>
+                        <strong>
+                            {{ $selesai }}
+                        </strong>
 
-                        <td>
-                            8 Agustus 2026
-                        </td>
+                        <span>
+                            Selesai
+                        </span>
 
-                        <td>
+                    </div>
 
-                            <a href="#" class="report-action-button">
-                                ✎ &nbsp; Lihat & Tangani
-                            </a>
+                </article>
 
-                        </td>
+            </div>
 
-                    </tr>
+            <div class="summary-grid summary-grid-secondary">
+                 <article class="summary-card">
 
+                    <div class="summary-icon accepted-icon">
+                        ✓
+                    </div>
 
+                    <div class="summary-info">
 
-                    <!-- Report 3 -->
-                    <tr>
+                        <strong>
+                            {{ $terima }}
+                        </strong>
+                        <span>
+                            Diterima
+                        </span>
 
-                        <td>
-                            Trotoar Rusak di Jl. Ahmad Yani...
-                        </td>
+                    </div>
 
-                        <td>
-                            <span class="category-badge">
-                                Jalan & Trotoar
-                            </span>
-                        </td>
+                </article>
 
-                        <td>
-                            Jl. Ahmad Yani
-                        </td>
+                <article class="summary-card">
 
-                        <td>
+                    <div class="summary-icon postponed-icon">
+                        ◷
+                    </div>
 
-                            <span class="status-badge status-completed">
-                                ● Selesai
-                            </span>
+                    <div class="summary-info">
 
-                        </td>
+                        <strong>
+                            {{ $tunda }}
+                        </strong>
 
-                        <td>
-                            5 Agustus 2026
-                        </td>
+                        <span>
+                            Ditunda
+                        </span>
 
-                        <td>
+                    </div>
 
-                            <a href="#" class="report-action-button">
-                                ✎ &nbsp; Lihat & Tangani
-                            </a>
+                </article>
 
-                        </td>
+                <article class="summary-card">
 
-                    </tr>
+                    <div class="summary-icon rejected-icon">
+                        ×
+                    </div>
 
+                    <div class="summary-info">
 
-                </tbody>
+                        <strong>
+                            {{ $tolak }}
+                        </strong>
 
-            </table>
+                        <span>
+                            Ditolak
+                        </span>
 
-        </div>
+                    </div>
 
-    </section>
+                </article>
+            </div>
 
-</div>
+        </section>
+
+
+
+        <!-- Latest Reports -->
+        <section class="latest-reports-card">
+
+            <div class="latest-reports-header">
+
+                <div>
+
+                    <h2>
+                        Laporan Terbaru
+                    </h2>
+
+                    <p>
+                        Laporan terbaru yang ditujukan kepada divisi PUPR.
+                    </p>
+
+                </div>
+
+
+                <a href="{{ route('devisi.laporan') }}" class="view-all-reports">
+                    Lihat Semua
+                    <span>›</span>
+                </a>
+
+            </div>
+
+
+
+            <!-- Table -->
+            <div class="reports-table-wrapper">
+
+                <table class="reports-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                NAMA LAPORAN
+                            </th>
+
+                            <th>
+                                KATEGORI
+                            </th>
+
+                            <th>
+                                LOKASI
+                            </th>
+
+                            <th>
+                                STATUS
+                            </th>
+
+                            <th>
+                                TANGGAL
+                            </th>
+
+                            <th>
+                                AKSI
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody>
+
+                        @forelse ($laporanR as $item)
+                            <tr>
+
+                                <td>
+                                    {{ $item->nama_laporan }}
+                                </td>
+
+                                <td>
+                                    <span class="category-badge">
+                                        {{ $item->kategori->nama_kategori }}
+                                    </span>
+                                </td>
+
+                                <td>
+                                    {{ $item->lokasi }}
+                                </td>
+                                @php
+                                    $statusKey = match ($item->id_status) {
+                                        1 => 'waiting',
+                                        2 => 'postponed',
+                                        3 => 'rejected',
+                                        4 => 'accepted',
+                                        5 => 'processing',
+                                        6 => 'completed',
+                                        default => 'unknow',
+                                    };
+                                @endphp
+                                <td>
+
+                                    <span class="status-pill status-{{ $statusKey }}">
+                                        ● {{ $item->statuslaporan->nama_status }}
+
+                                    </span>
+
+                                </td>
+
+                                <td>
+                                    {{ $item->created_at }}
+                                </td>
+
+                                <td>
+
+                                    <a href="{{ route('devisi.detail-laporan', $item->id_laporan) }}"
+                                        class="report-action-button">
+                                        ✎ &nbsp; Lihat & Tangani
+                                    </a>
+
+                                </td>
+
+                            </tr>
+                        @empty
+                        @endforelse
+
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </div>
 
 @endsection
