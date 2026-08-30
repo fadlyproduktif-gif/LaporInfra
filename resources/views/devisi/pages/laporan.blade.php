@@ -32,8 +32,11 @@
 
             <select name="status" aria-label="Filter status">
                 <option value="">Semua Status</option>
+
                 @forelse ($status as $item)
-                    <option value="{{ $item->id_status }}">{{ $item->nama_status }}</option>
+                    <option value="{{ $item->id_status }}" @selected(request('status') == $item->id_status)>
+                        {{ $item->nama_status }}
+                    </option>
 
                 @empty
                     <option>belum ada</option>
@@ -79,9 +82,21 @@
                                 {{ $item->lokasi }}
                             </td>
 
+                            @php
+                                $statusKey = match ($item->id_status) {
+                                    1 => 'waiting',
+                                    2 => 'postponed',
+                                    3 => 'rejected',
+                                    4 => 'accepted',
+                                    5 => 'processing',
+                                    6 => 'completed',
+                                    default => 'unknow',
+                                };
+                            @endphp
+
                             <td>
-                                <span class="status-pill status-{{"biiji"}}">
-                                    {{ $item->statusLaporan->nama_status }}
+                                <span class="status-pill status-{{ $statusKey }}">
+                                    ● {{ $item->statusLaporan->nama_status }}
                                 </span>
                             </td>
 

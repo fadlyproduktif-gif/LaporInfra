@@ -29,7 +29,7 @@
         </span>
 
         <strong>
-            {{$user->devisi->nama_devisi}}
+            {{ $user->devisi->nama_devisi }}
         </strong>
 
     </div>
@@ -38,10 +38,8 @@
     <!-- Navigation -->
     <nav class="sidebar-navigation">
 
-        <a
-            href="{{ url('/devisi/dashboard') }}"
-            class="sidebar-nav-item {{ request()->is('devisi/dashboard') ? 'active' : '' }}"
-        >
+        <a href="{{ url('/devisi/dashboard') }}"
+            class="sidebar-nav-item {{ request()->is('devisi/dashboard') ? 'active' : '' }}">
 
             <span class="sidebar-nav-icon">
                 ⌂
@@ -54,10 +52,8 @@
         </a>
 
 
-        <a
-            href="{{ url('/devisi/laporan') }}"
-            class="sidebar-nav-item {{ request()->is('devisi/laporan*') ? 'active' : '' }}"
-        >
+        <a href="{{ url('/devisi/laporan') }}"
+            class="sidebar-nav-item {{ request()->is('devisi/laporan*') ? 'active' : '' }}">
 
             <span class="sidebar-nav-icon">
                 ▣
@@ -75,7 +71,7 @@
     <!-- Bottom Navigation -->
     <div class="sidebar-bottom">
 
-        <a href="#" class="sidebar-bottom-item portal">
+        <a href="{{route('masyarakat.login')}}" class="sidebar-bottom-item portal">
 
             <span>
                 ↗
@@ -87,18 +83,19 @@
 
         </a>
 
+        <form method="POST" action="{{ route('logout.devisi') }}">
+            <button class="sidebar-bottom-item logout" style="border: none" type="submit">
 
-        <a href="#" class="sidebar-bottom-item logout">
+                    <span>
+                        ↪
+                    </span>
 
-            <span>
-                ↪
-            </span>
+                    <span>
+                        Logout
+                    </span>
 
-            <span>
-                Logout
-            </span>
-
-        </a>
+            </button>
+        </form>
 
     </div>
 

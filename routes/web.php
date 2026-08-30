@@ -70,12 +70,14 @@ Route::middleware(['auth', 'role:devisi'])->group(function () {
 
     Route::get('/devisi/laporan', [DevisiLaporanController::class, 'index'])->name('devisi.laporan');
 
-    Route::get('/devisi/detail-laporan/{id_laporan}', function () {
-        return view('devisi.pages.detail-laporan');
-    })->name('devisi.detail-laporan');
+    Route::put('/devisi/laporan/update', [DevisiLaporanController::class, 'update'])->name('devisi.laporan.update');
+
+    Route::get('/devisi/detail-laporan/{id_laporan}', [DevisiLaporanController::class, 'detail'])->name('devisi.detail-laporan');
 });
 
-
+//[DEVISI LOGOUT]
+Route::Post('/logout-devisi', [AuthController::class, 'logoutDevisi'])->name('logout.devisi');
+//[DEVISI END]
 
 //[DEVISI END]
 

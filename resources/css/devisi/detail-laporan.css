@@ -97,6 +97,62 @@
     background: #ffb000;
 }
 
+.status-processing {
+    background: #edf3fc;
+    color: #24539c;
+
+    border: 1px solid #295bab;
+
+}
+
+.status-processing span {
+    background: #2854a4;
+}
+
+.status-completed {
+    background: #e7faf3;
+    color: #00a66f;
+
+    border: 1px solid #29ab82;
+}
+
+.status-completed span {
+    background: #00b879;
+}
+
+.status-postponed {
+    background: #fff4e5;
+    color: #c76b00;
+
+    border: 1px solid #ad8f25;
+}
+
+.status-postponed span {
+    background: #f59e0b;
+}
+
+.status-rejected {
+    background: #fff0f0;
+    color: #c53030;
+
+    border: 1px solid #e02b22;
+}
+
+.status-rejected span {
+    background: #e53e3e;
+}
+
+.status-accepted {
+    background: #e7faf3;
+    color: #16805c;
+
+    border: 1px solid #29ab45;
+
+}
+
+.status-accepted span {
+    background: #20a875;
+}
 
 /* ==================================================
    GRID

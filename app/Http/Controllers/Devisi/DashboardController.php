@@ -28,7 +28,10 @@ class DashboardController extends Controller
         $menunggu = $laporan->where('id_status', 1)->count();
         $dikerjakan = $laporan->where('id_status', 5)->count();
         $selesai = $laporan->where('id_status', 6)->count();
+        $terima = $laporan->where('id_status', 4)->count();
+        $tunda = $laporan->where('id_status', 2)->count();
+        $tolak = $laporan->where('id_status', 3)->count();
 
-        return view('devisi.pages.dashboard', compact('laporanR','laporan','total','dikerjakan','menunggu','selesai'));
+        return view('devisi.pages.dashboard', compact('laporanR','laporan','total','dikerjakan','menunggu','selesai','terima','tolak','tunda'));
     }
 }

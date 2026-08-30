@@ -85,7 +85,7 @@
                     <div class="summary-info">
 
                         <strong>
-                            {{$menunggu}}
+                            {{ $menunggu }}
                         </strong>
 
                         <span>
@@ -108,7 +108,7 @@
                     <div class="summary-info">
 
                         <strong>
-                            {{$dikerjakan}}
+                            {{ $dikerjakan }}
                         </strong>
 
                         <span>
@@ -131,7 +131,7 @@
                     <div class="summary-info">
 
                         <strong>
-                            {{$selesai}}
+                            {{ $selesai }}
                         </strong>
 
                         <span>
@@ -142,6 +142,67 @@
 
                 </article>
 
+            </div>
+
+            <div class="summary-grid summary-grid-secondary">
+                 <article class="summary-card">
+
+                    <div class="summary-icon accepted-icon">
+                        ✓
+                    </div>
+
+                    <div class="summary-info">
+
+                        <strong>
+                            {{ $terima }}
+                        </strong>
+                        <span>
+                            Diterima
+                        </span>
+
+                    </div>
+
+                </article>
+
+                <article class="summary-card">
+
+                    <div class="summary-icon postponed-icon">
+                        ◷
+                    </div>
+
+                    <div class="summary-info">
+
+                        <strong>
+                            {{ $tunda }}
+                        </strong>
+
+                        <span>
+                            Ditunda
+                        </span>
+
+                    </div>
+
+                </article>
+
+                <article class="summary-card">
+
+                    <div class="summary-icon rejected-icon">
+                        ×
+                    </div>
+
+                    <div class="summary-info">
+
+                        <strong>
+                            {{ $tolak }}
+                        </strong>
+
+                        <span>
+                            Ditolak
+                        </span>
+
+                    </div>
+
+                </article>
             </div>
 
         </section>
@@ -231,10 +292,20 @@
                                 <td>
                                     {{ $item->lokasi }}
                                 </td>
-
+                                @php
+                                    $statusKey = match ($item->id_status) {
+                                        1 => 'waiting',
+                                        2 => 'postponed',
+                                        3 => 'rejected',
+                                        4 => 'accepted',
+                                        5 => 'processing',
+                                        6 => 'completed',
+                                        default => 'unknow',
+                                    };
+                                @endphp
                                 <td>
 
-                                    <span class="status-badge status-waiting">
+                                    <span class="status-pill status-{{ $statusKey }}">
                                         ● {{ $item->statuslaporan->nama_status }}
 
                                     </span>
@@ -242,12 +313,13 @@
                                 </td>
 
                                 <td>
-                                    {{$item->created_at}}
+                                    {{ $item->created_at }}
                                 </td>
 
                                 <td>
 
-                                    <a href="{{route('devisi.detail-laporan', $item->id_laporan)}}" class="report-action-button">
+                                    <a href="{{ route('devisi.detail-laporan', $item->id_laporan) }}"
+                                        class="report-action-button">
                                         ✎ &nbsp; Lihat & Tangani
                                     </a>
 

@@ -30,6 +30,14 @@ class AuthController extends Controller
             }
     }
 
+    public function logoutDevisi(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('auth.devisi.login');
+    }
+
     public function loginMasyarakat(Request $request)
     {
         $request->validate([
