@@ -87,6 +87,31 @@ Route::get('/auth/login-admin', function () {
     return view('auth.admin.login');
 })->name('auth.admin.login');
 
+Route::get('/admin/dashboard', function () {
+    return view('admin.pages.dashboard');
+})->name('admin.dashboard');
+
+Route::get('/admin/laporan', function () {
+    return view('admin.pages.laporan.index');
+})->name('laporan.index');
+
+Route::get('/admin/laporan/{id}', function ($id) {
+    return view('admin.pages.laporan.show');
+})->name('admin.laporan.show');
+
+Route::get('/admin/kategori', function () {
+    return view('admin.pages.kategori.index');
+})->name('kategori.index');
+
+Route::get('/admin/devisi', function () {
+    return view('admin.pages.devisi.index');
+})->name('devisi.index');
+
+
+Route::get('/admin/akun', function () {
+    return view('admin.pages.akun.index');
+})->name('akun.index');
+
 
 //[ADMIN CONTENT]
 Route::middleware(['auth', 'role:admin'])->group(function () {});

@@ -1,0 +1,249 @@
+/* ==============================
+   DASHBOARD
+================================= */
+
+.dashboard-section h2 {
+    margin: 0 0 16px;
+
+    font-size: 14px;
+}
+
+
+/* ==============================
+   SUMMARY
+================================= */
+
+.summary-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 14px;
+}
+
+.summary-card {
+    min-height: 78px;
+
+    display: flex;
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 14px 18px;
+
+    background: #ffffff;
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: 10px;
+}
+
+.summary-icon {
+    width: 39px;
+    height: 39px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 9px;
+
+    color: var(--admin-blue);
+
+    background: var(--admin-blue-soft);
+
+    font-size: 17px;
+}
+
+.summary-card strong {
+    display: block;
+
+    font-size: 21px;
+}
+
+.summary-card span {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #8b98ae;
+
+    font-size: 11px;
+}
+
+
+/* ==============================
+   REPORTS
+================================= */
+
+.reports-card {
+    margin-top: 25px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid var(--admin-border);
+
+    border-radius: 10px;
+}
+
+.card-header {
+    min-height: 63px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 20px;
+
+    border-bottom: 1px solid var(--admin-border);
+}
+
+.card-header h2 {
+    margin: 0;
+
+    font-size: 14px;
+}
+
+.card-header p {
+    margin: 4px 0 0;
+
+    color: #98a5ba;
+
+    font-size: 11px;
+}
+
+.readonly-badge {
+    padding: 6px 10px;
+
+    border-radius: 999px;
+
+    color: #8c99ad;
+
+    background: #f2f4f8;
+
+    font-size: 10px;
+}
+
+
+/* ==============================
+   TABLE
+================================= */
+
+.table-wrap {
+    overflow-x: auto;
+}
+
+.reports-table {
+    width: 100%;
+
+    min-width: 720px;
+
+    border-collapse: collapse;
+}
+
+.reports-table th,
+.reports-table td {
+    padding: 15px 20px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #edf0f5;
+
+    white-space: nowrap;
+}
+
+.reports-table th {
+    color: #8b98ad;
+
+    background: #fbfcfe;
+
+    font-size: 10px;
+
+    letter-spacing: 0.5px;
+}
+
+.reports-table td {
+    color: #66758e;
+
+    font-size: 12px;
+}
+
+.reports-table td strong {
+    color: var(--admin-text);
+}
+
+
+/* ==============================
+   CATEGORY
+================================= */
+
+.category-tag {
+    display: inline-block;
+
+    padding: 5px 8px;
+
+    border-radius: 4px;
+
+    color: var(--admin-blue);
+
+    background: #eff5ff;
+
+    font-size: 10px;
+}
+
+
+/* ==============================
+   STATUS
+================================= */
+
+.status-badge {
+    display: inline-flex;
+
+    padding: 5px 9px;
+
+    border-radius: 999px;
+
+    color: #285fb4;
+
+    background: #eef5ff;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+
+/* ==============================
+   EMPTY
+================================= */
+
+.empty-state {
+    padding: 28px !important;
+
+    text-align: center !important;
+
+    color: #99a5b7 !important;
+}
+
+
+/* ==============================
+   RESPONSIVE
+================================= */
+
+@media (max-width: 700px) {
+
+    .summary-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .card-header {
+        align-items: flex-start;
+
+        gap: 10px;
+
+        flex-direction: column;
+    }
+
+}

@@ -1,0 +1,738 @@
+/* =========================================
+   HALAMAN KELOLA DEVISI
+========================================= */
+
+.devisi-page {
+    width: 100%;
+    padding: 28px 24px 40px;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.devisi-header {
+    margin-bottom: 18px;
+}
+
+.devisi-header h1 {
+    margin: 0 0 6px;
+
+    font-size: 26px;
+    font-weight: 700;
+
+    color: #1f3045;
+}
+
+.devisi-header p {
+    margin: 0;
+
+    font-size: 15px;
+    line-height: 1.6;
+
+    color: #718096;
+}
+
+
+/* =========================================
+   ACTION
+========================================= */
+
+.devisi-action {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 14px;
+
+    margin-bottom: 18px;
+}
+
+
+/* TOTAL */
+
+.devisi-total {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #cfd9e6;
+    border-radius: 20px;
+
+    background: #f5f8fc;
+
+    color: #38506b;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+
+/* BUTTON TAMBAH */
+
+.btn-tambah-devisi {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 18px;
+
+    border: none;
+    border-radius: 9px;
+
+    background: #f57c00;
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-tambah-devisi:hover {
+    background: #d96e00;
+}
+
+.btn-tambah-devisi:active {
+    transform: scale(0.98);
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+.devisi-search-card {
+    padding: 16px;
+
+    margin-bottom: 16px;
+
+    background: #ffffff;
+
+    border: 1px solid #d9e1ea;
+    border-radius: 14px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    width: 100%;
+
+    padding: 0 14px;
+
+    border: 1px solid #d4dce6;
+    border-radius: 9px;
+
+    background: #ffffff;
+}
+
+.search-box:focus-within {
+    border-color: #55779e;
+
+    box-shadow: 0 0 0 3px rgba(85, 119, 158, 0.1);
+}
+
+.search-box i {
+    color: #8a99aa;
+}
+
+.search-box input {
+    width: 100%;
+
+    padding: 13px 0;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #34465a;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   TABLE
+========================================= */
+
+.devisi-table-card {
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #d7e0e9;
+    border-radius: 14px;
+
+    overflow: hidden;
+}
+
+.table-responsive {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+.devisi-table {
+    width: 100%;
+
+    min-width: 800px;
+
+    border-collapse: collapse;
+}
+
+
+/* TABLE HEADER */
+
+.devisi-table thead {
+    background: #f7f9fc;
+}
+
+.devisi-table th {
+    padding: 17px 14px;
+
+    text-align: left;
+
+    border-bottom: 1px solid #dce4ec;
+
+    color: #7b8794;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 0.6px;
+}
+
+
+/* TABLE BODY */
+
+.devisi-table td {
+    padding: 17px 14px;
+
+    border-bottom: 1px solid #e5eaf0;
+
+    color: #617083;
+
+    font-size: 14px;
+
+    vertical-align: middle;
+}
+
+.devisi-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.devisi-table tbody tr:hover {
+    background: #fafbfd;
+}
+
+
+/* COLUMN */
+
+.col-no {
+    width: 60px;
+}
+
+.col-aksi {
+    width: 200px;
+}
+
+
+/* NAMA DEVISI */
+
+.nama-devisi {
+    max-width: 430px;
+
+    color: #28384b !important;
+
+    font-size: 14px !important;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   BADGE KATEGORI
+========================================= */
+
+.kategori-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 6px 10px;
+
+    border: 1px solid #ccd8e5;
+    border-radius: 7px;
+
+    background: #eef3f8;
+
+    color: #405976;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+
+/* =========================================
+   AKSI
+========================================= */
+
+.aksi-column {
+    display: flex;
+    align-items: center;
+
+    gap: 8px;
+}
+
+
+/* EDIT */
+
+.btn-edit {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #cdd9e6;
+    border-radius: 8px;
+
+    background: #f1f6fb;
+
+    color: #42658a;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-edit:hover {
+    background: #e3edf7;
+}
+
+
+/* HAPUS */
+
+.btn-hapus {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 6px;
+
+    padding: 8px 12px;
+
+    border: 1px solid #f0cccc;
+    border-radius: 8px;
+
+    background: #fff5f5;
+
+    color: #d94b4b;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn-hapus:hover {
+    background: #ffeaea;
+}
+
+
+/* =========================================
+   MODAL OVERLAY
+========================================= */
+
+.modal-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 25, 40, 0.55);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition: 0.2s ease;
+
+    z-index: 9999;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* =========================================
+   MODAL BOX
+========================================= */
+
+.modal-box {
+    width: 100%;
+    max-width: 500px;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+
+    overflow: hidden;
+
+    transform: translateY(-15px);
+
+    transition: 0.2s ease;
+}
+
+.modal-overlay.active .modal-box {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   MODAL HEADER
+========================================= */
+
+.modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 22px 24px;
+
+    border-bottom: 1px solid #e6ebf0;
+}
+
+.modal-header h2 {
+    margin: 0 0 5px;
+
+    color: #25364a;
+
+    font-size: 20px;
+}
+
+.modal-header p {
+    margin: 0;
+
+    color: #7d8998;
+
+    font-size: 14px;
+}
+
+
+/* CLOSE */
+
+.modal-close {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #f5f7fa;
+
+    color: #66788a;
+
+    font-size: 24px;
+
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: #e9edf2;
+}
+
+
+/* =========================================
+   MODAL BODY
+========================================= */
+
+.modal-body {
+    padding: 24px;
+}
+
+.modal-form-group {
+    margin-bottom: 20px;
+}
+
+.modal-form-group:last-child {
+    margin-bottom: 0;
+}
+
+.modal-form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #35465a;
+
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.modal-form-group input {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid #d5dde6;
+    border-radius: 9px;
+
+    outline: none;
+
+    color: #34465a;
+
+    font-size: 14px;
+}
+
+.modal-form-group input:focus {
+    border-color: #54759a;
+
+    box-shadow: 0 0 0 3px rgba(84, 117, 154, 0.1);
+}
+
+
+/* =========================================
+   MODAL FOOTER
+========================================= */
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+
+    gap: 10px;
+
+    padding: 18px 24px;
+
+    border-top: 1px solid #e6ebf0;
+
+    background: #fafbfd;
+}
+
+
+/* BATAL */
+
+.btn-modal-batal {
+    padding: 10px 17px;
+
+    border: 1px solid #d4dce5;
+    border-radius: 8px;
+
+    background: #ffffff;
+
+    color: #5d6d7e;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-modal-batal:hover {
+    background: #f4f6f8;
+}
+
+
+/* SIMPAN */
+
+.btn-modal-simpan {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 10px 17px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #f57c00;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-modal-simpan:hover {
+    background: #d96e00;
+}
+
+
+/* =========================================
+   MODAL HAPUS
+========================================= */
+
+.modal-hapus-box {
+    max-width: 440px;
+}
+
+.modal-hapus-content {
+    padding: 32px 28px 20px;
+
+    text-align: center;
+}
+
+.hapus-icon {
+    width: 60px;
+    height: 60px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #fff0f0;
+
+    color: #dc4b4b;
+
+    font-size: 24px;
+}
+
+.modal-hapus-content h2 {
+    margin: 0 0 10px;
+
+    color: #29394b;
+
+    font-size: 21px;
+}
+
+.modal-hapus-content p {
+    margin: 0;
+
+    color: #718096;
+
+    line-height: 1.6;
+
+    font-size: 14px;
+}
+
+.modal-hapus-footer {
+    justify-content: center;
+}
+
+
+/* HAPUS CONFIRM */
+
+.btn-modal-hapus {
+    display: inline-flex;
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 10px 17px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #dc4b4b;
+
+    color: #ffffff;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.btn-modal-hapus:hover {
+    background: #c83d3d;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .devisi-page {
+        padding: 22px 16px 30px;
+    }
+
+
+    .devisi-header h1 {
+        font-size: 22px;
+    }
+
+
+    .devisi-action {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+
+    .devisi-total {
+        width: fit-content;
+    }
+
+
+    .btn-tambah-devisi {
+        width: 100%;
+    }
+
+
+    .modal-overlay {
+        padding: 14px;
+    }
+
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .modal-footer {
+        flex-direction: column-reverse;
+    }
+
+
+    .btn-modal-batal,
+    .btn-modal-simpan,
+    .btn-modal-hapus {
+        width: 100%;
+        justify-content: center;
+    }
+
+}

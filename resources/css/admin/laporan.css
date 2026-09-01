@@ -1,0 +1,281 @@
+.admin-page {
+    padding: 28px 22px;
+    background: #f8fafc;
+    min-height: calc(100vh - 70px);
+}
+
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 24px;
+}
+
+.breadcrumb {
+    color: #94a3b8;
+    font-size: 13px;
+    margin-bottom: 4px;
+}
+
+.page-header h1 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 22px;
+    font-weight: 700;
+}
+
+.page-header p {
+    margin: 6px 0 0;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.page-badge {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+
+    padding: 9px 14px;
+
+    border: 1px solid #dbe5f1;
+    border-radius: 20px;
+
+    background: #f8fbff;
+
+    color: #174ea6;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+/* =========================
+   FILTER
+========================= */
+
+.report-filter {
+    display: grid;
+    grid-template-columns: 1fr 160px 160px;
+    gap: 10px;
+
+    padding: 14px;
+
+    background: #fff;
+    border: 1px solid #dbe3ef;
+    border-radius: 10px;
+
+    margin-bottom: 16px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    height: 44px;
+
+    padding: 0 13px;
+
+    border: 1px solid #d5deea;
+    border-radius: 7px;
+
+    color: #94a3b8;
+}
+
+.search-box input {
+    width: 100%;
+
+    border: 0;
+    outline: none;
+
+    color: #334155;
+    font-size: 14px;
+}
+
+.report-filter select {
+    height: 44px;
+
+    padding: 0 12px;
+
+    border: 1px solid #d5deea;
+    border-radius: 7px;
+
+    background: #fff;
+
+    color: #334155;
+    font-size: 14px;
+}
+
+
+/* =========================
+   TABLE
+========================= */
+
+.report-table-wrapper {
+    overflow-x: auto;
+
+    background: #fff;
+
+    border: 1px solid #dbe3ef;
+    border-radius: 10px;
+}
+
+.report-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+.report-table th {
+    padding: 14px 12px;
+
+    background: #f8fafc;
+
+    border-bottom: 1px solid #e2e8f0;
+
+    color: #94a3b8;
+
+    text-align: left;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.report-table td {
+    padding: 15px 12px;
+
+    border-bottom: 1px solid #edf1f5;
+
+    color: #64748b;
+
+    vertical-align: middle;
+}
+
+.report-table tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.report-table td strong {
+    color: #0f172a;
+    font-weight: 600;
+}
+
+
+/* =========================
+   BADGES
+========================= */
+
+.category-badge {
+    display: inline-block;
+
+    padding: 5px 8px;
+
+    border-radius: 5px;
+
+    background: #eef5ff;
+
+    color: #174ea6;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+
+    padding: 7px 10px;
+
+    border-radius: 18px;
+
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.status-process {
+    background: #edf4ff;
+    color: #2454a6;
+}
+
+.status-waiting {
+    background: #fff8e8;
+    color: #d97706;
+}
+
+.status-success {
+    background: #ecfdf5;
+    color: #059669;
+}
+
+
+/* =========================
+   BUTTON
+========================= */
+
+.btn-detail {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    min-width: 86px;
+
+    padding: 8px 10px;
+
+    border: 1px solid #d8e4f2;
+    border-radius: 7px;
+
+    background: #f5f9ff;
+
+    color: #174ea6;
+
+    font-size: 11px;
+    font-weight: 600;
+
+    text-decoration: none;
+
+    transition: .2s;
+}
+
+.btn-detail:hover {
+    background: #eaf2ff;
+}
+
+
+/* =========================
+   FOOTER TABLE
+========================= */
+
+.table-footer {
+    margin-top: 12px;
+
+    text-align: right;
+
+    color: #94a3b8;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .report-filter {
+        grid-template-columns: 1fr;
+    }
+
+    .page-header {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+}
