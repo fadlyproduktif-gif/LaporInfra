@@ -18,12 +18,12 @@
     <div class="admin-shell">
 
         {{-- Sidebar / Navbar --}}
-        @include('admin.partial.navbar')
+        @include('admin.partials.sidebar')
 
         <div class="admin-main">
 
             {{-- Header --}}
-            @include('admin.partial.header')
+            @include('admin.partials.header')
 
             {{-- Content halaman --}}
             <main class="admin-content">
@@ -31,7 +31,7 @@
             </main>
 
             {{-- Footer --}}
-            @include('admin.partial.footer')
+            @include('admin.partials.footer')
 
         </div>
 

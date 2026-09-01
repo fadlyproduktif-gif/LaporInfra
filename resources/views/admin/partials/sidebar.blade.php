@@ -32,7 +32,7 @@
 
 
         <a
-            href="{{ url('/admin/laporan') }}"
+            href="{{ route('laporan.index') }}"
             class="nav-item {{ request()->is('admin/laporan*') ? 'active' : '' }}"
         >
             <span>▣</span>
@@ -41,7 +41,7 @@
 
 
         <a
-            href="{{ url('/admin/kategori') }}"
+            href="{{ route('kategori.index') }}"
             class="nav-item {{ request()->is('admin/kategori*') ? 'active' : '' }}"
         >
             <span>◇</span>
@@ -50,11 +50,11 @@
 
 
         <a
-            href="{{ url('/admin/devisi') }}"
+            href="{{ route('devisi.index') }}"
             class="nav-item {{ request()->is('admin/devisi*') ? 'active' : '' }}"
         >
             <span>▥</span>
-            Devisi
+            Devisi  
         </a>
 
 

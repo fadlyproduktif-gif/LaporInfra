@@ -1,0 +1,749 @@
+/* =====================================================
+   HALAMAN AKUN
+===================================================== */
+
+.akun-page {
+    width: 100%;
+}
+
+
+/* =====================================================
+   HEADER
+===================================================== */
+
+.akun-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.akun-header-text h1 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    color: #24364b;
+}
+
+.akun-header-text p {
+    margin: 6px 0 0;
+    font-size: 14px;
+    color: #718096;
+}
+
+.akun-header-action {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+
+/* =====================================================
+   TOTAL AKUN
+===================================================== */
+
+.akun-total {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border: 1px solid #dbe4ee;
+    border-radius: 999px;
+    background: #ffffff;
+    color: #38516e;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.akun-total i {
+    font-size: 12px;
+}
+
+
+/* =====================================================
+   TOMBOL TAMBAH
+===================================================== */
+
+.btn-tambah-akun {
+    border: none;
+    outline: none;
+    padding: 11px 18px;
+    border-radius: 9px;
+    background: #f57c00;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(245, 124, 0, 0.18);
+    transition: 0.2s ease;
+}
+
+.btn-tambah-akun:hover {
+    background: #e66f00;
+}
+
+.btn-tambah-akun i {
+    margin-right: 6px;
+}
+
+
+/* =====================================================
+   FILTER CARD
+===================================================== */
+
+.akun-filter-card {
+    display: grid;
+    grid-template-columns: 1fr 170px 210px;
+    gap: 12px;
+    padding: 12px;
+    margin-bottom: 14px;
+    border: 1px solid #dce5ee;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.search-box {
+    position: relative;
+    width: 100%;
+}
+
+.search-box i {
+    position: absolute;
+    top: 50%;
+    left: 14px;
+    transform: translateY(-50%);
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+.search-box input {
+    width: 100%;
+    height: 42px;
+    padding: 0 15px 0 38px;
+    border: 1px solid #d4dee8;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #334155;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.search-box input:focus {
+    border-color: #5379a7;
+    box-shadow: 0 0 0 3px rgba(83, 121, 167, 0.08);
+}
+
+
+.filter-select {
+    position: relative;
+}
+
+.filter-select select {
+    width: 100%;
+    height: 42px;
+    appearance: none;
+    padding: 0 36px 0 14px;
+    border: 1px solid #d4dee8;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #4b5f76;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.filter-select i {
+    position: absolute;
+    top: 50%;
+    right: 14px;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #94a3b8;
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   TABLE
+===================================================== */
+
+.akun-table-card {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid #dce5ee;
+    border-radius: 12px;
+    background: #ffffff;
+}
+
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.akun-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 900px;
+}
+
+.akun-table thead {
+    background: #f8fafc;
+}
+
+.akun-table th {
+    padding: 15px 16px;
+    text-align: left;
+    border-bottom: 1px solid #dce5ee;
+    color: #718096;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+}
+
+.akun-table td {
+    padding: 13px 16px;
+    border-bottom: 1px solid #edf1f5;
+    color: #526174;
+    font-size: 13px;
+}
+
+.akun-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.akun-table tbody tr:hover {
+    background: #fafcff;
+}
+
+.col-no {
+    width: 45px;
+}
+
+.col-aksi {
+    width: 170px;
+}
+
+
+/* =====================================================
+   USER
+===================================================== */
+
+.akun-user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #31445a;
+    font-weight: 600;
+}
+
+.akun-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #d7e0e9;
+    border-radius: 50%;
+    background: #f2f6fa;
+    color: #527092;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   ROLE BADGE
+===================================================== */
+
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 9px;
+    border-radius: 5px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.role-masyarakat {
+    border: 1px solid #d7e1ec;
+    background: #eef3f8;
+    color: #527092;
+}
+
+.role-admin {
+    background: #23364d;
+    color: #ffffff;
+}
+
+
+/* =====================================================
+   DIVISI
+===================================================== */
+
+.divisi-badge {
+    display: inline-flex;
+    padding: 4px 9px;
+    border: 1px solid #d7e1ec;
+    border-radius: 5px;
+    background: #f2f5f8;
+    color: #64748b;
+    font-size: 11px;
+}
+
+.divisi-empty {
+    color: #94a3b8;
+}
+
+
+/* =====================================================
+   AKSI BUTTON
+===================================================== */
+
+.aksi-column {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-edit,
+.btn-hapus {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border-radius: 7px;
+    padding: 8px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.btn-edit {
+    border: 1px solid #cfdeec;
+    background: #edf4fa;
+    color: #43688e;
+}
+
+.btn-edit:hover {
+    background: #e1edf7;
+}
+
+.btn-hapus {
+    border: 1px solid #f3d4d1;
+    background: #fff6f5;
+    color: #d94c45;
+}
+
+.btn-hapus:hover {
+    background: #ffebe9;
+}
+
+
+/* =====================================================
+   TABLE FOOTER
+===================================================== */
+
+.akun-table-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 13px;
+}
+
+.akun-table-footer p {
+    margin: 0;
+    color: #718096;
+    font-size: 12px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.pagination-btn,
+.pagination-number {
+    height: 32px;
+    border: 1px solid #dce5ee;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #718096;
+    padding: 0 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.pagination-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+
+.pagination-number {
+    min-width: 32px;
+    padding: 0;
+}
+
+.pagination-number.active {
+    border-color: #c9d9e8;
+    background: #edf4fa;
+    color: #43688e;
+}
+
+
+/* =====================================================
+   MODAL OVERLAY
+===================================================== */
+
+.modal-overlay {
+    position: fixed;
+    z-index: 9999;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(31, 41, 55, 0.48);
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+
+/* =====================================================
+   MODAL BOX
+===================================================== */
+
+.modal-box {
+    width: 100%;
+    max-width: 520px;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.28);
+}
+
+.modal-akun {
+    max-width: 560px;
+}
+
+
+/* =====================================================
+   MODAL HEADER
+===================================================== */
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 20px 16px;
+    border-bottom: 1px solid #edf1f5;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #2b3d52;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.modal-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 6px;
+    background: transparent;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    background: #f1f5f9;
+}
+
+
+/* =====================================================
+   MODAL BODY
+===================================================== */
+
+.modal-body {
+    padding: 18px 20px;
+}
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #4b5f76;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.form-group label span {
+    color: #f57c00;
+}
+
+.form-group input,
+.modal-select {
+    width: 100%;
+    height: 40px;
+    padding: 0 12px;
+    border: 1px solid #d4dee8;
+    border-radius: 8px;
+    outline: none;
+    background: #ffffff;
+    color: #425466;
+    font-size: 13px;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.modal-select:focus {
+    border-color: #5279a6;
+    box-shadow: 0 0 0 3px rgba(82, 121, 166, 0.08);
+}
+
+.modal-select:disabled {
+    background: #f4f6f8;
+    color: #94a3b8;
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   PASSWORD SECTION
+===================================================== */
+
+.password-section {
+    margin-bottom: 15px;
+    padding: 14px;
+    border: 1px dashed #d7e0e8;
+    border-radius: 9px;
+    background: #fafbfd;
+}
+
+.password-info {
+    margin: 0 0 12px;
+    color: #7b8797;
+    font-size: 11px;
+}
+
+
+/* =====================================================
+   ROLE SELECTOR
+===================================================== */
+
+.role-selector {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.role-option {
+    height: 38px;
+    border: 1px solid #d4dee8;
+    border-radius: 7px;
+    background: #ffffff;
+    color: #718096;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.role-option.active {
+    border-color: #5279a6;
+    background: #edf4fa;
+    color: #3e6389;
+}
+
+
+/* =====================================================
+   MODAL FOOTER
+===================================================== */
+
+.modal-footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    padding: 14px 20px;
+    border-top: 1px solid #edf1f5;
+}
+
+.btn-modal-cancel,
+.btn-modal-save,
+.btn-modal-delete {
+    height: 42px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.btn-modal-cancel {
+    border: 1px solid #d4dee8;
+    background: #ffffff;
+    color: #64748b;
+}
+
+.btn-modal-cancel:hover {
+    background: #f8fafc;
+}
+
+.btn-modal-save {
+    border: none;
+    background: #f57c00;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(245, 124, 0, 0.18);
+}
+
+.btn-modal-save:hover {
+    background: #e66f00;
+}
+
+
+/* =====================================================
+   MODAL HAPUS
+===================================================== */
+
+.modal-hapus-box {
+    max-width: 410px;
+    padding: 24px 22px 20px;
+    text-align: center;
+}
+
+.hapus-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    margin: 0 auto 15px;
+    border: 1px solid #f5d6d3;
+    border-radius: 50%;
+    background: #fff5f4;
+    color: #e54842;
+    font-size: 19px;
+}
+
+.modal-hapus-box h3 {
+    margin: 0;
+    color: #2b3d52;
+    font-size: 17px;
+}
+
+.hapus-question {
+    margin: 9px 0 5px;
+    color: #536579;
+    font-size: 13px;
+}
+
+.hapus-description {
+    margin: 0;
+    color: #7b8797;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.hapus-description strong {
+    color: #4b5f76;
+}
+
+.modal-footer-hapus {
+    margin-top: 20px;
+    padding: 0;
+    border: none;
+}
+
+.btn-modal-delete {
+    border: none;
+    background: #ef1010;
+    color: #ffffff;
+}
+
+.btn-modal-delete:hover {
+    background: #d80c0c;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media (max-width: 900px) {
+
+    .akun-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .akun-header-action {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+}
+
+
+@media (max-width: 700px) {
+
+    .akun-filter-card {
+        grid-template-columns: 1fr;
+    }
+
+    .akun-table-footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+}
+
+
+@media (max-width: 500px) {
+
+    .akun-header-text h1 {
+        font-size: 21px;
+    }
+
+    .akun-header-action {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .akun-total,
+    .btn-tambah-akun {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .modal-overlay {
+        padding: 10px;
+    }
+
+    .modal-header,
+    .modal-body {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    .modal-footer {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+}
