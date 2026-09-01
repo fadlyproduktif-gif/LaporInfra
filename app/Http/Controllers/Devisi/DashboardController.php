@@ -16,15 +16,45 @@ class DashboardController extends Controller
     {
         $user = Auth::User();
         /** @var User $user  */
-        $laporanR = Laporan::whereHas('kategori', function($query) use ($user) {
+        $laporanR = Laporan::whereHas('kategori', function ($query) use ($user) {
             $query->where('id_devisi', $user->id_devisi);
         })->latest()->take(3)->get();
 
-        $laporan = Laporan::whereHas('kategori', function($query) use ($user) {
+        $laporan = Laporan::whereHas('kategori', function ($query) use ($user) {
             $query->where('id_devisi', $user->id_devisi);
         })->get();
 
-        $total = $laporan->count();
+        $laporanKategori =  Laporan::whereHas('kategori', function ($query) use ($user) {
+            $query->where('id_devisi', $user->id_devisi);
+        })
+            ->whereMonth('created_at', now()->month)
+            ->select('id_kategori')
+            ->selectRaw('count(*) as total')
+            ->groupBy('id_kategori')
+            ->get();
+
+        $awalminggu = now()->startOfWeek();
+        $akhirminggu = now()->endOfWeek();
+
+        $lpmingguini = Laporan::whereHas('kategori', function($query) use ($user){
+            $query->where('id_devisi', $user->id_devisi);
+        })->whereBetween('created_at', [$awalminggu, $akhirminggu])->
+        select('id_kategori')->selectRaw('count(*) as total')->groupBy('id_kategori')->get();
+
+        $dataGrafik = $lpmingguini->map(function($item){
+            return [
+                'kategori' => $item->kategori->nama_kategori,
+                'total' => $item->total,
+            ];
+        });
+        dump($dataGrafik);
+        foreach($lpmingguini as $item){
+            dump($item->kategori->nama_kategori, $item->total);
+
+        }
+        $bulan = Laporan::whereMonth('created_at', 8)->get();
+        // dd($bulan);
+        $totalLaporan = $laporan->count();
         $menunggu = $laporan->where('id_status', 1)->count();
         $dikerjakan = $laporan->where('id_status', 5)->count();
         $selesai = $laporan->where('id_status', 6)->count();
@@ -32,6 +62,19 @@ class DashboardController extends Controller
         $tunda = $laporan->where('id_status', 2)->count();
         $tolak = $laporan->where('id_status', 3)->count();
 
-        return view('devisi.pages.dashboard', compact('laporanR','laporan','total','dikerjakan','menunggu','selesai','terima','tolak','tunda'));
+        return view('devisi.pages.dashboard', compact(
+            'laporanR',
+            'laporan',
+            'totalLaporan',
+            'dikerjakan',
+            'menunggu',
+            'selesai',
+            'terima',
+            'tolak',
+            'tunda',
+            'laporanKategori',
+            'lpmingguini',
+            'dataGrafik',
+        ));
     }
 }
