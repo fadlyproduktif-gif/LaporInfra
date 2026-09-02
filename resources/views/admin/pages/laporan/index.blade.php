@@ -5,219 +5,153 @@
 @section('content')
 
 
-@push('styles')
+    @push('styles')
+        @vite('resources/css/admin/laporan.css')
+    @endpush
 
-    @vite('resources/css/admin/laporan.css')
+    <div class="admin-page">
 
-@endpush
+        <div class="page-header">
+            <div>
+                <div class="breadcrumb">
+                    Admin System
+                </div>
 
-<div class="admin-page">
+                <h1>Daftar Laporan</h1>
 
-    <div class="page-header">
-        <div>
-            <div class="breadcrumb">
-                Admin System
+                <p>
+                    Semua laporan masuk dari masyarakat — hanya dapat dilihat.
+                </p>
             </div>
 
-            <h1>Daftar Laporan</h1>
-
-            <p>
-                Semua laporan masuk dari masyarakat — hanya dapat dilihat.
-            </p>
+            <div class="page-badge">
+                <span>▤</span>
+                {{ $laporan->count() }}
+            </div>
         </div>
 
-        <div class="page-badge">
-            <span>▤</span>
-            3 Laporan
+
+        {{-- Filter --}}
+        <form action="{{ route('admin.laporan.index') }}" method="get">
+            <div class="report-filter">
+
+                <div class="search-box">
+                    <span>⌕</span>
+
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        placeholder="Cari nama laporan atau lokasi...">
+                </div>
+
+                <select name="kategori">
+                    <option value="">Semua kategori</option>
+                    @forelse ($kategori as $item)
+                        <option value="{{ $item->id_kategori }}" @selected(request('kategori') == $item->id_kategori)>
+                            {{ $item->nama_kategori }}
+                        </option>
+                    @empty
+                    @endforelse
+                </select>
+
+
+
+                <select name="status">
+                    <option value="">Semua Status</option>
+                    @forelse ($status as $item)
+                        <option value="{{ $item->id_status }}" @selected(request('status') == $item->id_status)>
+                            {{ $item->nama_status }}
+                        </option>
+                    @empty
+                    @endforelse
+                </select>
+                <button type="submit">
+                    filter
+                </button>
+            </div>
+        </form>
+
+
+        {{-- Table --}}
+        <div class="report-table-wrapper">
+
+            <table class="report-table">
+
+                <thead>
+                    <tr>
+                        <th>NO.</th>
+                        <th>NAMA LAPORAN</th>
+                        <th>KATEGORI</th>
+                        <th>LOKASI</th>
+                        <th>STATUS</th>
+                        <th>TANGGAL LAPORAN</th>
+                        <th>AKSI</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @forelse ($laporan as $index => $item)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+
+                            <td>
+                                <strong>
+                                    {{ $item->nama_laporan }}
+                                </strong>
+                            </td>
+
+                            <td>
+                                <span class="category-badge">
+                                    {{ $item->kategori->nama_kategori }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ $item->lokasi }}
+                            </td>
+
+                            @php
+                                $statusKey = match ($item->id_status) {
+                                    1 => 'waiting',
+                                    2 => 'postponed',
+                                    3 => 'rejected',
+                                    4 => 'accepted',
+                                    5 => 'processing',
+                                    6 => 'completed',
+                                    default => 'unknown',
+                                };
+                            @endphp
+
+                            <td>
+                                <span class="status-badge status-{{ $statusKey }}">
+                                    ● {{ $item->statusLaporan->nama_status }}
+                                </span>
+                            </td>
+
+                            <td>
+                                {{ $item->created_at }}
+                            </td>
+
+                            <td>
+                                <a href="{{ route('admin.laporan.show', $item->id_laporan) }}" class="btn-detail">
+                                    ◉
+                                    <span>Lihat Detail</span>
+                                </a>
+                            </td>
+                        </tr>
+
+                    @empty
+                    @endforelse
+
+                </tbody>
+
+            </table>
+
         </div>
-    </div>
 
 
-    {{-- Filter --}}
-    <div class="report-filter">
-
-        <div class="search-box">
-            <span>⌕</span>
-
-            <input
-                type="text"
-                placeholder="Cari nama laporan atau lokasi..."
-            >
+        <div class="table-footer">
+            Menampilkan {{ $laporan->count() }} dari {{ $totalLaporan }} laporan
         </div>
 
-        <select>
-            <option>Semua Kategori</option>
-            <option>Jalan & Trotoar</option>
-            <option>Jembatan</option>
-            <option>Drainase & Sanitasi</option>
-            <option>Penerangan Jalan</option>
-            <option>Fasilitas Umum</option>
-            <option>Taman & RTH</option>
-            <option>Lainnya</option>
-        </select>
-
-        <select>
-            <option>Semua Status</option>
-            <option>Menunggu</option>
-            <option>Sedang Diproses</option>
-            <option>Selesai</option>
-        </select>
-
     </div>
-
-
-    {{-- Table --}}
-    <div class="report-table-wrapper">
-
-        <table class="report-table">
-
-            <thead>
-                <tr>
-                    <th>NO.</th>
-                    <th>NAMA LAPORAN</th>
-                    <th>KATEGORI</th>
-                    <th>LOKASI</th>
-                    <th>STATUS</th>
-                    <th>TANGGAL LAPORAN</th>
-                    <th>AKSI</th>
-                </tr>
-            </thead>
-
-            <tbody>
-
-                <tr>
-                    <td>1</td>
-
-                    <td>
-                        <strong>
-                            Jalan Berlubang di Jl. Merdeka No. 12
-                        </strong>
-                    </td>
-
-                    <td>
-                        <span class="category-badge">
-                            Jalan & Trotoar
-                        </span>
-                    </td>
-
-                    <td>
-                        Jl. Merdeka No. 12
-                    </td>
-
-                    <td>
-                        <span class="status-badge status-process">
-                            ● Sedang Diproses
-                        </span>
-                    </td>
-
-                    <td>
-                        10 Agustus 2026
-                    </td>
-
-                    <td>
-                        <a
-                            href="{{ route('admin.laporan.show', ['id' => 1] ) }}"
-                           class="btn-detail"
-                        >
-                            ◉
-                            <span>Lihat Detail</span>
-                        </a>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td>2</td>
-
-                    <td>
-                        <strong>
-                            Lampu Jalan Mati Sejak 2 Minggu Lalu
-                        </strong>
-                    </td>
-
-                    <td>
-                        <span class="category-badge">
-                            Penerangan Jalan
-                        </span>
-                    </td>
-
-                    <td>
-                        Jl. Ahmad Yani
-                    </td>
-
-                    <td>
-                        <span class="status-badge status-waiting">
-                            ● Menunggu
-                        </span>
-                    </td>
-
-                    <td>
-                        5 Agustus 2026
-                    </td>
-
-                    <td>
-                        <a
-                            href="{{ route('admin.laporan.show', 2) }}"
-                            class="btn-detail"
-                        >
-                            ◉
-                            <span>Lihat Detail</span>
-                        </a>
-                    </td>
-                </tr>
-
-
-                <tr>
-                    <td>3</td>
-
-                    <td>
-                        <strong>
-                            Saluran Air Tersumbat di Gang Melati
-                        </strong>
-                    </td>
-
-                    <td>
-                        <span class="category-badge">
-                            Drainase & Sanitasi
-                        </span>
-                    </td>
-
-                    <td>
-                        Gang Melati RT 04
-                    </td>
-
-                    <td>
-                        <span class="status-badge status-success">
-                            ● Selesai
-                        </span>
-                    </td>
-
-                    <td>
-                        28 Juli 2026
-                    </td>
-
-                    <td>
-                        <a
-                            href="{{ route('admin.laporan.show', 3) }}"
-                            class="btn-detail"
-                        >
-                            ◉
-                            <span>Lihat Detail</span>
-                        </a>
-                    </td>
-                </tr>
-
-            </tbody>
-
-        </table>
-
-    </div>
-
-
-    <div class="table-footer">
-        Menampilkan 3 dari 3 laporan
-    </div>
-
-</div>
 
 @endsection

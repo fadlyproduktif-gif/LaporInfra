@@ -2,10 +2,17 @@
    DASHBOARD
 ================================= */
 
+.dashboard-section {
+    margin-bottom: 26px;
+}
+
 .dashboard-section h2 {
     margin: 0 0 16px;
 
-    font-size: 14px;
+    color: var(--admin-text);
+
+    font-size: 15px;
+    font-weight: 700;
 }
 
 
@@ -16,37 +23,48 @@
 .summary-grid {
     display: grid;
 
-    grid-template-columns:
-        repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
 
-    gap: 14px;
+    gap: 16px;
 }
 
 .summary-card {
-    min-height: 78px;
+    min-height: 88px;
 
     display: flex;
     align-items: center;
 
     gap: 15px;
 
-    padding: 14px 18px;
+    padding: 16px 18px;
 
     background: #ffffff;
 
     border: 1px solid var(--admin-border);
 
-    border-radius: 10px;
+    border-radius: 12px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.summary-card:hover {
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 18px rgba(16, 36, 74, 0.06);
 }
 
 .summary-icon {
-    width: 39px;
-    height: 39px;
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
 
     display: grid;
     place-items: center;
 
-    border-radius: 9px;
+    border-radius: 10px;
 
     color: var(--admin-blue);
 
@@ -58,26 +76,31 @@
 .summary-card strong {
     display: block;
 
-    font-size: 21px;
+    margin-bottom: 3px;
+
+    color: var(--admin-text);
+
+    font-size: 22px;
+    font-weight: 700;
+
+    line-height: 1;
 }
 
 .summary-card span {
     display: block;
 
-    margin-top: 4px;
-
-    color: #8b98ae;
+    color: var(--admin-muted);
 
     font-size: 11px;
 }
 
 
 /* ==============================
-   REPORTS
+   REPORTS CARD
 ================================= */
 
 .reports-card {
-    margin-top: 25px;
+    margin-top: 26px;
 
     overflow: hidden;
 
@@ -85,43 +108,73 @@
 
     border: 1px solid var(--admin-border);
 
-    border-radius: 10px;
+    border-radius: 12px;
 }
 
+
+/* ==============================
+   REPORT HEADER
+================================= */
+
 .card-header {
-    min-height: 63px;
+    min-height: 80px;
 
     display: flex;
+
     align-items: center;
     justify-content: space-between;
 
-    padding: 14px 20px;
+    gap: 20px;
+
+    padding: 16px 20px;
 
     border-bottom: 1px solid var(--admin-border);
+}
+
+.card-header > div:first-child {
+    min-width: 0;
 }
 
 .card-header h2 {
     margin: 0;
 
+    color: var(--admin-text);
+
     font-size: 14px;
+    font-weight: 700;
+}
+
+.card-header h6 {
+    margin-top: 6px !important;
+
+    color: var(--admin-blue);
+
+    font-size: 10px;
+    font-weight: 600;
 }
 
 .card-header p {
-    margin: 4px 0 0;
+    margin: 5px 0 0;
 
-    color: #98a5ba;
+    color: var(--admin-muted);
 
     font-size: 11px;
+
+    line-height: 1.5;
 }
 
 .readonly-badge {
-    padding: 6px 10px;
+    flex-shrink: 0;
+
+    padding: 7px 11px;
+
+    border: 1px solid #e4e9f1;
 
     border-radius: 999px;
 
     color: #8c99ad;
 
-    background: #f2f4f8;
+    background: #f6f8fb;
 
     font-size: 10px;
 }
@@ -132,6 +185,8 @@
 ================================= */
 
 .table-wrap {
+    width: 100%;
+
     overflow-x: auto;
 }
 
@@ -145,7 +200,7 @@
 
 .reports-table th,
 .reports-table td {
-    padding: 15px 20px;
+    padding: 14px 20px;
 
     text-align: left;
 
@@ -159,19 +214,38 @@
 
     background: #fbfcfe;
 
-    font-size: 10px;
+    font-size: 9px;
 
-    letter-spacing: 0.5px;
+    font-weight: 700;
+
+    letter-spacing: 0.55px;
+
+    text-transform: uppercase;
 }
 
 .reports-table td {
     color: #66758e;
 
-    font-size: 12px;
+    font-size: 11px;
+}
+
+.reports-table tbody tr {
+    transition: background 0.15s ease;
+}
+
+.reports-table tbody tr:hover {
+    background: #fafcff;
+}
+
+.reports-table tbody tr:last-child td {
+    border-bottom: none;
 }
 
 .reports-table td strong {
     color: var(--admin-text);
+
+    font-size: 11px;
+    font-weight: 600;
 }
 
 
@@ -184,7 +258,9 @@
 
     padding: 5px 8px;
 
-    border-radius: 4px;
+    border: 1px solid #dce8fa;
+
+    border-radius: 5px;
 
     color: var(--admin-blue);
 
@@ -200,8 +276,9 @@
 
 .status-badge {
     display: inline-flex;
+    align-items: center;
 
-    padding: 5px 9px;
+    padding: 6px 9px;
 
     border-radius: 999px;
 
@@ -210,7 +287,6 @@
     background: #eef5ff;
 
     font-size: 10px;
-
     font-weight: 600;
 }
 
@@ -220,7 +296,7 @@
 ================================= */
 
 .empty-state {
-    padding: 28px !important;
+    padding: 32px !important;
 
     text-align: center !important;
 
@@ -232,6 +308,15 @@
    RESPONSIVE
 ================================= */
 
+@media (max-width: 900px) {
+
+    .summary-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
 @media (max-width: 700px) {
 
     .summary-grid {
@@ -241,9 +326,37 @@
     .card-header {
         align-items: flex-start;
 
-        gap: 10px;
-
         flex-direction: column;
+
+        gap: 10px;
+    }
+
+    .readonly-badge {
+        align-self: flex-start;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .summary-card {
+        min-height: 80px;
+
+        padding: 14px;
+    }
+
+    .reports-card {
+        border-radius: 10px;
+    }
+
+    .card-header {
+        padding: 15px;
+    }
+
+    .reports-table th,
+    .reports-table td {
+        padding: 13px 15px;
     }
 
 }

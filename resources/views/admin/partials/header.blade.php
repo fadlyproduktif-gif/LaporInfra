@@ -25,11 +25,11 @@
         <div class="admin-user-info">
 
             <strong>
-                {{ auth()->user()->name ?? 'Admin System' }}
+                {{ $user->nama_user }}
             </strong>
 
             <span>
-                {{ auth()->user()->email ?? 'admin@laporinfra.go.id' }}
+                {{ $user->email }}
             </span>
 
         </div>
@@ -39,7 +39,7 @@
 
             {{ strtoupper(
                 substr(
-                    auth()->user()->name ?? 'A',
+                   $user->nama_user,
                     0,
                     1
                 )

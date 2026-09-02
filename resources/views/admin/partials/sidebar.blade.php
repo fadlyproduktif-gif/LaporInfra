@@ -23,7 +23,7 @@
     <nav class="sidebar-nav">
 
         <a
-            href="{{ url('/admin/dashboard') }}"
+            href="{{ route('admin.dashboard') }}"
             class="nav-item {{ request()->is('admin/dashboard') ? 'active' : '' }}"
         >
             <span>⌂</span>
@@ -32,7 +32,7 @@
 
 
         <a
-            href="{{ route('laporan.index') }}"
+            href="{{ route('admin.laporan.index') }}"
             class="nav-item {{ request()->is('admin/laporan*') ? 'active' : '' }}"
         >
             <span>▣</span>
@@ -41,7 +41,7 @@
 
 
         <a
-            href="{{ route('kategori.index') }}"
+            href="{{ route('admin.kategori.index') }}"
             class="nav-item {{ request()->is('admin/kategori*') ? 'active' : '' }}"
         >
             <span>◇</span>
@@ -50,7 +50,7 @@
 
 
         <a
-            href="{{ route('devisi.index') }}"
+            href="{{ route('admin.devisi.index') }}"
             class="nav-item {{ request()->is('admin/devisi*') ? 'active' : '' }}"
         >
             <span>▥</span>
@@ -59,7 +59,7 @@
 
 
         <a
-            href="{{ url('/admin/akun') }}"
+            href="{{ route('admin.akun.index') }}"
             class="nav-item {{ request()->is('admin/akun*') ? 'active' : '' }}"
         >
             <span>♙</span>
@@ -73,7 +73,7 @@
     <div class="sidebar-bottom">
 
         <a
-            href="{{ url('/masyarakat/dashboard') }}"
+            href="{{ route('masyarakat.login') }}"
             class="portal-link"
         >
             ↗ &nbsp; Portal Masyarakat

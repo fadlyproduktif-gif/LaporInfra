@@ -93,7 +93,7 @@
                 <!-- Google Login -->
                 <div class="google-login">
 
-                    <button type="button" class="google-button">
+                    <a href="{{route('admin.google.redirect')}}" class="google-button">
 
                         <span class="google-icon">G</span>
 
@@ -101,7 +101,7 @@
                             Lanjutkan dengan Google
                         </span>
 
-                    </button>
+                    </a>
 
                 </div>
 

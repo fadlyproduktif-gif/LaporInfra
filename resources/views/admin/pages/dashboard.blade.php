@@ -7,16 +7,11 @@
 @section('page-title', 'Dashboard Admin')
 
 
-@section(
-    'page-description',
-    'Kelola data dan pantau sistem pelaporan LAPORINFRA.'
-)
+@section('page-description', 'Kelola data dan pantau sistem pelaporan LAPORINFRA.')
 
 
 @push('styles')
-
     @vite('resources/css/admin/dashboard.css')
-
 @endpush
 
 
@@ -45,7 +40,7 @@
                 <div>
 
                     <strong>
-                        {{ $totalAkun ?? 12 }}
+                        {{ $totalAkun }}
                     </strong>
 
                     <span>
@@ -67,7 +62,7 @@
                 <div>
 
                     <strong>
-                        {{ $totalDevisi ?? 4 }}
+                        {{ $totalDevisi }}
                     </strong>
 
                     <span>
@@ -89,7 +84,7 @@
                 <div>
 
                     <strong>
-                        {{ $totalKategori ?? 10 }}
+                        {{ $totalKategori }}
                     </strong>
 
                     <span>
@@ -118,6 +113,10 @@
                 <h2>
                     Laporan Terbaru
                 </h2>
+
+                <h6>
+                    {{ $laporan->count() }} laporan terbaru
+                </h6>
 
                 <p>
                     Daftar laporan terbaru yang dapat
@@ -169,28 +168,13 @@
 
                 <tbody>
 
-                    @forelse(($reports ?? []) as $report)
-
-                        @php
-
-                            $status =
-                                $report->status
-                                ?? $report['status']
-                                ?? 'Menunggu';
-
-                        @endphp
-
-
+                    @forelse($laporan as $item)
                         <tr>
 
                             <td>
 
                                 <strong>
-                                    {{
-                                        $report->nama
-                                        ?? $report['nama']
-                                        ?? '-'
-                                    }}
+                                    {{ $item->nama_laporan }}
                                 </strong>
 
                             </td>
@@ -200,11 +184,7 @@
 
                                 <span class="category-tag">
 
-                                    {{
-                                        $report->kategori
-                                        ?? $report['kategori']
-                                        ?? '-'
-                                    }}
+                                    {{ $item->kategori->nama_kategori }}
 
                                 </span>
 
@@ -213,11 +193,7 @@
 
                             <td>
 
-                                {{
-                                    $report->lokasi
-                                    ?? $report['lokasi']
-                                    ?? '-'
-                                }}
+                                {{ $item->lokasi }}
 
                             </td>
 
@@ -226,7 +202,7 @@
 
                                 <span class="status-badge">
 
-                                    {{ $status }}
+                                    {{ $item->statusLaporan->nama_status }}
 
                                 </span>
 
@@ -235,11 +211,7 @@
 
                             <td>
 
-                                {{
-                                    $report->tanggal
-                                    ?? $report['tanggal']
-                                    ?? '-'
-                                }}
+                                {{ $item->created_at }}
 
                             </td>
 
@@ -250,15 +222,11 @@
 
                         <tr>
 
-                            <td
-                                colspan="5"
-                                class="empty-state"
-                            >
+                            <td colspan="5" class="empty-state">
                                 Belum ada laporan terbaru.
                             </td>
 
                         </tr>
-
                     @endforelse
 
                 </tbody>

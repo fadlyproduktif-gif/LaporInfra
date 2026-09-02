@@ -7,6 +7,9 @@ use App\Http\Controllers\Masyarakat\LaporanController as MasyarakatLaporanContro
 use App\Http\Controllers\Masyarakat\ProfilController;
 use App\Http\Controllers\Devisi\DashboardController as DevisiDashboardController;
 use App\Http\Controllers\Devisi\LaporanController as DevisiLaporanController;
+use App\Http\Controllers\Auth\AdminGoogleController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\LaporanController as AdminLaporanController;
 
 Route::get('/', function () {
     return view('auth.masyarakat.login');
@@ -87,33 +90,37 @@ Route::get('/auth/login-admin', function () {
     return view('auth.admin.login');
 })->name('auth.admin.login');
 
-Route::get('/admin/dashboard', function () {
-    return view('admin.pages.dashboard');
-})->name('admin.dashboard');
+Route::get('/auth/google', [AdminGoogleController::class, 'redirect'])
+    ->name('admin.google.redirect');
 
-Route::get('/admin/laporan', function () {
-    return view('admin.pages.laporan.index');
-})->name('laporan.index');
-
-Route::get('/admin/laporan/{id}', function ($id) {
-    return view('admin.pages.laporan.show');
-})->name('admin.laporan.show');
-
-Route::get('/admin/kategori', function () {
-    return view('admin.pages.kategori.index');
-})->name('kategori.index');
-
-Route::get('/admin/devisi', function () {
-    return view('admin.pages.devisi.index');
-})->name('devisi.index');
-
-
-Route::get('/admin/akun', function () {
-    return view('admin.pages.akun.index');
-})->name('akun.index');
+Route::get('/auth/google/callback', [AdminGoogleController::class, 'callback'])
+    ->name('admin.google.callback');
 
 
 //[ADMIN CONTENT]
-Route::middleware(['auth', 'role:admin'])->group(function () {});
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
+    ->name('admin.dashboard');
+
+    Route::get('/admin/laporan', [AdminLaporanController::class, 'index'])->name('admin.laporan.index');
+
+    Route::get('/admin/laporan/{id}', function ($id) {
+        return view('admin.pages.laporan.show');
+    })->name('admin.laporan.show');
+
+    Route::get('/admin/kategori', function () {
+        return view('admin.pages.kategori.index');
+    })->name('admin.kategori.index');
+
+    Route::get('/admin/devisi', function () {
+        return view('admin.pages.devisi.index');
+    })->name('admin.devisi.index');
+
+
+    Route::get('/admin/akun', function () {
+        return view('admin.pages.akun.index');
+    })->name('admin.akun.index');
+});
 
 //[ADMIN END]
+
