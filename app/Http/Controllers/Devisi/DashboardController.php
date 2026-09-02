@@ -12,19 +12,74 @@ use App\Models\kategori;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::User();
         /** @var User $user  */
-        $laporanR = Laporan::whereHas('kategori', function($query) use ($user) {
+        $periode = $request->input(
+            'periode',
+            session('dashboard', 'minggu')
+        );
+
+        session([
+            'dashboard' => $periode
+        ]);
+
+        $rentang = match ($periode) {
+            'minggu' => [
+                now()->startOfWeek(),
+                now()->endOfWeek(),
+            ],
+            'bulan' => [
+                now()->startOfMonth(),
+                now()->endOfMonth(),
+            ],
+            'tahun' => [
+                now()->startOfYear(),
+                now()->endOfYear(),
+            ],
+            default => [
+                now()->startOfWeek(),
+                now()->endOfWeek(),
+            ]
+        };
+
+        $laporanR = Laporan::whereHas('kategori', function ($query) use ($user) {
             $query->where('id_devisi', $user->id_devisi);
         })->latest()->take(3)->get();
 
-        $laporan = Laporan::whereHas('kategori', function($query) use ($user) {
+        $laporan = Laporan::whereHas('kategori', function ($query) use ($user) {
             $query->where('id_devisi', $user->id_devisi);
         })->get();
 
-        $total = $laporan->count();
+        $totalLaporanPeriode =  Laporan::whereHas('kategori', function ($query) use ($user) {
+            $query->where('id_devisi', $user->id_devisi);
+        })
+            ->whereBetween('created_at', $rentang)
+            ->count()
+            ;
+
+        //////////////////////////
+        //DATA GRAFIK DASHBOARD///
+        //////////////////////////
+
+        $dataPeriode = Laporan::whereHas('kategori', function ($query) use ($user) {
+            $query->where('id_devisi', $user->id_devisi);
+        })
+            ->whereBetween('created_at',  $rentang)
+            ->select('id_kategori')
+            ->selectRaw('count(*) as total')
+            ->groupBy('id_kategori')
+            ->get();
+
+        $dataGrafik = $dataPeriode->map(function ($item) {
+            return [
+                'kategori' => $item->kategori->nama_kategori,
+                'total' => $item->total,
+            ];
+        });
+
+        $totalLaporan = $laporan->count();
         $menunggu = $laporan->where('id_status', 1)->count();
         $dikerjakan = $laporan->where('id_status', 5)->count();
         $selesai = $laporan->where('id_status', 6)->count();
@@ -32,6 +87,20 @@ class DashboardController extends Controller
         $tunda = $laporan->where('id_status', 2)->count();
         $tolak = $laporan->where('id_status', 3)->count();
 
-        return view('devisi.pages.dashboard', compact('laporanR','laporan','total','dikerjakan','menunggu','selesai','terima','tolak','tunda'));
+        return view('devisi.pages.dashboard', compact(
+            'laporanR',
+            'laporan',
+            'totalLaporan',
+            'dikerjakan',
+            'menunggu',
+            'selesai',
+            'terima',
+            'tolak',
+            'tunda',
+            'totalLaporanPeriode',
+            'dataPeriode',
+            'dataGrafik',
+            'periode',
+        ));
     }
 }

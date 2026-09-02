@@ -2,7 +2,7 @@
 
 
 @section('title', 'Dashboard Devisi')
-
+@vite('resources/js/devisi-dashboard.js')
 
 @section('content')
 
@@ -62,7 +62,7 @@
                     <div class="summary-info">
 
                         <strong>
-                            {{ $total }}
+                            {{ $totalLaporan }}
                         </strong>
 
                         <span>
@@ -121,6 +121,8 @@
 
 
 
+
+
                 <!-- Completed -->
                 <article class="summary-card">
 
@@ -145,7 +147,7 @@
             </div>
 
             <div class="summary-grid summary-grid-secondary">
-                 <article class="summary-card">
+                <article class="summary-card">
 
                     <div class="summary-icon accepted-icon">
                         ✓
@@ -204,7 +206,38 @@
 
                 </article>
             </div>
+            <br>
 
+            <section class="chart-card">
+
+                <div class="chart-header">
+                    <div>
+                        <h2>Pemantauan Laporan Masuk</h2>
+                        <p>Jumlah laporan yang masuk berdasarkan kategori.</p>
+                    </div>
+
+                    <div>
+                        <span>Total laporan masuk {{$periode}} ini</span>
+                        <strong>{{ $totalLaporanPeriode }} laporan</strong>
+                    </div>
+
+                    <form action="{{ route('devisi.dashboard') }}" method="get">
+                        <select id="periode-chart" name="periode">
+                            <option value="minggu" @selected($periode === 'minggu')>Minggu</option>
+                            <option value="bulan" @selected($periode === 'bulan')>Bulan</option>
+                            <option value="tahun" @selected($periode === 'tahun')>Tahun</option>
+                        </select>
+
+                        <button type="submit">
+                            filter
+                        </button>
+                    </form>
+                </div>
+                <div class="chart-wrapper">
+                    <canvas id="laporanChart"></canvas>
+                </div>
+
+            </section>
         </section>
 
 
@@ -340,5 +373,9 @@
         </section>
 
     </div>
+
+    <script>
+        window.dataGrafik = @json($dataGrafik);
+    </script>
 
 @endsection
