@@ -529,7 +529,211 @@
 
 }
 
+/* =========================
+   CHART
+========================= */
+
+.chart-card {
+    background: white;
+
+    border: 1px solid #dce2ea;
+
+    border-radius: 10px;
+
+    padding: 20px;
+
+    margin-top: 20px;
+}
+
+
+.chart-header {
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    margin-bottom: 20px;
+}
+
+
+.chart-header > div:first-child {
+    flex: 1;
+}
+
+
+.chart-header h2 {
+    margin: 0 0 5px;
+
+    color: #10254b;
+
+    font-size: 18px;
+
+    font-weight: 700;
+}
+
+
+.chart-header p {
+    margin: 0;
+
+    color: #9aa6ba;
+
+    font-size: 11px;
+}
+
+
+.chart-header > div:nth-child(2) {
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-end;
+
+    gap: 3px;
+
+    white-space: nowrap;
+}
+
+
+.chart-header > div:nth-child(2) span {
+    color: #9aa6ba;
+
+    font-size: 10px;
+}
+
+
+.chart-header > div:nth-child(2) strong {
+    color: #10254b;
+
+    font-size: 18px;
+}
+
+
+.chart-header form {
+    display: flex;
+
+    align-items: center;
+
+    gap: 7px;
+}
+
+
+.chart-header select {
+    height: 34px;
+
+    padding: 0 28px 0 10px;
+
+    border: 1px solid #dce2ea;
+
+    border-radius: 7px;
+
+    background: white;
+
+    color: #64708a;
+
+    font-size: 11px;
+
+    cursor: pointer;
+}
+
+
+.chart-header select:focus {
+    outline: none;
+
+    border-color: #24539c;
+}
+
+
+.chart-header button {
+    height: 34px;
+
+    padding: 0 13px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: #10254b;
+
+    color: white;
+
+    font-size: 10px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+
+.chart-header button:hover {
+    background: #173b76;
+}
+
+
 .chart-wrapper {
     position: relative;
-    height: 250px;
+
+    width: 100%;
+
+    height: 260px;
+}
+
+
+/* =========================
+   CHART RESPONSIVE
+========================= */
+
+@media (max-width: 800px) {
+
+    .chart-header {
+        flex-wrap: wrap;
+    }
+
+
+    .chart-header > div:nth-child(2) {
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .chart-card {
+        padding: 16px;
+    }
+
+
+    .chart-header {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 14px;
+    }
+
+
+    .chart-header > div:nth-child(2) {
+        align-items: flex-start;
+    }
+
+
+    .chart-header form {
+        width: 100%;
+    }
+
+
+    .chart-header select {
+        flex: 1;
+    }
+
+
+    .chart-wrapper {
+        height: 230px;
+    }
+
 }

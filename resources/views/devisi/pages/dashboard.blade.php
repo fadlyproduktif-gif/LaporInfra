@@ -216,13 +216,23 @@
                         <p>Jumlah laporan yang masuk berdasarkan kategori.</p>
                     </div>
 
-                    <select id="periode-chart">
-                        <option value="minggu">Minggu</option>
-                        <option value="bulan">Bulan</option>
-                        <option value="tahun">Tahun</option>
-                    </select>
-                </div>
+                    <div>
+                        <span>Total laporan masuk {{$periode}} ini</span>
+                        <strong>{{ $totalLaporanPeriode }} laporan</strong>
+                    </div>
 
+                    <form action="{{ route('devisi.dashboard') }}" method="get">
+                        <select id="periode-chart" name="periode">
+                            <option value="minggu" @selected($periode === 'minggu')>Minggu</option>
+                            <option value="bulan" @selected($periode === 'bulan')>Bulan</option>
+                            <option value="tahun" @selected($periode === 'tahun')>Tahun</option>
+                        </select>
+
+                        <button type="submit">
+                            filter
+                        </button>
+                    </form>
+                </div>
                 <div class="chart-wrapper">
                     <canvas id="laporanChart"></canvas>
                 </div>

@@ -16,20 +16,40 @@ new Chart(canvas, {
             {
                 label: "jumlah data",
                 data: values,
+                backgroundColor: "#78b7e5",
+                borderRadius: 5,
+                maxBarThickness: 80,
             },
         ],
     },
-    options: {
-        responsive: true,
-        plugins: {
-            legend: {
-                display: false,
-            },
-        },
-        scales: {
-            y: {
-                beginAtZero: true,
-            },
-        },
+   options: {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    plugins: {
+        legend: {
+            display: false
+        }
     },
+
+    scales: {
+        y: {
+            beginAtZero: true,
+
+            ticks: {
+                precision: 0
+            },
+
+            grid: {
+                color: '#e6eaf0'
+            }
+        },
+
+        x: {
+            grid: {
+                display: false
+            }
+        }
+    }
+},
 });

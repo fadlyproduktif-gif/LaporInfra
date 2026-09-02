@@ -38,7 +38,7 @@
     <!-- Navigation -->
     <nav class="sidebar-navigation">
 
-        <a href="{{ url('/devisi/dashboard') }}"
+        <a href="{{ route('devisi.dashboard') }}"
             class="sidebar-nav-item {{ request()->is('devisi/dashboard') ? 'active' : '' }}">
 
             <span class="sidebar-nav-icon">
