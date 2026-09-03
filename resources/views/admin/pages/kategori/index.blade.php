@@ -17,6 +17,11 @@
 
 @section('content')
     <!-- CONTENT -->
+    @if (session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
     <section class="content">
 
 
@@ -36,7 +41,7 @@
 
                 <div class="total-badge">
                     <span>◇</span>
-                    5 Kategori
+                    {{ $kategori->count() }} Kategori
                 </div>
 
                 <button type="button" class="btn-add" onclick="openAddModal()">
@@ -67,7 +72,7 @@
 
                     <option value="">Semua Divisi</option>
                     @forelse ($devisi as $item)
-                        <option value="{{ $item->nama_devisi }}" @selected('devisi' == $item->nama_devisi)>
+                        <option value="{{ $item->nama_devisi }}">
                             {{ $item->nama_devisi }}
                         </option>
                     @empty
@@ -100,19 +105,19 @@
 
 
                 <tbody id="categoryTable">
-                    @forelse ($kategori as $item)
+                    @forelse ($kategori as $index => $item)
                         <!-- DATA 1 -->
-                        <tr data-divisi="PUPR">
+                        <tr data-divisi="{{ $item->devisi->nama_devisi }}">
 
-                            <td>1</td>
+                            <td>{{ $index + 1 }}</td>
 
                             <td>
-                                <strong>{{$item->nama_kategori}}</strong>
+                                <strong>{{ $item->nama_kategori }}</strong>
                             </td>
 
                             <td>
                                 <span class="division-badge">
-                                    {{$item->devisi->nama_devisi}}
+                                    {{ $item->devisi->nama_devisi }}
                                 </span>
                             </td>
 
@@ -120,11 +125,17 @@
 
                                 <div class="action-buttons">
 
-                                    <button class="btn-edit" onclick="openEditModal('Jalan & Trotoar', 'PUPR')">
+                                    <button class="btn-edit"
+                                        onclick="openEditModal(
+                                                '{{ $item->id_kategori }}',
+                                                '{{ $item->nama_kategori }}',
+                                                '{{ $item->id_devisi }}',
+                                            )">
                                         ✎ Edit
                                     </button>
 
-                                    <button class="btn-delete" onclick="openDeleteModal('Jalan & Trotoar')">
+                                    <button class="btn-delete"
+                                        onclick="openDeleteModal('{{ $item->id_kategori }}', '{{ $item->nama_kategori }}')">
                                         ♜ Hapus
                                     </button>
 
@@ -143,7 +154,7 @@
 
 
             <div class="table-footer">
-                5 kategori terdaftar
+                {{ $kategori->count() }} kategori terdaftar
             </div>
 
         </div>
@@ -177,372 +188,388 @@
 
             <div class="modal-body">
 
-                <div class="form-group">
+                <form action="{{ route('admin.kategori.store') }}" method="POST" id="categoryForm">
+                    @csrf
 
-                    <label>
-                        Nama Kategori <span>*</span>
-                    </label>
+                    <input type="hidden" name="_method" id="formMethod">
+                    <div class="form-group">
 
-                    <input type="text" id="categoryName" placeholder="Masukkan nama kategori...">
+                        <label>
+                            Nama Kategori <span>*</span>
+                        </label>
 
-                </div>
-
-
-                <div class="form-group">
-
-                    <label>
-                        Divisi <span>*</span>
-                    </label>
-
-                    <div class="modal-select">
-
-                        <select id="categoryDivision">
-
-                            <option value="">
-                                Pilih divisi...
-                            </option>
-
-                            <option value="PUPR">
-                                PUPR
-                            </option>
-
-                            <option value="Perhubungan">
-                                Perhubungan
-                            </option>
-
-                            <option value="Perumahan & Permukiman">
-                                Perumahan & Permukiman
-                            </option>
-
-                            <option value="Lingkungan Hidup">
-                                Lingkungan Hidup
-                            </option>
-
-                        </select>
-
-                        <span>⌄</span>
-
+                        <input type="text" name="kategori" id="categoryName" placeholder="Masukkan nama kategori...">
+                        @error('kategori')
+                            <p>{{ $message }}</p>
+                        @enderror
                     </div>
 
-                </div>
+
+                    <div class="form-group">
+
+                        <label>
+                            Divisi <span>*</span>
+                        </label>
+
+                        <div class="modal-select">
+
+                            <select name="devisi" id="categoryDivision">
+
+                                <option value="">
+                                    Pilih divisi...
+                                </option>
+
+                                @forelse ($devisi as $item)
+                                    <option value="{{ $item->id_devisi }}">
+                                        {{ $item->nama_devisi }}
+                                    </option>
+                                @empty
+                                @endforelse
+
+                            </select>
+                            @error('devisi')
+                                <p>{{ $message }}</p>
+                            @enderror
+                            <span>⌄</span>
+
+                        </div>
+
+                    </div>
 
             </div>
 
 
             <div class="modal-footer">
 
-                <button class="btn-cancel" onclick="closeModal()">
+                <button type="button" class="btn-cancel" onclick="closeModal()">
                     Batal
                 </button>
 
-                <button class="btn-save" onclick="saveCategory()">
+                <button type="submit" class="btn-save">
                     Simpan Kategori
                 </button>
 
             </div>
 
+            </form>
         </div>
+    </div>
 
 
+    <!-- ================================================= -->
+    <!-- MODAL HAPUS -->
+    <!-- ================================================= -->
+
+    <div class="modal-overlay" id="deleteModal" onclick="closeDeleteOutside(event)">
+
+        <div class="delete-modal">
+
+            <div class="delete-icon">
+                ♜
+            </div>
+
+            <h2>Hapus Kategori?</h2>
+
+            <p>
+                Apakah Anda yakin ingin menghapus kategori ini?
+            </p>
+
+            <div class="delete-description">
+
+                Kategori
+                <strong id="deleteCategoryName">
+                    {{ $kategori }}
+                </strong>
+                akan dihapus secara permanen dan tidak dapat dipulihkan.
+
+            </div>
 
 
-        <!-- ================================================= -->
-        <!-- MODAL HAPUS -->
-        <!-- ================================================= -->
+            <div class="delete-actions">
 
-        <div class="modal-overlay" id="deleteModal" onclick="closeDeleteOutside(event)">
-
-            <div class="delete-modal">
-
-                <div class="delete-icon">
-                    ♜
-                </div>
-
-                <h2>Hapus Kategori?</h2>
-
-                <p>
-                    Apakah Anda yakin ingin menghapus kategori ini?
-                </p>
-
-                <div class="delete-description">
-
-                    Kategori
-                    <strong id="deleteCategoryName">
-                        Jalan & Trotoar
-                    </strong>
-                    akan dihapus secara permanen dan tidak dapat dipulihkan.
-
-                </div>
-
-
-                <div class="delete-actions">
-
-                    <button class="btn-cancel" onclick="closeDeleteModal()">
-                        Batal
-                    </button>
-
-                    <button class="btn-confirm-delete" onclick="deleteCategory()">
+                <button class="btn-cancel" onclick="closeDeleteModal()">
+                    Batal
+                </button>
+                <form id="deleteForm"  method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn-confirm-delete" onclick="deleteCategory()">
                         Hapus
                     </button>
+                </form>
 
-                </div>
+
+
 
             </div>
 
         </div>
 
+    </div>
 
 
-        <script>
-            /*
-                    |--------------------------------------------------------------------------
-                    | MODAL TAMBAH
-                    |--------------------------------------------------------------------------
-                    */
 
-            function openAddModal() {
+    <script>
+        /*
+                                        ------------------------------------------------------------------------
+                                        MODAL TAMBAH
+                                        --------------------------------------------------------------------------
+                                        */
 
-                document.getElementById('modalTitle').innerText =
-                    'Tambah Kategori';
+        function openAddModal() {
 
-                document.getElementById('categoryName').value = '';
+            document.getElementById('modalTitle').innerText =
+                'Tambah Kategori';
 
-                document.getElementById('categoryDivision').value = '';
+            document.getElementById('categoryName').value = '';
 
-                document.querySelector('.btn-save').innerText =
-                    'Simpan Kategori';
+            document.getElementById('categoryDivision').value = '';
 
-                document.getElementById('categoryModal')
-                    .classList.add('show');
+            document.getElementById('categoryForm').action =
+                "{{ route('admin.kategori.store') }}";
 
+            document.getElementById('formMethod').value = '';
+
+            document.querySelector('.btn-save').innerText =
+                'Simpan Kategori';
+
+            document.getElementById('categoryModal')
+                .classList.add('show');
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | MODAL EDIT
+        |--------------------------------------------------------------------------
+        */
+
+        function openEditModal(id, name, division) {
+
+            document.getElementById('modalTitle').innerText =
+                'Edit Kategori';
+
+            document.getElementById('categoryName').value =
+                name;
+
+            document.getElementById('categoryDivision').value =
+                division;
+
+            document.getElementById('categoryForm').action =
+                "/admin/kategori/update/" + id;
+
+            document.getElementById('formMethod').value =
+                'PUT';
+
+            document.querySelector('.btn-save').innerText =
+                'Simpan Perubahan';
+
+            document.getElementById('categoryModal')
+                .classList.add('show');
+        }
+
+        /*
+        |--------------------------------------------------------------------------
+        | CLOSE MODAL
+        |--------------------------------------------------------------------------
+        */
+
+        function closeModal() {
+
+            document.getElementById('categoryModal')
+                .classList.remove('show');
+
+        }
+
+
+        function closeModalOutside(event) {
+
+            if (event.target === event.currentTarget) {
+                closeModal();
             }
 
+        }
 
-            /*
-            |--------------------------------------------------------------------------
-            | MODAL EDIT
-            |--------------------------------------------------------------------------
-            */
 
-            function openEditModal(name, division) {
+        /*
+        |--------------------------------------------------------------------------
+        | SIMPAN DUMMY
+        |--------------------------------------------------------------------------
+        */
 
-                document.getElementById('modalTitle').innerText =
-                    'Edit Kategori';
+        function saveCategory() {
 
-                document.getElementById('categoryName').value =
-                    name;
+            const name =
+                document.getElementById('categoryName').value;
 
-                document.getElementById('categoryDivision').value =
-                    division;
+            const division =
+                document.getElementById('categoryDivision').value;
 
-                document.querySelector('.btn-save').innerText =
-                    'Simpan Perubahan';
+            if (!name || !division) {
 
-                document.getElementById('categoryModal')
-                    .classList.add('show');
+                alert('Nama kategori dan divisi wajib diisi.');
 
+                return;
             }
 
+            alert(
+                'Data berhasil disimpan sebagai tampilan dummy.'
+            );
 
-            /*
-            |--------------------------------------------------------------------------
-            | CLOSE MODAL
-            |--------------------------------------------------------------------------
-            */
+            closeModal();
 
-            function closeModal() {
+        }
 
-                document.getElementById('categoryModal')
-                    .classList.remove('show');
 
+        /*
+        |--------------------------------------------------------------------------
+        | DELETE MODAL
+        |--------------------------------------------------------------------------
+        */
+
+        function openDeleteModal(id, name) {
+
+            document.getElementById('deleteCategoryName')
+                .innerText = name;
+
+            document.getElementById('deleteForm').action =
+                "/admin/kategori/delete/" + id;
+
+            document.getElementById('deleteModal')
+                .classList.add('show');
+
+        }
+
+
+        function closeDeleteModal() {
+
+            document.getElementById('deleteModal')
+                .classList.remove('show');
+
+        }
+
+
+        function closeDeleteOutside(event) {
+
+            if (event.target === event.currentTarget) {
+                closeDeleteModal();
             }
 
-
-            function closeModalOutside(event) {
-
-                if (event.target === event.currentTarget) {
-                    closeModal();
-                }
-
-            }
+        }
 
 
-            /*
-            |--------------------------------------------------------------------------
-            | SIMPAN DUMMY
-            |--------------------------------------------------------------------------
-            */
+        function deleteCategory(id, name) {
 
-            function saveCategory() {
+            alert(
+                'Kategori dihapus sebagai tampilan dummy.'
+            );
+
+            closeDeleteModal();
+
+        }
+
+
+        /*
+        |--------------------------------------------------------------------------
+        | SEARCH
+        |--------------------------------------------------------------------------
+        */
+
+        function searchCategory() {
+
+            const keyword =
+                document
+                .getElementById('searchInput')
+                .value
+                .toLowerCase();
+
+            const rows =
+                document.querySelectorAll(
+                    '#categoryTable tr'
+                );
+
+            rows.forEach(function(row) {
 
                 const name =
-                    document.getElementById('categoryName').value;
-
-                const division =
-                    document.getElementById('categoryDivision').value;
-
-                if (!name || !division) {
-
-                    alert('Nama kategori dan divisi wajib diisi.');
-
-                    return;
-                }
-
-                alert(
-                    'Data berhasil disimpan sebagai tampilan dummy.'
-                );
-
-                closeModal();
-
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | DELETE MODAL
-            |--------------------------------------------------------------------------
-            */
-
-            function openDeleteModal(name) {
-
-                document.getElementById('deleteCategoryName')
-                    .innerText = name;
-
-                document.getElementById('deleteModal')
-                    .classList.add('show');
-
-            }
-
-
-            function closeDeleteModal() {
-
-                document.getElementById('deleteModal')
-                    .classList.remove('show');
-
-            }
-
-
-            function closeDeleteOutside(event) {
-
-                if (event.target === event.currentTarget) {
-                    closeDeleteModal();
-                }
-
-            }
-
-
-            function deleteCategory() {
-
-                alert(
-                    'Kategori dihapus sebagai tampilan dummy.'
-                );
-
-                closeDeleteModal();
-
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | SEARCH
-            |--------------------------------------------------------------------------
-            */
-
-            function searchCategory() {
-
-                const keyword =
-                    document
-                    .getElementById('searchInput')
-                    .value
+                    row
+                    .querySelector('td:nth-child(2)')
+                    .innerText
                     .toLowerCase();
 
-                const rows =
-                    document.querySelectorAll(
-                        '#categoryTable tr'
-                    );
+                row.style.display =
+                    name.includes(keyword) ?
+                    '' :
+                    'none';
 
-                rows.forEach(function(row) {
+            });
 
-                    const name =
-                        row
-                        .querySelector('td:nth-child(2)')
-                        .innerText
-                        .toLowerCase();
-
-                    row.style.display =
-                        name.includes(keyword) ?
-                        '' :
-                        'none';
-
-                });
-
-            }
+        }
 
 
-            /*
-            |--------------------------------------------------------------------------
-            | FILTER DIVISI
-            |--------------------------------------------------------------------------
-            */
+        /*
+        |--------------------------------------------------------------------------
+        | FILTER DIVISI
+        |--------------------------------------------------------------------------
+        */
 
-            function filterCategory() {
+        function filterCategory() {
 
-                const selected =
-                    document
-                    .getElementById('filterDivisi')
-                    .value;
+            const selected =
+                document
+                .getElementById('filterDivisi')
+                .value;
 
-                const rows =
-                    document.querySelectorAll(
-                        '#categoryTable tr'
-                    );
+            const rows =
+                document.querySelectorAll(
+                    '#categoryTable tr'
+                );
 
-                rows.forEach(function(row) {
+            rows.forEach(function(row) {
 
-                    const division =
-                        row.dataset.divisi;
+                const division =
+                    row.dataset.divisi;
 
-                    if (
-                        selected === '' ||
-                        division === selected
-                    ) {
+                if (
+                    selected === '' ||
+                    division === selected
+                ) {
 
-                        row.style.display = '';
+                    row.style.display = '';
 
-                    } else {
+                } else {
 
-                        row.style.display = 'none';
-
-                    }
-
-                });
-
-            }
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | ESCAPE MODAL
-            |--------------------------------------------------------------------------
-            */
-
-            document.addEventListener(
-                'keydown',
-                function(event) {
-
-                    if (event.key === 'Escape') {
-
-                        closeModal();
-                        closeDeleteModal();
-
-                    }
+                    row.style.display = 'none';
 
                 }
-            );
-        </script>
 
-        </body>
+            });
 
-        </html>
+        }
 
-    @endsection
+
+        /*
+        |--------------------------------------------------------------------------
+        | ESCAPE MODAL
+        |--------------------------------------------------------------------------
+        */
+
+        document.addEventListener(
+            'keydown',
+            function(event) {
+
+                if (event.key === 'Escape') {
+
+                    closeModal();
+                    closeDeleteModal();
+
+                }
+
+            }
+        );
+    </script>
+
+    </body>
+
+    </html>
+
+@endsection

@@ -112,6 +112,15 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/kategori', [AdminKategoriController::class, 'index'])
     ->name('admin.kategori.index');
 
+    Route::post('/admin/kategori/store', [AdminKategoriController::class, 'store'])
+    ->name('admin.kategori.store');
+
+    Route::put('/admin/kategori/update/{id}', [AdminKategoriController::class, 'update'])
+    ->name('admin.kategori.update');
+   
+    Route::delete('/admin/kategori/delete/{id}', [AdminKategoriController::class, 'delete'])
+    ->name('admin.kategori.delete');
+
     Route::get('/admin/devisi', function () {
         return view('admin.pages.devisi.index');
     })->name('admin.devisi.index');
