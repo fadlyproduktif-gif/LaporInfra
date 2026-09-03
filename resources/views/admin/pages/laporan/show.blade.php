@@ -9,28 +9,6 @@
 @section('content')
 
 @php
-    $laporan = [
-        'judul' => 'Jalan Berlubang di Jl. Merdeka No. 12',
-        'kategori' => 'Jalan & Trotoar',
-        'lokasi' => 'Jl. Merdeka No. 12, Kel. Sudirman, Kec. Menteng',
-        'tanggal' => '10 Agustus 2026',
-        'diperbarui' => '10 Agustus 2026',
-
-        'deskripsi' => 'Terdapat jalan berlubang yang cukup besar di Jl. Merdeka No. 12. Kondisi ini cukup mengganggu pengguna jalan dan berpotensi membahayakan pengendara, terutama pada malam hari.',
-
-        'foto' => 'https://images.unsplash.com/photo-1504215680853-026ed2a45def?auto=format&fit=crop&w=1200&q=80',
-
-        'status' => 'Menunggu',
-
-        'pelapor' => [
-            'nama' => 'Fadly',
-            'email' => 'fadly@example.com',
-            'inisial' => 'F',
-        ],
-
-        'keterangan_progress' => 'Laporan telah diterima dan akan segera dilakukan pemeriksaan serta tindak lanjut oleh petugas.',
-    ];
-
     $statusClass = match ($laporan['status']) {
         'Menunggu' => 'status-menunggu',
         'Sedang Diproses' => 'status-diproses',
@@ -54,7 +32,7 @@
 
             <span class="breadcrumb-separator">/</span>
 
-            <a href="{{ route('laporan.index') }}">
+            <a href="{{ route('admin.laporan.index') }}">
                 Laporan
             </a>
 
@@ -84,7 +62,7 @@
 
     {{-- Back --}}
     <a
-        href="{{ route('laporan.index') }}"
+        href="{{ route('admin.laporan.index') }}"
         class="btn-back"
     >
         ←
@@ -121,7 +99,7 @@
                             </div>
 
                             <div class="report-info-value">
-                                Jalan Berlubang di Jl. Merdeka No. 12
+                                {{$laporan->nama_laporan}}
                             </div>
                         </div>
 
@@ -132,7 +110,7 @@
 
                             <div class="report-info-value">
                                 <span class="report-category">
-                                    Jalan & Trotoar
+                                    {{$laporan->kategori->nama_kategori}}
                                 </span>
                             </div>
                         </div>
@@ -143,8 +121,7 @@
                             </div>
 
                             <div class="report-info-value">
-                                Jl. Merdeka No. 12, Kel. Sudirman,
-                                Kec. Menteng
+                                {{$laporan->lokasi}}
                             </div>
                         </div>
 
@@ -154,7 +131,7 @@
                             </div>
 
                             <div class="report-info-value">
-                                10 Agustus 2026
+                               {{ $laporan->created_at->translatedFormat('l, d F Y') }}
                             </div>
                         </div>
 
@@ -164,7 +141,7 @@
                             </div>
 
                             <div class="report-info-value">
-                                12 Agustus 2026
+                               {{ $laporan->updated_at->translatedFormat('l, d F Y') }}
                             </div>
                         </div>
 
@@ -175,7 +152,7 @@
 
                             <div class="report-info-value">
                                 <span class="report-status process">
-                                    Sedang Diproses
+                                    {{$laporan->statusLaporan->nama_status}}
                                 </span>
                             </div>
                         </div>
@@ -204,10 +181,7 @@
 
                     <div class="report-description">
                         <p>
-                            Terdapat jalan berlubang yang cukup besar
-                            di Jl. Merdeka No. 12. Kondisi ini cukup
-                            mengganggu pengguna jalan dan berpotensi
-                            membahayakan pengendara terutama pada malam hari.
+                           {{$laporan->deskripsi}}
                         </p>
                     </div>
 
@@ -233,7 +207,7 @@
 
                     <div class="report-photo">
                         <img
-                            src="{{ asset('images/contoh-jalan.jpg') }}"
+                            src="/storage/{{ $laporan->foto_lokasi }}"
                             alt="Foto lokasi laporan"
                         >
                     </div>
@@ -266,12 +240,12 @@
                     <div class="reporter-profile">
 
                         <div class="reporter-avatar">
-                            F
+                             {{ strtoupper(substr($laporan->user->nama_user, 0, 1)) }}
                         </div>
 
                         <div>
                             <p class="reporter-name">
-                                Fadly
+                                {{$laporan->user->nama_user}}
                             </p>
 
                             <p class="reporter-role">
@@ -289,7 +263,7 @@
                             </span>
 
                             <span class="reporter-detail-value">
-                                fadly@example.com
+                                {{$laporan->user->email}}
                             </span>
                         </div>
 
@@ -324,7 +298,7 @@
                             </span>
 
                             <span class="report-status process">
-                                Sedang Diproses
+                                {{$laporan->statusLaporan->nama_status}}
                             </span>
 
                         </div>
@@ -336,8 +310,7 @@
                             </span>
 
                             <div class="progress-note">
-                                Laporan sedang dalam proses
-                                penanganan oleh divisi terkait.
+                                {{$laporan->keterangan_proggress}}
                             </div>
 
                         </div>
@@ -372,7 +345,7 @@
     <div class="report-detail-actions">
 
         <a
-            href="{{ route('laporan.index') }}"
+            href="{{ route('admin.laporan.index') }}"
             class="btn-admin-secondary"
         >
             ← Kembali ke Daftar Laporan

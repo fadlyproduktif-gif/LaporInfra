@@ -10,6 +10,7 @@ use App\Http\Controllers\Devisi\LaporanController as DevisiLaporanController;
 use App\Http\Controllers\Auth\AdminGoogleController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LaporanController as AdminLaporanController;
+use App\Http\Controllers\Admin\KategoriController as AdminKategoriController;
 
 Route::get('/', function () {
     return view('auth.masyarakat.login');
@@ -102,15 +103,14 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
     ->name('admin.dashboard');
 
-    Route::get('/admin/laporan', [AdminLaporanController::class, 'index'])->name('admin.laporan.index');
+    Route::get('/admin/laporan', [AdminLaporanController::class, 'index'])
+    ->name('admin.laporan.index');
 
-    Route::get('/admin/laporan/{id}', function ($id) {
-        return view('admin.pages.laporan.show');
-    })->name('admin.laporan.show');
+    Route::get('/admin/laporan/{id_laporan}',[AdminLaporanController::class, 'show'])
+    ->name('admin.laporan.show');
 
-    Route::get('/admin/kategori', function () {
-        return view('admin.pages.kategori.index');
-    })->name('admin.kategori.index');
+    Route::get('/admin/kategori', [AdminKategoriController::class, 'index'])
+    ->name('admin.kategori.index');
 
     Route::get('/admin/devisi', function () {
         return view('admin.pages.devisi.index');

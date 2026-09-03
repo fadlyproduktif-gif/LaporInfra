@@ -11,7 +11,10 @@ use App\Models\Kategori;
 
 class LaporanController extends Controller
 {
-    public function index(Request $request){
+    
+
+    public function index(Request $request)
+    {
         $user = Auth::user();
 
         // $laporan = Laporan::latest()->get();
@@ -24,30 +27,46 @@ class LaporanController extends Controller
         // dump($search, $fstatus, $fkategori);
         $laporan = Laporan::when($search, function ($query) use ($search) {
             $query->where('nama_laporan', 'LIKE', "%$search%")
-            ->orWhere('lokasi', 'LIKE', "%$search%");
+                ->orWhere('lokasi', 'LIKE', "%$search%");
         })
-        ->when($fstatus, function ($query) use ($fstatus){
-            $query->where('id_status', $fstatus);
-        })
-        ->when($fkategori, function ($query) use ($fkategori){
-            $query->where('id_kategori',$fkategori);
-        })
-        ->latest()
-        ->get();
+            ->when($fstatus, function ($query) use ($fstatus) {
+                $query->where('id_status', $fstatus);
+            })
+            ->when($fkategori, function ($query) use ($fkategori) {
+                $query->where('id_kategori', $fkategori);
+            })
+            ->latest()
+            ->get();
 
         $totalLaporan = Laporan::all()->count();
-        
 
-        return view('admin.pages.laporan.index', 
+
+        return view(
+            'admin.pages.laporan.index',
+            compact(
+                'user',
+                'laporan',
+                'status',
+                'kategori',
+                'fkategori',
+                'fstatus',
+                'search',
+                'totalLaporan'
+            )
+        );
+    }
+
+    public function show(int $id_laporan)
+    {   
+        $user = Auth::User();
+
+        $laporan = Laporan::findOrFail($id_laporan);
+        // dd($laporan->keterangan_proggress);
+        
+        return view('admin.pages.laporan.show', 
         compact(
             'user',
             'laporan',
-            'status',
-            'kategori',
-            'fkategori',
-            'fstatus',
-            'search',
-            'totalLaporan'
             ));
     }
 }
