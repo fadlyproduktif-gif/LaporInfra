@@ -86,7 +86,7 @@
 
                     <p>
                         Sudah punya akun?
-                        <a href="{{ route('masyarakat.login') }}">
+                        <a href="{{ route('auth.masyarakat.login') }}">
                             Masuk di sini
                         </a>
                     </p>

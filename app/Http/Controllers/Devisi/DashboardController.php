@@ -101,6 +101,7 @@ class DashboardController extends Controller
             'dataPeriode',
             'dataGrafik',
             'periode',
+            'user'
         ));
     }
 }

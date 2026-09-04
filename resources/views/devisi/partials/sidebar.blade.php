@@ -25,7 +25,7 @@
     <div class="sidebar-admin-card">
 
         <span class="sidebar-admin-label">
-            ADMIN DEVİSI
+            ADMIN OPD
         </span>
 
         <strong>
@@ -52,7 +52,7 @@
         </a>
 
 
-        <a href="{{ url('/devisi/laporan') }}"
+        <a href="{{ route('devisi.laporan') }}"
             class="sidebar-nav-item {{ request()->is('devisi/laporan*') ? 'active' : '' }}">
 
             <span class="sidebar-nav-icon">
@@ -71,7 +71,7 @@
     <!-- Bottom Navigation -->
     <div class="sidebar-bottom">
 
-        <a href="{{route('masyarakat.login')}}" class="sidebar-bottom-item portal">
+        <a href="{{route('home')}}" class="sidebar-bottom-item portal">
 
             <span>
                 ↗

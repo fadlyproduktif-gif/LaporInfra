@@ -188,7 +188,7 @@
 
                 <!-- GOOGLE -->
 
-                <button type="button" class="btn-google">
+                <a href="{{ route('masyarakat.google.redirect') }}" type="button" class="btn-google">
 
                     <span class="google-icon">G</span>
 
@@ -196,7 +196,7 @@
                         Lanjutkan dengan Google
                     </span>
 
-                </button>
+                </a>
                 <!-- end form -->
 
 

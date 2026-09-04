@@ -136,24 +136,15 @@
 
                     <div class="photo-upload">
 
-                        <div class="photo-upload-icon">
-                            📷
-                        </div>
-
-                        <strong>Upload Foto</strong>
-
-                        <span class="photo-upload-info">
-                            JPG, JPEG, atau PNG • Maks. 2 MB
-                        </span>
-
-                        <label for="foto" class="btn-photo">
-                            Pilih Foto
+                        <label for="foto_lokasi">
+                            Foto Lokasi
                         </label>
 
-                        <input type="file" id="foto" name="foto_lokasi"
-                            accept=".jpg,.jpeg,.png,image/jpeg,image/png" hidden>
+                        <input type="file" id="foto_lokasi" name="foto_lokasi" accept="image/*">
 
-                        <span id="photo-name" class="photo-name"></span>
+                        <div id="fotoPreview" class="foto-preview">
+                            <span>Belum ada foto dipilih</span>
+                        </div>
 
                     </div>
 
@@ -203,44 +194,44 @@
 
     @push('scripts')
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            const fotoInput = document.getElementById('foto_lokasi');
+            const fotoPreview = document.getElementById('fotoPreview');
 
-                const photoInput = document.getElementById('foto');
-                const photoName = document.getElementById('photo-name');
+            fotoInput.addEventListener('change', function() {
 
-                if (!photoInput || !photoName) {
+                const file = this.files[0];
+
+                if (!file) {
+                    fotoPreview.innerHTML = `
+                <span>Belum ada foto dipilih</span>
+            `;
                     return;
                 }
 
-                photoInput.addEventListener('change', function() {
+                if (!file.type.startsWith('image/')) {
+                    fotoPreview.innerHTML = `
+                <span>File yang dipilih bukan gambar.</span>
+            `;
 
-                    const file = this.files[0];
+                    this.value = '';
+                    return;
+                }
 
-                    if (!file) {
-                        photoName.textContent = '';
-                        photoName.style.display = 'none';
-                        return;
-                    }
+                const reader = new FileReader();
 
-                    const maxSize = 2 * 1024 * 1024;
+                reader.onload = function(event) {
 
-                    if (file.size > maxSize) {
+                    fotoPreview.innerHTML = `
+                <img
+                    src="${event.target.result}"
+                    alt="Preview foto laporan"
+                >
+                <p>${file.name}</p>
+            `;
 
-                        alert('Ukuran foto maksimal 2 MB.');
+                };
 
-                        this.value = '';
-
-                        photoName.textContent = '';
-                        photoName.style.display = 'none';
-
-                        return;
-                    }
-
-                    photoName.textContent = file.name;
-                    photoName.style.display = 'block';
-
-                });
-
+                reader.readAsDataURL(file);
             });
         </script>
     @endpush

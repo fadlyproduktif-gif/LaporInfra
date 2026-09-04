@@ -56,17 +56,23 @@ a {
 ================================= */
 
 .admin-sidebar {
-    width: 216px;
-    flex: 0 0 216px;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-    min-height: 100vh;
+    width: 216px;
+    height: 100vh;
 
     display: flex;
     flex-direction: column;
 
     background: #ffffff;
-
     border-right: 1px solid var(--admin-border);
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    z-index: 1000;
 }
 
 
@@ -233,9 +239,11 @@ a {
 ================================= */
 
 .admin-main {
-    min-width: 0;
+    width: calc(100% - 216px);
+    margin-left: 216px;
 
-    flex: 1;
+    min-width: 0;
+    min-height: 100vh;
 
     display: flex;
     flex-direction: column;
@@ -247,39 +255,58 @@ a {
 ================================= */
 
 .admin-header {
-    min-height: 88px;
+    position: fixed;
+    top: 0;
+    left: 216px;
+    right: 0;
+
+    height: 94px;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    padding: 16px 28px;
+    padding: 18px 28px;
 
     background: #ffffff;
-
     border-bottom: 1px solid var(--admin-border);
+
+    z-index: 900;
+}
+
+
+.header-left {
+    min-width: 0;
 }
 
 .header-eyebrow {
-    margin: 0 0 2px;
+    margin: 0 0 4px;
 
     color: #94a1b7;
 
-    font-size: 12px;
+    font-size: 11px;
+
+    font-weight: 500;
 }
 
 .admin-header h1 {
     margin: 0;
 
-    font-size: 15px;
+    color: var(--admin-text);
+
+    font-size: 16px;
+
+    font-weight: 700;
 }
 
 .header-description {
-    margin: 2px 0 0;
+    margin: 5px 0 0;
 
     color: #9aa7bb;
 
     font-size: 11px;
+
+    line-height: 1.4;
 }
 
 
@@ -289,19 +316,28 @@ a {
 
 .admin-user {
     display: flex;
+
     align-items: center;
 
-    gap: 11px;
+    gap: 12px;
 }
 
 .admin-user-info {
-    display: grid;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
 
     text-align: right;
 }
 
 .admin-user-info strong {
-    font-size: 13px;
+    color: var(--admin-text);
+
+    font-size: 12px;
+
+    font-weight: 700;
 }
 
 .admin-user-info span {
@@ -311,8 +347,10 @@ a {
 }
 
 .admin-avatar {
-    width: 31px;
-    height: 31px;
+    width: 36px;
+    height: 36px;
+
+    flex-shrink: 0;
 
     display: grid;
     place-items: center;
@@ -324,9 +362,9 @@ a {
     color: #ffffff;
 
     font-size: 12px;
+
     font-weight: 700;
 }
-
 
 /* ==============================
    CONTENT
@@ -334,10 +372,11 @@ a {
 
 .admin-content {
     flex: 1;
+    width: 100%;
+    min-width: 0;
 
-    padding: 26px 28px;
+    padding: 120px 28px 26px;
 }
-
 
 /* ==============================
    FOOTER
@@ -370,7 +409,22 @@ a {
 
     .admin-sidebar {
         width: 68px;
-        flex-basis: 68px;
+        height: 100vh;
+    }
+
+    .admin-main {
+        margin-left: 68px;
+    }
+
+    .admin-header {
+        left: 68px;
+        height: 80px;
+
+        padding: 14px 18px;
+    }
+
+    .admin-content {
+        padding: 104px 18px 18px;
     }
 
     .brand-text,
@@ -385,13 +439,5 @@ a {
 
     .admin-user-info {
         display: none;
-    }
-
-    .admin-content {
-        padding: 18px;
-    }
-
-    .admin-header {
-        padding: 14px 18px;
     }
 }

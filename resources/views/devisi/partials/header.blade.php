@@ -6,11 +6,11 @@
     <div class="header-title">
 
         <h1>
-            Dashboard Divisi
+            Dashboard OPD
         </h1>
 
         <p>
-            Kelola dan pantau laporan infrastruktur untuk divisi {{ $user->devisi->nama_devisi }}.
+            Kelola dan pantau laporan infrastruktur untuk Organisasi Perangkat Daerah {{ $user->devisi->nama_devisi }}.
         </p>
 
     </div>
@@ -23,7 +23,7 @@
         </div>
 
         <div class="user-info">
-            <strong>Admin Divisi</strong>
+            <strong>Admin OPD</strong>
             <span>{{ $user->email }}</span>
         </div>
 

@@ -6,11 +6,11 @@
     <div class="topbar-title">
 
         <h1>
-            Dashboard Devisi
+            Dashboard OPD
         </h1>
 
         <p>
-            Kelola dan pantau laporan infrastruktur untuk divisi {{ $user->devisi->nama_devisi }}.
+            Kelola dan pantau laporan infrastruktur untuk Organsasi Perangkat Daerah {{ $user->devisi->nama_devisi }}.
         </p>
 
     </div>

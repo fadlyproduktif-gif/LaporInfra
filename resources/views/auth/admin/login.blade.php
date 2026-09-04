@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="brand-statistics">
-
+{{-- 
                     <div class="stat">
                         <strong>48.200+</strong>
                         <span>Laporan Diterima</span>
@@ -63,7 +63,7 @@
                     <div class="stat">
                         <strong>72%</strong>
                         <span>Laporan Ditindaklanjuti</span>
-                    </div>
+                    </div> --}}
 
                 </div>
 
@@ -93,7 +93,7 @@
                 <!-- Google Login -->
                 <div class="google-login">
 
-                    <button type="button" class="google-button">
+                    <a href="{{route('admin.google.redirect')}}" class="google-button">
 
                         <span class="google-icon">G</span>
 
@@ -101,7 +101,7 @@
                             Lanjutkan dengan Google
                         </span>
 
-                    </button>
+                    </a>
 
                 </div>
 

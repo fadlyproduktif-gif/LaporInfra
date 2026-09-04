@@ -4,7 +4,6 @@
     min-height: calc(100vh - 70px);
 }
 
-
 /* =========================
    PAGE HEADER
 ========================= */
@@ -51,7 +50,6 @@
     font-size: 13px;
     font-weight: 600;
 }
-
 
 /* =========================
    FILTER
@@ -110,7 +108,6 @@
     font-size: 14px;
 }
 
-
 /* =========================
    TABLE
 ========================= */
@@ -166,7 +163,6 @@
     font-weight: 600;
 }
 
-
 /* =========================
    BADGES
 ========================= */
@@ -198,9 +194,9 @@
     font-weight: 600;
 }
 
-.status-process {
-    background: #edf4ff;
-    color: #2454a6;
+.status-success {
+    background: #ecfdf5;
+    color: #059669;
 }
 
 .status-waiting {
@@ -208,11 +204,35 @@
     color: #d97706;
 }
 
-.status-success {
+.status-processing {
+    background: #edf4ff;
+    color: #2454a6;
+}
+
+.status-accepted {
     background: #ecfdf5;
+    color: #16805c;
+}
+
+.status-postponed {
+    background: #fff4e5;
+    color: #c76b00;
+}
+
+.status-rejected {
+    background: #fff0f0;
+    color: #c53030;
+}
+
+.status-completed {
+    background: #e8faf3;
     color: #059669;
 }
 
+.status-unknown {
+    background: #f1f5f9;
+    color: #64748b;
+}
 
 /* =========================
    BUTTON
@@ -240,13 +260,12 @@
 
     text-decoration: none;
 
-    transition: .2s;
+    transition: 0.2s;
 }
 
 .btn-detail:hover {
     background: #eaf2ff;
 }
-
 
 /* =========================
    FOOTER TABLE
@@ -262,13 +281,60 @@
     font-size: 12px;
 }
 
-
 /* =========================
    RESPONSIVE
 ========================= */
 
-@media (max-width: 900px) {
+.report-filter {
+    display: grid;
 
+    grid-template-columns: minmax(0, 1fr) 150px 150px auto;
+
+    gap: 10px;
+
+    padding: 14px;
+
+    background: #fff;
+
+    border: 1px solid #dbe3ef;
+
+    border-radius: 10px;
+
+    margin-bottom: 16px;
+}
+
+.report-filter button {
+    height: 44px;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background: var(--admin-navy);
+
+    color: #ffffff;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.report-filter button:hover {
+    background: #173b76;
+}
+
+.page-header {
+    flex-direction: column;
+    gap: 12px;
+}
+
+@media (max-width: 900px) {
     .report-filter {
         grid-template-columns: 1fr;
     }
@@ -277,5 +343,4 @@
         flex-direction: column;
         gap: 12px;
     }
-
 }

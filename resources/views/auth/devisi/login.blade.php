@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Login Devisi - LAPORINFRA</title>
+    <title>Login OPD - LAPORINFRA</title>
 
     @vite('resources/css/auth/devisi/login.css')
 </head>
@@ -85,7 +86,7 @@
 
                 <div class="login-header">
 
-                    <h2>Masuk sebagai Devisi</h2>
+                    <h2>Masuk sebagai OPD</h2>
 
                     <p>
                         Gunakan akun yang telah diberikan oleh administrator.
@@ -99,7 +100,7 @@
                 ========================== -->
 
                 @if (session('errorLogin'))
-                    <p><u>{{session('errorLogin')}}</u></p>
+                    <p><u>{{ session('errorLogin') }}</u></p>
                     <br>
                 @endif
                 <form class="login-form" method="POST" action="{{ route('login.devisi') }}">
@@ -110,15 +111,10 @@
                             NIP
                         </label>
 
-                        <input
-                            type="text"
-                            id="nip"
-                            name="nip"
-                            placeholder="Masukkan NIP Anda"
-                        >
+                        <input type="text" id="nip" name="nip" placeholder="Masukkan NIP Anda">
 
                         @error('nip')
-                            <p>{{$message}}</p>                            
+                            <p>{{ $message }}</p>
                         @enderror
 
                     </div>
@@ -140,28 +136,19 @@
 
                         <div class="password-input">
 
-                            <input
-                                type="password"
-                                id="password"
-                                name="password"
-                                placeholder="Masukkan kata sandi"
-                            >
+                            <input type="password" id="password" name="password" placeholder="Masukkan kata sandi">
 
-                            <button
-                                type="button"
-                                class="toggle-password"
-                                aria-label="Tampilkan kata sandi"
-                            >
+                            <button type="button" class="toggle-password" aria-label="Tampilkan kata sandi">
                                 ◉
                             </button>
-                            
+
 
                         </div>
 
                         @error('password')
-                            <p>{{$message}}</p>                            
+                            <p>{{ $message }}</p>
                         @enderror
-                    
+
                     </div>
 
 
@@ -178,10 +165,7 @@
                     </div>
 
 
-                    <button
-                        type="submit"
-                        class="login-button"
-                    >
+                    <button type="submit" class="login-button">
                         Masuk
                     </button>
 
@@ -201,10 +185,7 @@
                      GOOGLE LOGIN
                 ========================== -->
 
-                <button
-                    type="button"
-                    class="google-button"
-                >
+                <a href="{{ route('opd.google.redirect') }}" type="button" class="google-button">
 
                     <span class="google-icon">
                         G
@@ -214,7 +195,7 @@
                         Lanjutkan dengan Google
                     </span>
 
-                </button>
+                </a>
 
 
                 <!-- =========================
@@ -228,7 +209,7 @@
                     </div>
 
                     <p>
-                        Akun devisi dibuat dan dikelola oleh
+                        Akun OPD dibuat dan dikelola oleh
                         administrator sistem. Jika Anda belum
                         memiliki akun, silakan hubungi admin.
                     </p>
@@ -253,4 +234,5 @@
     </main>
 
 </body>
+
 </html>

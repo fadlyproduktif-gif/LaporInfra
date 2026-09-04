@@ -1,7 +1,7 @@
 @extends('devisi.layouts.app')
 
 
-@section('title', 'Dashboard Devisi')
+@section('title', 'Dashboard OPD')
 @vite('resources/js/devisi-dashboard.js')
 
 @section('content')
@@ -21,7 +21,7 @@
                 <div>
 
                     <span class="section-label">
-                        DIVISI AKTIF
+                        OPD AKTIF
                     </span>
 
                     <h2>
