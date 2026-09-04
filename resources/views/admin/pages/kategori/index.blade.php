@@ -76,7 +76,7 @@
 
                 <select id="filterDivisi" name="devisi" onchange="filterCategory()">
 
-                    <option value="">Semua Divisi</option>
+                    <option value="">Semua OPD</option>
                     @forelse ($devisi as $item)
                         <option value="{{ $item->nama_devisi }}">
                             {{ $item->nama_devisi }}
@@ -103,7 +103,7 @@
                     <tr>
                         <th class="number-column">NO.</th>
                         <th>NAMA KATEGORI</th>
-                        <th>DIVISI</th>
+                        <th>OPD</th>
                         <th class="action-column">AKSI</th>
                     </tr>
 
@@ -214,7 +214,7 @@
                     <div class="form-group">
 
                         <label>
-                            Divisi <span>*</span>
+                            OPD <span>*</span>
                         </label>
 
                         <div class="modal-select">
@@ -222,7 +222,7 @@
                             <select name="devisi" id="categoryDivision">
 
                                 <option value="">
-                                    Pilih divisi...
+                                    Pilih OPD...
                                 </option>
 
                                 @forelse ($devisi as $item)

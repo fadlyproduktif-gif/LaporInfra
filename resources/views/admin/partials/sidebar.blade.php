@@ -54,7 +54,7 @@
             class="nav-item {{ request()->is('admin/devisi*') ? 'active' : '' }}"
         >
             <span>▥</span>
-            Devisi  
+            OPD  
         </a>
 
 

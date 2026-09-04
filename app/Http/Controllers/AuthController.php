@@ -19,7 +19,7 @@ class AuthController extends Controller
         if (Auth::attempt([
             'nip' => $request->nip,
             'password' => $request->password,
-            'role' => 'devisi',
+            'role' => 'opd',
         ])) {
             $request->session()->regenerate();
             return redirect()->route('devisi.dashboard');
@@ -79,7 +79,7 @@ class AuthController extends Controller
             'role' => 'masyarakat'
            ]);
 
-           return redirect()->route('masyarakat.login');
+           return redirect()->route('auth.masyarakat.login');
     } 
 
 }

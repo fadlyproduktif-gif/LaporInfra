@@ -9,10 +9,15 @@ use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use Laravel\Socialite\Two\InvalidStateException;
 
-class AdminGoogleController extends Controller
+class OpdGoogleController extends Controller
 {
     public function redirect()
     {
+        config([
+            'services.google.redirect' =>
+                'http://127.0.0.1:8000/auth/google/opd/callback',
+        ]);
+
         return Socialite::driver('google')->redirect();
     }
 
@@ -20,18 +25,23 @@ class AdminGoogleController extends Controller
     {
         if (!$request->has('code') || !$request->has('state')) {
             return redirect()
-                ->route('auth.admin.login')
+                ->route('auth.devisi.login')
                 ->with(
                     'error',
                     'Silakan mulai login dengan Google terlebih dahulu.'
                 );
         }
 
+        config([
+            'services.google.redirect' =>
+                'http://127.0.0.1:8000/auth/google/opd/callback',
+        ]);
+
         try {
             $googleUser = Socialite::driver('google')->user();
         } catch (InvalidStateException $e) {
             return redirect()
-                ->route('auth.admin.login')
+                ->route('auth.devisi.login')
                 ->with(
                     'error',
                     'Sesi login Google sudah tidak valid. Silakan coba lagi.'
@@ -39,15 +49,23 @@ class AdminGoogleController extends Controller
         }
 
         $user = User::where('email', $googleUser->getEmail())
-            ->where('role', 'admin')
             ->first();
 
         if (!$user) {
             return redirect()
-                ->route('auth.admin.login')
+                ->route('auth.devisi.login')
                 ->with(
                     'error',
-                    'Akun Google tersebut tidak terdaftar sebagai akun admin.'
+                    'Akun Google tersebut belum terdaftar sebagai akun OPD.'
+                );
+        }
+
+        if ($user->role !== 'opd') {
+            return redirect()
+                ->route('auth.devisi.login')
+                ->with(
+                    'error',
+                    'Akun Google tersebut tidak terdaftar sebagai akun OPD.'
                 );
         }
 
@@ -57,15 +75,6 @@ class AdminGoogleController extends Controller
         Auth::login($user);
 
         return redirect()
-            ->route('admin.dashboard');
-    }
-
-
-     public function logoutAdmin(Request $request)
-    {
-        Auth::logout();
-        $request->session()->invalidate();
-        $request->session()->regenerateToken();
-        return redirect()->route('auth.admin.login');
+            ->route('devisi.dashboard');
     }
 }

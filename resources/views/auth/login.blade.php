@@ -37,7 +37,7 @@
                 </a>
 
                 <a href="{{ route('auth.devisi.login') }}">
-                    Login Devisi
+                    Login OPD
                 </a>
 
             </div>

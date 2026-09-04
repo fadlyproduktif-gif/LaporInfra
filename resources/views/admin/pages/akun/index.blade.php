@@ -64,7 +64,11 @@
                 </div>
 
 
-                <button type="button" id="tambahAkunBtn" class="btn-tambah-akun">
+                <button
+                    type="button"
+                    id="tambahAkunBtn"
+                    class="btn-tambah-akun"
+                >
 
                     <i class="fa-solid fa-plus"></i>
 
@@ -87,7 +91,11 @@
 
                 <i class="fa-solid fa-magnifying-glass"></i>
 
-                <input type="text" id="searchAkun" placeholder="Cari nama atau email...">
+                <input
+                    type="text"
+                    id="searchAkun"
+                    placeholder="Cari nama atau email..."
+                >
 
             </div>
 
@@ -101,9 +109,13 @@
                     </option>
 
                     @foreach ($role as $item)
+
                         <option value="{{ $item }}">
-                            {{ $item }}
+
+                            {{ $item === 'opd' ? 'OPD' : ucfirst($item) }}
+
                         </option>
+
                     @endforeach
 
                 </select>
@@ -118,13 +130,15 @@
                 <select id="filterDivisi">
 
                     <option value="">
-                        Semua Divisi
+                        Semua OPD
                     </option>
 
                     @foreach ($devisi as $item)
+
                         <option value="{{ $item->nama_devisi }}">
                             {{ $item->nama_devisi }}
                         </option>
+
                     @endforeach
 
                 </select>
@@ -167,7 +181,7 @@
                             </th>
 
                             <th>
-                                DIVISI
+                                OPD
                             </th>
 
                             <th class="col-aksi">
@@ -182,9 +196,20 @@
                     <tbody>
 
                         @forelse ($akun as $index => $item)
-                            <tr class="akun-row" data-id="{{ $item->id_user }}" data-nama="{{ $item->nama_user }}"
-                                data-email="{{ $item->email }}" data-role="{{ $item->role }}"
-                                data-divisi="{{ $item->devisi?->nama_devisi ?? '' }}">
+
+                            <tr
+                                class="akun-row"
+
+                                data-id="{{ $item->id_user }}"
+
+                                data-nama="{{ $item->nama_user }}"
+
+                                data-email="{{ $item->email }}"
+
+                                data-role="{{ $item->role }}"
+
+                                data-divisi="{{ $item->devisi?->nama_devisi ?? '' }}"
+                            >
 
                                 <td>
                                     {{ $index + 1 }}
@@ -220,7 +245,9 @@
 
                                     <span class="role-badge role-{{ $item->role }}">
 
-                                        {{ $item->role }}
+                                        {{ $item->role === 'opd'
+                                            ? 'OPD'
+                                            : ucfirst($item->role) }}
 
                                     </span>
 
@@ -230,17 +257,32 @@
                                 <td>
 
                                     <span class="divisi-badge">
+
                                         {{ $item->devisi?->nama_devisi ?? '-' }}
+
                                     </span>
+
                                 </td>
 
 
                                 <td class="aksi-column">
 
-                                    <button type="button" class="btn-edit" data-id="{{ $item->id_user }}"
-                                        data-nama="{{ $item->nama_user }}" data-email="{{ $item->email }}"
-                                        data-role="{{ $item->role }}" data-nip="{{ $item->nip ?? '' }}"
-                                        data-divisi="{{ $item->id_devisi ?? '' }}">
+                                    <button
+                                        type="button"
+                                        class="btn-edit"
+
+                                        data-id="{{ $item->id_user }}"
+
+                                        data-nama="{{ $item->nama_user }}"
+
+                                        data-email="{{ $item->email }}"
+
+                                        data-role="{{ $item->role }}"
+
+                                        data-nip="{{ $item->nip ?? '' }}"
+
+                                        data-divisi="{{ $item->id_devisi ?? '' }}"
+                                    >
 
                                         <i class="fa-regular fa-pen-to-square"></i>
 
@@ -249,8 +291,14 @@
                                     </button>
 
 
-                                    <button type="button" class="btn-hapus" data-id="{{ $item->id_user }}"
-                                        data-nama="{{ $item->nama_user }}">
+                                    <button
+                                        type="button"
+                                        class="btn-hapus"
+
+                                        data-id="{{ $item->id_user }}"
+
+                                        data-nama="{{ $item->nama_user }}"
+                                    >
 
                                         <i class="fa-regular fa-trash-can"></i>
 
@@ -266,11 +314,15 @@
 
                             <tr>
 
-                                <td colspan="6" class="empty-state">
+                                <td
+                                    colspan="6"
+                                    class="empty-state"
+                                >
                                     Belum ada akun.
                                 </td>
 
                             </tr>
+
                         @endforelse
 
                     </tbody>
@@ -286,7 +338,10 @@
             MODAL TAMBAH
         ====================================================== --}}
 
-        <div class="modal-overlay" id="modalTambahAkun">
+        <div
+            class="modal-overlay"
+            id="modalTambahAkun"
+        >
 
             <div class="modal-box modal-akun">
 
@@ -297,14 +352,23 @@
                     </h3>
 
 
-                    <button type="button" class="modal-close" id="closeTambah">
+                    <button
+                        type="button"
+                        class="modal-close"
+                        id="closeTambah"
+                    >
+
                         <i class="fa-solid fa-xmark"></i>
+
                     </button>
 
                 </div>
 
 
-                <form action="{{ route('admin.akun.store') }}" method="POST">
+                <form
+                    action="{{ route('admin.akun.store') }}"
+                    method="POST"
+                >
 
                     @csrf
 
@@ -320,8 +384,13 @@
                                 <span>*</span>
                             </label>
 
-                            <input type="text" name="nama_user" id="tambahNama" placeholder="Masukkan nama lengkap"
-                                required>
+                            <input
+                                type="text"
+                                name="nama_user"
+                                id="tambahNama"
+                                placeholder="Masukkan nama lengkap"
+                                required
+                            >
 
                         </div>
 
@@ -335,7 +404,13 @@
                                 <span>*</span>
                             </label>
 
-                            <input type="email" name="email" id="tambahEmail" placeholder="email@example.com" required>
+                            <input
+                                type="email"
+                                name="email"
+                                id="tambahEmail"
+                                placeholder="email@example.com"
+                                required
+                            >
 
                         </div>
 
@@ -352,94 +427,151 @@
 
                             <div class="role-selector">
 
-                                <button type="button" class="role-option active" data-role-target="tambah"
-                                    data-role-value="masyarakat">
+                                <button
+                                    type="button"
+                                    class="role-option active"
+
+                                    data-role-target="tambah"
+                                    data-role-value="masyarakat"
+                                >
                                     Masyarakat
                                 </button>
 
 
-                                <button type="button" class="role-option" data-role-target="tambah"
-                                    data-role-value="devisi">
-                                    Devisi
+                                <button
+                                    type="button"
+                                    class="role-option"
+
+                                    data-role-target="tambah"
+                                    data-role-value="opd"
+                                >
+                                    OPD
                                 </button>
 
 
-                                <button type="button" class="role-option" data-role-target="tambah"
-                                    data-role-value="admin">
+                                <button
+                                    type="button"
+                                    class="role-option"
+
+                                    data-role-target="tambah"
+                                    data-role-value="admin"
+                                >
                                     Admin
                                 </button>
 
                             </div>
 
 
-                            <input type="hidden" name="role" id="tambahRole" value="masyarakat">
+                            <input
+                                type="hidden"
+                                name="role"
+                                id="tambahRole"
+                                value="masyarakat"
+                            >
 
                         </div>
 
 
                         {{-- PASSWORD --}}
 
-                        <div class="form-group" id="tambahPasswordGroup">
+                        <div
+                            class="form-group"
+                            id="tambahPasswordGroup"
+                        >
 
                             <label>
                                 Password
                                 <span>*</span>
                             </label>
 
-                            <input type="password" name="password" id="tambahPassword" placeholder="Minimal 8 karakter">
+                            <input
+                                type="password"
+                                name="password"
+                                id="tambahPassword"
+                                placeholder="Minimal 8 karakter"
+                            >
 
                         </div>
 
 
                         {{-- KONFIRMASI --}}
 
-                        <div class="form-group" id="tambahPasswordConfirmGroup">
+                        <div
+                            class="form-group"
+                            id="tambahPasswordConfirmGroup"
+                        >
 
                             <label>
                                 Konfirmasi Password
                                 <span>*</span>
                             </label>
 
-                            <input type="password" name="password_confirmation" id="tambahKonfirmasiPassword"
-                                placeholder="Ulangi password">
+                            <input
+                                type="password"
+                                name="password_confirmation"
+                                id="tambahKonfirmasiPassword"
+                                placeholder="Ulangi password"
+                            >
 
                         </div>
 
 
                         {{-- NIP --}}
 
-                        <div class="form-group" id="tambahNipGroup" style="display: none;">
+                        <div
+                            class="form-group"
+                            id="tambahNipGroup"
+                            style="display: none;"
+                        >
 
                             <label>
                                 NIP
                                 <span>*</span>
                             </label>
 
-                            <input type="text" name="nip" id="tambahNip" placeholder="Masukkan NIP" disabled>
+                            <input
+                                type="text"
+                                name="nip"
+                                id="tambahNip"
+                                placeholder="Masukkan NIP"
+                                disabled
+                            >
 
                         </div>
 
 
-                        {{-- DIVISI --}}
+                        {{-- OPD --}}
 
-                        <div class="form-group" id="tambahDivisiGroup" style="display: none;">
+                        <div
+                            class="form-group"
+                            id="tambahDivisiGroup"
+                            style="display: none;"
+                        >
 
                             <label>
-                                Divisi
+                                OPD
                                 <span>*</span>
                             </label>
 
 
-                            <select name="id_devisi" id="tambahDivisi" class="modal-select" disabled>
+                            <select
+                                name="id_devisi"
+                                id="tambahDivisi"
+                                class="modal-select"
+                                disabled
+                            >
+
                                 <option value="">
-                                    Pilih divisi...
+                                    Pilih OPD...
                                 </option>
 
 
                                 @foreach ($devisi as $item)
+
                                     <option value="{{ $item->id_devisi }}">
                                         {{ $item->nama_devisi }}
                                     </option>
+
                                 @endforeach
 
                             </select>
@@ -451,12 +583,19 @@
 
                     <div class="modal-footer">
 
-                        <button type="button" class="btn-modal-cancel" id="batalTambah">
+                        <button
+                            type="button"
+                            class="btn-modal-cancel"
+                            id="batalTambah"
+                        >
                             Batal
                         </button>
 
 
-                        <button type="submit" class="btn-modal-save">
+                        <button
+                            type="submit"
+                            class="btn-modal-save"
+                        >
                             Simpan Akun
                         </button>
 
@@ -473,7 +612,10 @@
             MODAL EDIT
         ====================================================== --}}
 
-        <div class="modal-overlay" id="modalEditAkun">
+        <div
+            class="modal-overlay"
+            id="modalEditAkun"
+        >
 
             <div class="modal-box modal-akun">
 
@@ -484,16 +626,26 @@
                     </h3>
 
 
-                    <button type="button" class="modal-close" id="closeEdit">
+                    <button
+                        type="button"
+                        class="modal-close"
+                        id="closeEdit"
+                    >
+
                         <i class="fa-solid fa-xmark"></i>
+
                     </button>
 
                 </div>
 
 
-                <form id="editAkunForm" method="POST">
+                <form
+                    id="editAkunForm"
+                    method="POST"
+                >
 
                     @csrf
+
                     @method('PUT')
 
 
@@ -508,7 +660,12 @@
                                 <span>*</span>
                             </label>
 
-                            <input type="text" name="nama_user" id="editNama" required>
+                            <input
+                                type="text"
+                                name="nama_user"
+                                id="editNama"
+                                required
+                            >
 
                         </div>
 
@@ -522,7 +679,12 @@
                                 <span>*</span>
                             </label>
 
-                            <input type="email" name="email" id="editEmail" required>
+                            <input
+                                type="email"
+                                name="email"
+                                id="editEmail"
+                                required
+                            >
 
                         </div>
 
@@ -539,63 +701,104 @@
 
                             <div class="role-selector">
 
-                                <button type="button" class="role-option" data-role-target="edit"
-                                    data-role-value="masyarakat">
+                                <button
+                                    type="button"
+                                    class="role-option"
+
+                                    data-role-target="edit"
+                                    data-role-value="masyarakat"
+                                >
                                     Masyarakat
                                 </button>
 
 
-                                <button type="button" class="role-option" data-role-target="edit"
-                                    data-role-value="devisi">
-                                    Devisi
+                                <button
+                                    type="button"
+                                    class="role-option"
+
+                                    data-role-target="edit"
+                                    data-role-value="opd"
+                                >
+                                    OPD
                                 </button>
 
 
-                                <button type="button" class="role-option" data-role-target="edit"
-                                    data-role-value="admin">
+                                <button
+                                    type="button"
+                                    class="role-option"
+
+                                    data-role-target="edit"
+                                    data-role-value="admin"
+                                >
                                     Admin
                                 </button>
 
                             </div>
 
 
-                            <input type="hidden" name="role" id="editRole">
+                            <input
+                                type="hidden"
+                                name="role"
+                                id="editRole"
+                            >
 
                         </div>
 
 
                         {{-- NIP --}}
 
-                        <div class="form-group" id="editNipGroup" style="display: none;">
+                        <div
+                            class="form-group"
+                            id="editNipGroup"
+                            style="display: none;"
+                        >
 
                             <label>
                                 NIP
                                 <span>*</span>
                             </label>
 
-                            <input type="text" name="nip" id="editNip" disabled>
+                            <input
+                                type="text"
+                                name="nip"
+                                id="editNip"
+                                disabled
+                            >
 
                         </div>
 
 
-                        {{-- DIVISI --}}
+                        {{-- OPD --}}
 
-                        <div class="form-group" id="editDivisiGroup" style="display: none;">
+                        <div
+                            class="form-group"
+                            id="editDivisiGroup"
+                            style="display: none;"
+                        >
 
                             <label>
-                                Divisi
+                                OPD
                                 <span>*</span>
                             </label>
 
-                            <select name="id_devisi" id="editDivisi" class="modal-select" disabled>
+                            <select
+                                name="id_devisi"
+                                id="editDivisi"
+                                class="modal-select"
+                                disabled
+                            >
+
                                 <option value="">
-                                    Pilih divisi...
+                                    Pilih OPD...
                                 </option>
 
+
                                 @foreach ($devisi as $item)
+
                                     <option value="{{ $item->id_devisi }}">
                                         {{ $item->nama_devisi }}
                                     </option>
+
                                 @endforeach
 
                             </select>
@@ -611,8 +814,12 @@
                                 Password Baru
                             </label>
 
-                            <input type="password" name="password" id="editPassword"
-                                placeholder="Kosongkan jika tidak diubah">
+                            <input
+                                type="password"
+                                name="password"
+                                id="editPassword"
+                                placeholder="Kosongkan jika tidak diubah"
+                            >
 
                         </div>
 
@@ -625,8 +832,12 @@
                                 Konfirmasi Password Baru
                             </label>
 
-                            <input type="password" name="password_confirmation" id="editKonfirmasiPassword"
-                                placeholder="Ulangi password baru">
+                            <input
+                                type="password"
+                                name="password_confirmation"
+                                id="editKonfirmasiPassword"
+                                placeholder="Ulangi password baru"
+                            >
 
                         </div>
 
@@ -635,12 +846,19 @@
 
                     <div class="modal-footer">
 
-                        <button type="button" class="btn-modal-cancel" id="batalEdit">
+                        <button
+                            type="button"
+                            class="btn-modal-cancel"
+                            id="batalEdit"
+                        >
                             Batal
                         </button>
 
 
-                        <button type="submit" class="btn-modal-save">
+                        <button
+                            type="submit"
+                            class="btn-modal-save"
+                        >
                             Simpan Perubahan
                         </button>
 
@@ -657,7 +875,10 @@
             MODAL HAPUS
         ====================================================== --}}
 
-        <div class="modal-overlay" id="modalHapusAkun">
+        <div
+            class="modal-overlay"
+            id="modalHapusAkun"
+        >
 
             <div class="modal-box modal-hapus-box">
 
@@ -681,6 +902,7 @@
                 <p class="hapus-description">
 
                     Akun
+
                     <strong id="hapusNamaAkun">
                         -
                     </strong>
@@ -690,20 +912,31 @@
                 </p>
 
 
-                <form id="hapusAkunForm" method="POST">
+                <form
+                    id="hapusAkunForm"
+                    method="POST"
+                >
 
                     @csrf
+
                     @method('DELETE')
 
 
                     <div class="modal-footer modal-footer-hapus">
 
-                        <button type="button" class="btn-modal-cancel" id="batalHapus">
+                        <button
+                            type="button"
+                            class="btn-modal-cancel"
+                            id="batalHapus"
+                        >
                             Batal
                         </button>
 
 
-                        <button type="submit" class="btn-modal-delete">
+                        <button
+                            type="submit"
+                            class="btn-modal-delete"
+                        >
                             Hapus
                         </button>
 
@@ -723,7 +956,8 @@
     ====================================================== --}}
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
 
             /* =====================================================
                ELEMENT
@@ -766,7 +1000,7 @@
 
 
             /* =====================================================
-               HELPER MODAL
+               MODAL HELPER
             ===================================================== */
 
             function buka(modal) {
@@ -780,10 +1014,10 @@
 
 
             /* =====================================================
-               TAMBAH
+               TAMBAH AKUN
             ===================================================== */
 
-            tambahBtn.addEventListener('click', function() {
+            tambahBtn.addEventListener('click', function () {
 
                 document.getElementById('tambahRole').value =
                     'masyarakat';
@@ -793,18 +1027,24 @@
                     .querySelectorAll(
                         '[data-role-target="tambah"]'
                     )
-                    .forEach(function(button) {
+                    .forEach(function (button) {
 
                         button.classList.remove('active');
 
                     });
 
 
-                document
-                    .querySelector(
+                const masyarakatButton =
+                    document.querySelector(
                         '[data-role-target="tambah"][data-role-value="masyarakat"]'
-                    )
-                    .classList.add('active');
+                    );
+
+
+                if (masyarakatButton) {
+
+                    masyarakatButton.classList.add('active');
+
+                }
 
 
                 updateTambahForm('masyarakat');
@@ -815,12 +1055,12 @@
             });
 
 
-            closeTambah.addEventListener('click', function() {
+            closeTambah.addEventListener('click', function () {
                 tutup(modalTambah);
             });
 
 
-            batalTambah.addEventListener('click', function() {
+            batalTambah.addEventListener('click', function () {
                 tutup(modalTambah);
             });
 
@@ -873,7 +1113,7 @@
                     );
 
 
-                // sembunyikan semuanya
+                /* Sembunyikan field */
 
                 passwordGroup.style.display = 'none';
 
@@ -884,21 +1124,23 @@
                 divisiGroup.style.display = 'none';
 
 
-                // matikan field devisi
+                /* Disable field OPD */
 
                 nip.disabled = true;
 
                 divisi.disabled = true;
 
 
-                // hapus nilai field devisi
+                /* Bersihkan field OPD */
 
                 nip.value = '';
 
                 divisi.value = '';
 
 
-                // MASYARAKAT
+                /* =================================================
+                   MASYARAKAT
+                ================================================= */
 
                 if (role === 'masyarakat') {
 
@@ -913,9 +1155,11 @@
                 }
 
 
-                // DEVISI
+                /* =================================================
+                   OPD
+                ================================================= */
 
-                if (role === 'devisi') {
+                if (role === 'opd') {
 
                     passwordGroup.style.display = '';
 
@@ -936,7 +1180,9 @@
                 }
 
 
-                // ADMIN
+                /* =================================================
+                   ADMIN
+                ================================================= */
 
                 if (role === 'admin') {
 
@@ -959,9 +1205,9 @@
 
             document
                 .querySelectorAll('.btn-edit')
-                .forEach(function(button) {
+                .forEach(function (button) {
 
-                    button.addEventListener('click', function() {
+                    button.addEventListener('click', function () {
 
                         const id =
                             this.dataset.id;
@@ -976,10 +1222,10 @@
                             this.dataset.role;
 
                         const nip =
-                            this.dataset.nip;
+                            this.dataset.nip || '';
 
                         const divisi =
-                            this.dataset.divisi;
+                            this.dataset.divisi || '';
 
 
                         document.getElementById(
@@ -994,7 +1240,7 @@
 
                         document.getElementById(
                             'editNip'
-                        ).value = nip || '';
+                        ).value = nip;
 
 
                         document.getElementById(
@@ -1004,23 +1250,27 @@
 
                         document.getElementById(
                             'editDivisi'
-                        ).value = divisi || '';
+                        ).value = divisi;
 
 
                         editForm.action =
-                            "/admin/akun/update/" + id;
+                            '/admin/akun/update/' + id;
 
+
+                        /* Reset tombol role */
 
                         document
                             .querySelectorAll(
                                 '[data-role-target="edit"]'
                             )
-                            .forEach(function(item) {
+                            .forEach(function (item) {
 
                                 item.classList.remove('active');
 
                             });
 
+
+                        /* Aktifkan role yang sesuai */
 
                         const selectedRole =
                             document.querySelector(
@@ -1074,17 +1324,25 @@
                     );
 
 
+                /* Sembunyikan */
+
                 nipGroup.style.display = 'none';
 
                 divisiGroup.style.display = 'none';
 
+
+                /* Disable */
 
                 nip.disabled = true;
 
                 divisi.disabled = true;
 
 
-                if (role === 'devisi') {
+                /* =================================================
+                   OPD
+                ================================================= */
+
+                if (role === 'opd') {
 
                     nipGroup.style.display = '';
 
@@ -1103,7 +1361,9 @@
                 }
 
 
-                // Admin tidak perlu password
+                /* =================================================
+                   ADMIN
+                ================================================= */
 
                 if (role === 'admin') {
 
@@ -1120,12 +1380,12 @@
             }
 
 
-            closeEdit.addEventListener('click', function() {
+            closeEdit.addEventListener('click', function () {
                 tutup(modalEdit);
             });
 
 
-            batalEdit.addEventListener('click', function() {
+            batalEdit.addEventListener('click', function () {
                 tutup(modalEdit);
             });
 
@@ -1136,9 +1396,9 @@
 
             document
                 .querySelectorAll('.role-option')
-                .forEach(function(button) {
+                .forEach(function (button) {
 
-                    button.addEventListener('click', function() {
+                    button.addEventListener('click', function () {
 
                         const target =
                             this.dataset.roleTarget;
@@ -1153,7 +1413,7 @@
                                 target +
                                 '"]'
                             )
-                            .forEach(function(item) {
+                            .forEach(function (item) {
 
                                 item.classList.remove('active');
 
@@ -1162,6 +1422,8 @@
 
                         this.classList.add('active');
 
+
+                        /* Tambah */
 
                         if (target === 'tambah') {
 
@@ -1174,6 +1436,8 @@
 
                         }
 
+
+                        /* Edit */
 
                         if (target === 'edit') {
 
@@ -1197,9 +1461,9 @@
 
             document
                 .querySelectorAll('.btn-hapus')
-                .forEach(function(button) {
+                .forEach(function (button) {
 
-                    button.addEventListener('click', function() {
+                    button.addEventListener('click', function () {
 
                         const id =
                             this.dataset.id;
@@ -1214,7 +1478,7 @@
 
 
                         deleteForm.action =
-                            "/admin/akun/delete/" + id;
+                            '/admin/akun/delete/' + id;
 
 
                         buka(modalHapus);
@@ -1224,7 +1488,7 @@
                 });
 
 
-            batalHapus.addEventListener('click', function() {
+            batalHapus.addEventListener('click', function () {
                 tutup(modalHapus);
             });
 
@@ -1233,7 +1497,7 @@
                KLIK OVERLAY
             ===================================================== */
 
-            window.addEventListener('click', function(event) {
+            window.addEventListener('click', function (event) {
 
                 if (event.target === modalTambah) {
                     tutup(modalTambah);
@@ -1254,7 +1518,7 @@
                ESCAPE
             ===================================================== */
 
-            document.addEventListener('keydown', function(event) {
+            document.addEventListener('keydown', function (event) {
 
                 if (event.key === 'Escape') {
 
@@ -1305,7 +1569,7 @@
                     .toLowerCase();
 
 
-                akunRows.forEach(function(row) {
+                akunRows.forEach(function (row) {
 
                     const nama =
                         row.dataset.nama
@@ -1345,9 +1609,9 @@
                     row.style.display =
                         cocokSearch &&
                         cocokRole &&
-                        cocokDivisi ?
-                        '' :
-                        'none';
+                        cocokDivisi
+                            ? ''
+                            : 'none';
 
                 });
 
@@ -1373,12 +1637,13 @@
 
 
             /* =====================================================
-               DEFAULT FORM
+               DEFAULT
             ===================================================== */
 
             updateTambahForm('masyarakat');
 
         });
+
     </script>
 
 @endsection

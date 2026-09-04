@@ -49,7 +49,7 @@
                 </div>
 
                 <div class="brand-statistics">
-
+{{-- 
                     <div class="stat">
                         <strong>48.200+</strong>
                         <span>Laporan Diterima</span>
@@ -63,7 +63,7 @@
                     <div class="stat">
                         <strong>72%</strong>
                         <span>Laporan Ditindaklanjuti</span>
-                    </div>
+                    </div> --}}
 
                 </div>
 

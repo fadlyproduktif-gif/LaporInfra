@@ -244,7 +244,7 @@
                         <h3>Laporan Diteruskan</h3>
 
                         <p>
-                            Laporan diteruskan kepada devisi
+                            Laporan diteruskan kepada OPD
                             yang sesuai dengan kategorinya.
                         </p>
 
@@ -260,7 +260,7 @@
                         <h3>Laporan Diproses</h3>
 
                         <p>
-                            Devisi terkait melakukan proses
+                            OPD terkait melakukan proses
                             penanganan laporan.
                         </p>
 

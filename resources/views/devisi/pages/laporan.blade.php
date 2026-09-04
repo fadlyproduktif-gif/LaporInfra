@@ -12,7 +12,7 @@
     <div class="page-intro">
         <div>
             <h2>Daftar Laporan</h2>
-            <p>Laporan infrastruktur yang ditujukan kepada divisi PUPR.</p>
+            <p>Laporan infrastruktur yang ditujukan kepada Organisasi Perangkat Daerah {{$user->devisi->nama_devisi}}.</p>
         </div>
 
         <div class="total-badge">
@@ -23,7 +23,7 @@
     </div>
 
     <section class="filter-card">
-        <form action="{{ url('/devisi/laporan') }}" method="GET" class="filter-form">
+        <form action="{{ url('/opd/laporan') }}" method="GET" class="filter-form">
             <label class="search-box">
                 <span>⌕</span>
                 <input type="search" name="search" value="{{ request('search') }}" placeholder="Cari laporan atau lokasi..."

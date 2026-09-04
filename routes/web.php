@@ -8,6 +8,8 @@ use App\Http\Controllers\Masyarakat\ProfilController;
 use App\Http\Controllers\Devisi\DashboardController as DevisiDashboardController;
 use App\Http\Controllers\Devisi\LaporanController as DevisiLaporanController;
 use App\Http\Controllers\Auth\AdminGoogleController;
+use App\Http\Controllers\Auth\MasyarakatGoogleController;
+use App\Http\Controllers\Auth\OpdGoogleController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LaporanController as AdminLaporanController;
 use App\Http\Controllers\Admin\KategoriController as AdminKategoriController;
@@ -29,7 +31,18 @@ Route::get('/auth/login-masyarakat', function () {
     return view('auth.masyarakat.login');
 })->name('auth.masyarakat.login');
 
-Route::Post('/auth/register-masyarakat', [AuthController::class, 'loginMasyarakat'])->name('login.masyarakat');
+Route::Post('/auth/register-masyarakat', [AuthController::class, 'loginMasyarakat'])
+    ->name('login.masyarakat');
+
+Route::get(
+    '/auth/google/masyarakat',
+    [MasyarakatGoogleController::class, 'redirect']
+)->name('masyarakat.google.redirect');
+
+Route::get(
+    '/auth/google/masyarakat/callback',
+    [MasyarakatGoogleController::class, 'callback']
+)->name('masyarakat.google.callback');
 
 //[MASYARAKAT REGISTER]
 Route::get('/auth/register-masyarakat', function () {
@@ -63,34 +76,50 @@ Route::middleware(['auth', 'role:masyarakat'])->group(function () {
 
 //[MASYARAKAT LOGOUT]
 Route::Post('/logout-masyarakat', [AuthController::class, 'logoutMasyarakat'])->name('logout.masyarakat');
+
+Route::get('/logout-masyarakat', function () {
+    return redirect()->route('auth.masyarakat.login');
+})->name('logout.masyarakat');
 //[MASYARAKAT END]
 
 
 //[DEVISI-LOGIN]
-Route::get('/auth/login-devisi', function () {
+Route::get('/auth/login-opd', function () {
     return view('auth.devisi.login');
 })->name('auth.devisi.login');
-Route::post('/login-devisi', [AuthController::class, 'loginDevisi'])->name('login.devisi');
+Route::post('/login-opd', [AuthController::class, 'loginDevisi'])->name('login.devisi');
 
+
+Route::get(
+    '/auth/google/opd',
+    [OpdGoogleController::class, 'redirect']
+)->name('opd.google.redirect');
+
+Route::get(
+    '/auth/google/opd/callback',
+    [OpdGoogleController::class, 'callback']
+)->name('opd.google.callback');
 
 //[DEVISI CONTENT]
-Route::middleware(['auth', 'role:devisi'])->group(function () {
+Route::middleware(['auth', 'role:opd'])->group(function () {
     Route::get(
-        '/devisi/dashboard',
+        '/opd/dashboard',
         [DevisiDashboardController::class, 'index']
     )->name('devisi.dashboard');
 
-    Route::get('/devisi/laporan', [DevisiLaporanController::class, 'index'])->name('devisi.laporan');
+    Route::get('/opd/laporan', [DevisiLaporanController::class, 'index'])->name('devisi.laporan');
 
-    Route::put('/devisi/laporan/update', [DevisiLaporanController::class, 'update'])->name('devisi.laporan.update');
+    Route::put('/opd/laporan/update', [DevisiLaporanController::class, 'update'])->name('devisi.laporan.update');
 
-    Route::get('/devisi/detail-laporan/{id_laporan}', [DevisiLaporanController::class, 'detail'])->name('devisi.detail-laporan');
+    Route::get('/opd/detail-laporan/{id_laporan}', [DevisiLaporanController::class, 'detail'])->name('devisi.detail-laporan');
 });
 
 //[DEVISI LOGOUT]
 Route::Post('/logout-devisi', [AuthController::class, 'logoutDevisi'])->name('logout.devisi');
 //[DEVISI END]
-
+Route::get('/logout-devisi', function () {
+    return redirect()->route('auth.devisi.login');
+})->name('logout.devisi');
 //[DEVISI END]
 
 
@@ -155,6 +184,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 });
 
 Route::Post('/logout-admin', [AdminGoogleController::class, 'logoutAdmin'])->name('logout.admin');
- 
+Route::get('/logout-admin', function () {
+    return redirect()->route('auth.admin.login');
+})->name('logout.admin');
 
 //[ADMIN END]

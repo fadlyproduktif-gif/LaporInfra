@@ -8,7 +8,7 @@
     </span>
 
     <span>
-        Admin Devisi · {{$user->devisi->nama_devisi}}
+        Admin Organisasi Perangkat Daerah · {{$user->devisi->nama_devisi}}
     </span>
 
 </footer>

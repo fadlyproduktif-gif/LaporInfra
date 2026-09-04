@@ -28,7 +28,7 @@ class LaporanController extends Controller
         $status = StatusLaporan::all();
 
 
-        return view('devisi.pages.laporan', compact('laporan', 'status'));
+        return view('devisi.pages.laporan', compact('laporan','user', 'status'));
     }
 
     public function detail(Request $request, int $id_laporan)

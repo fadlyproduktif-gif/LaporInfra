@@ -39,18 +39,30 @@ class AkunController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'nama_user' => 'required|string|max:255',
+            'nama_user' => [
+                'required',
+                'string',
+                'max:255',
+            ],
 
-            'email' => 'required|email|unique:users,email',
+            'email' => [
+                'required',
+                'email',
+                'unique:users,email',
+            ],
 
             'role' => [
                 'required',
-                Rule::in(['admin', 'devisi', 'masyarakat']),
+                Rule::in([
+                    'admin',
+                    'opd',
+                    'masyarakat',
+                ]),
             ],
 
             'nip' => [
                 'nullable',
-                'required_if:role,devisi',
+                'required_if:role,opd',
                 'string',
                 'max:50',
                 'unique:users,nip',
@@ -58,18 +70,19 @@ class AkunController extends Controller
 
             'id_devisi' => [
                 'nullable',
-                'required_if:role,devisi',
+                'required_if:role,opd',
                 'exists:devisi,id_devisi',
             ],
 
             'password' => [
                 'nullable',
-                'required_if:role,masyarakat,devisi',
+                'required_if:role,masyarakat,opd',
                 'string',
                 'min:8',
                 'confirmed',
             ],
         ]);
+
 
         User::create([
             'nip' => $validated['nip'] ?? null,
@@ -84,15 +97,18 @@ class AkunController extends Controller
 
             'role' => $validated['role'],
 
-            'id_devisi' =>
-                $validated['role'] === 'devisi'
-                    ? $validated['id_devisi']
-                    : null,
+            'id_devisi' => $validated['role'] === 'opd'
+                ? $validated['id_devisi']
+                : null,
         ]);
+
 
         return redirect()
             ->route('admin.akun.index')
-            ->with('success', 'Akun berhasil ditambahkan.');
+            ->with(
+                'success',
+                'Akun berhasil ditambahkan.'
+            );
     }
 
 
@@ -100,33 +116,48 @@ class AkunController extends Controller
     {
         $akun = User::findOrFail($id_user);
 
+
         $validated = $request->validate([
-            'nama_user' => 'required|string|max:255',
+            'nama_user' => [
+                'required',
+                'string',
+                'max:255',
+            ],
 
             'email' => [
                 'required',
                 'email',
                 Rule::unique('users', 'email')
-                    ->ignore($akun->id_user, 'id_user'),
+                    ->ignore(
+                        $akun->id_user,
+                        'id_user'
+                    ),
             ],
 
             'role' => [
                 'required',
-                Rule::in(['admin', 'devisi', 'masyarakat']),
+                Rule::in([
+                    'admin',
+                    'opd',
+                    'masyarakat',
+                ]),
             ],
 
             'nip' => [
                 'nullable',
-                'required_if:role,devisi',
+                'required_if:role,opd',
                 'string',
                 'max:50',
                 Rule::unique('users', 'nip')
-                    ->ignore($akun->id_user, 'id_user'),
+                    ->ignore(
+                        $akun->id_user,
+                        'id_user'
+                    ),
             ],
 
             'id_devisi' => [
                 'nullable',
-                'required_if:role,devisi',
+                'required_if:role,opd',
                 'exists:devisi,id_devisi',
             ],
 
@@ -138,43 +169,60 @@ class AkunController extends Controller
             ],
         ]);
 
+
         $akun->nama_user = $validated['nama_user'];
+
         $akun->email = $validated['email'];
+
         $akun->role = $validated['role'];
 
-        $akun->nip =
-            $validated['nip'] ?? null;
+        $akun->nip = $validated['nip'] ?? null;
 
-        $akun->id_devisi =
-            $validated['role'] === 'devisi'
-                ? $validated['id_devisi']
-                : null;
+        $akun->id_devisi = $validated['role'] === 'opd'
+            ? $validated['id_devisi']
+            : null;
+
 
         /*
-        Admin hanya menggunakan Google Login.
-        Jadi password admin dikosongkan.
+        ---------------------------------------------------------
+        ADMIN
+        ---------------------------------------------------------
+
+        Admin menggunakan Google Login.
+        Password admin dikosongkan.
         */
+
         if ($validated['role'] === 'admin') {
             $akun->password = null;
         }
 
+
         /*
-        Password hanya diubah jika user
-        memang memasukkan password baru.
+        ---------------------------------------------------------
+        MASYARAKAT / OPD
+        ---------------------------------------------------------
+
+        Password hanya diubah apabila admin
+        memasukkan password baru.
         */
+
         if (
-            $validated['role'] !== 'admin' &&
-            !empty($validated['password'])
+            $validated['role'] !== 'admin'
+            && !empty($validated['password'])
         ) {
-            $akun->password =
-                $validated['password'];
+            $akun->password = $validated['password'];
         }
+
 
         $akun->save();
 
+
         return redirect()
             ->route('admin.akun.index')
-            ->with('success', 'Akun berhasil diperbarui.');
+            ->with(
+                'success',
+                'Akun berhasil diperbarui.'
+            );
     }
 
 
@@ -182,11 +230,15 @@ class AkunController extends Controller
     {
         $akun = User::findOrFail($id_user);
 
+
         /*
-        Jangan sampai admin menghapus
-        akun yang sedang digunakan.
+        ---------------------------------------------------------
+        CEGAH ADMIN MENGHAPUS AKUN SENDIRI
+        ---------------------------------------------------------
         */
+
         if ($akun->id_user === Auth::id()) {
+
             return redirect()
                 ->route('admin.akun.index')
                 ->with(
@@ -195,11 +247,15 @@ class AkunController extends Controller
                 );
         }
 
+
         /*
-        Jangan menghapus akun yang sudah memiliki
-        laporan karena laporan merupakan histori.
+        ---------------------------------------------------------
+        CEGAH PENGHAPUSAN USER YANG MEMILIKI LAPORAN
+        ---------------------------------------------------------
         */
+
         if ($akun->laporan()->exists()) {
+
             return redirect()
                 ->route('admin.akun.index')
                 ->with(
@@ -208,7 +264,9 @@ class AkunController extends Controller
                 );
         }
 
+
         $akun->delete();
+
 
         return redirect()
             ->route('admin.akun.index')

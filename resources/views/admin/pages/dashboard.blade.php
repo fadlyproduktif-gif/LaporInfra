@@ -66,7 +66,7 @@
                     </strong>
 
                     <span>
-                        Total Devisi
+                        Total OPD
                     </span>
 
                 </div>

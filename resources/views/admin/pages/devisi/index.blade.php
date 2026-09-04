@@ -1,10 +1,10 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Kelola Devisi')
+@section('title', 'Kelola OPD')
 
-@section('page-title', 'Kelola Devisi')
+@section('page-title', 'Kelola OPD')
 
-@section('page-description', 'Kelola devisi yang menangani laporan infrastruktur pada sistem LAPORINFRA.')
+@section('page-description', 'Kelola OPD yang menangani laporan infrastruktur pada sistem LAPORINFRA.')
 
 @push('styles')
     @vite('resources/css/admin/devisi.css')
@@ -35,11 +35,11 @@
             <div>
 
                 <h1>
-                    Kelola Devisi
+                    Kelola OPD
                 </h1>
 
                 <p>
-                    Kelola devisi yang menangani laporan infrastruktur
+                    Kelola OPD yang menangani laporan infrastruktur
                     pada sistem LAPORINFRA.
                 </p>
 
@@ -59,7 +59,7 @@
                 <i class="fa-solid fa-building"></i>
 
                 <span id="totalDevisi">
-                    {{ $total }} Devisi
+                    {{ $total }} OPD
                 </span>
 
             </div>
@@ -69,7 +69,7 @@
 
                 <i class="fa-solid fa-plus"></i>
 
-                Tambah Devisi
+                Tambah OPD
 
             </button>
 
@@ -86,7 +86,7 @@
 
                 <i class="fa-solid fa-magnifying-glass"></i>
 
-                <input type="text" id="searchDivisi" placeholder="Cari nama devisi...">
+                <input type="text" id="searchDivisi" placeholder="Cari nama OPD...">
 
             </div>
 
@@ -112,7 +112,7 @@
                             </th>
 
                             <th>
-                                NAMA DEVISI
+                                NAMA OPD
                             </th>
 
                             <th>
@@ -180,7 +180,7 @@
                             <tr>
 
                                 <td colspan="4" style="text-align: center;">
-                                    Belum ada devisi.
+                                    Belum ada OPD.
                                 </td>
 
                             </tr>
@@ -210,11 +210,11 @@
                 <div>
 
                     <h2>
-                        Tambah Devisi
+                        Tambah OPD
                     </h2>
 
                     <p>
-                        Tambahkan devisi baru ke dalam sistem.
+                        Tambahkan OPD baru ke dalam sistem.
                     </p>
 
                 </div>
@@ -236,10 +236,10 @@
                     <div class="modal-form-group">
 
                         <label for="namaDivisiTambah">
-                            Nama Devisi
+                            Nama OPD
                         </label>
 
-                        <input type="text" name="nama_devisi" id="namaDivisiTambah" placeholder="Masukkan nama devisi"
+                        <input type="text" name="nama_devisi" id="namaDivisiTambah" placeholder="Masukkan nama OPD"
                             value="{{ old('nama_devisi') }}">
 
                         @error('nama_devisi')
@@ -264,7 +264,7 @@
 
                         <i class="fa-solid fa-plus"></i>
 
-                        Tambah Devisi
+                        Tambah OPD
 
                     </button>
 
@@ -290,11 +290,11 @@
                 <div>
 
                     <h2>
-                        Edit Devisi
+                        Edit OPD
                     </h2>
 
                     <p>
-                        Perbarui informasi devisi.
+                        Perbarui informasi OPD.
                     </p>
 
                 </div>
@@ -319,7 +319,7 @@
                     <div class="modal-form-group">
 
                         <label for="namaDivisiEdit">
-                            Nama Devisi
+                            Nama OPD
                         </label>
 
                         <input name="nama_devisi" type="text" id="namaDivisiEdit">
@@ -371,7 +371,7 @@
 
 
                 <h2>
-                    Hapus Devisi?
+                    Hapus OPD?
                 </h2>
 
 
@@ -379,7 +379,7 @@
 
                     Apakah Anda yakin ingin menghapus
                     <strong id="namaDivisiHapus">
-                        devisi ini
+                        OPD ini
                     </strong>?
 
                     Tindakan ini tidak dapat dibatalkan.

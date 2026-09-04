@@ -10,10 +10,6 @@ body {
     color: #12264a;
 }
 
-
-
-
-
 /* =========================
    MAIN
 ========================= */
@@ -46,7 +42,6 @@ body {
     color: #64708a;
     line-height: 1.6;
 }
-
 
 /* =========================
    FORM CARD
@@ -105,7 +100,6 @@ body {
 .form-header p span {
     color: #e87500;
 }
-
 
 /* =========================
    FORM
@@ -203,7 +197,6 @@ form {
     font-size: 12px;
 }
 
-
 /* =========================
    ACTIONS
 ========================= */
@@ -253,15 +246,11 @@ form {
     color: white;
 }
 
-
-
-
 /* =========================
    RESPONSIVE
 ========================= */
 
 @media (max-width: 768px) {
-
     .navbar {
         padding: 0 20px;
     }
@@ -389,4 +378,54 @@ form {
 .form-help {
     display: block;
     margin-bottom: 8px;
+}
+
+.foto-preview {
+    width: 100%;
+    min-height: 180px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 12px;
+    padding: 15px;
+
+    border: 1px dashed #cbd5e1;
+    border-radius: 12px;
+
+    background: #f8fafc;
+
+    color: #94a3b8;
+
+    overflow: hidden;
+}
+
+.foto-preview:has(img) {
+    display: block;
+}
+
+.foto-preview img {
+    display: block;
+
+    width: 100%;
+    max-height: 280px;
+
+    object-fit: cover;
+
+    border-radius: 9px;
+}
+
+.foto-preview p {
+    margin: 8px 0 0;
+
+    color: #64748b;
+
+    font-size: 12px;
+
+    text-align: center;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
