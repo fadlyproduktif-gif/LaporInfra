@@ -22,6 +22,12 @@
             {{ session('success') }}
         </div>
     @endif
+
+    @if (session('error'))
+        <div class="alert-error">
+            {{ session('error') }}
+        </div>
+    @endif
     <section class="content">
 
 
@@ -285,25 +291,25 @@
             </div>
 
 
-            <div class="delete-actions">
+            <form id="deleteForm" method="post">
+                <div class="delete-actions">
 
-                <button class="btn-cancel" onclick="closeDeleteModal()">
-                    Batal
-                </button>
-                <form id="deleteForm"  method="post">
+                    <button type="button" class="btn-cancel" onclick="closeDeleteModal()">
+                        Batal
+                    </button>
                     @csrf
                     @method('DELETE')
                     <button type="submit" class="btn-confirm-delete" onclick="deleteCategory()">
                         Hapus
-                    </button>
-                </form>
+            </form>
 
 
 
-
-            </div>
 
         </div>
+
+        </button>
+    </div>
 
     </div>
 
@@ -311,10 +317,10 @@
 
     <script>
         /*
-                                        ------------------------------------------------------------------------
-                                        MODAL TAMBAH
-                                        --------------------------------------------------------------------------
-                                        */
+                                            ------------------------------------------------------------------------
+                                            MODAL TAMBAH
+                                            --------------------------------------------------------------------------
+                                            */
 
         function openAddModal() {
 
@@ -460,9 +466,9 @@
 
         function deleteCategory(id, name) {
 
-            alert(
-                'Kategori dihapus sebagai tampilan dummy.'
-            );
+            // alert(
+            //     'Kategori dihapus.'
+            // );
 
             closeDeleteModal();
 

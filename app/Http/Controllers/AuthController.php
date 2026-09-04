@@ -62,7 +62,7 @@ class AuthController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        return redirect()->route('masyarakat.login');
+        return redirect()->route('auth.masyarakat.login');
     }
 
     public function registerMasyarakat (Request $request){

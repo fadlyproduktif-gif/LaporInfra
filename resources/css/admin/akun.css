@@ -6,7 +6,6 @@
     width: 100%;
 }
 
-
 /* =====================================================
    HEADER
 ===================================================== */
@@ -38,6 +37,10 @@
     gap: 12px;
 }
 
+.field-devisi,
+.field-password {
+    display: none;
+}
 
 /* =====================================================
    TOTAL AKUN
@@ -59,7 +62,6 @@
 .akun-total i {
     font-size: 12px;
 }
-
 
 /* =====================================================
    TOMBOL TAMBAH
@@ -86,7 +88,6 @@
 .btn-tambah-akun i {
     margin-right: 6px;
 }
-
 
 /* =====================================================
    FILTER CARD
@@ -135,7 +136,6 @@
     box-shadow: 0 0 0 3px rgba(83, 121, 167, 0.08);
 }
 
-
 .filter-select {
     position: relative;
 }
@@ -163,7 +163,6 @@
     color: #94a3b8;
     font-size: 11px;
 }
-
 
 /* =====================================================
    TABLE
@@ -225,7 +224,6 @@
     width: 170px;
 }
 
-
 /* =====================================================
    USER
 ===================================================== */
@@ -252,7 +250,6 @@
     font-weight: 600;
 }
 
-
 /* =====================================================
    ROLE BADGE
 ===================================================== */
@@ -277,6 +274,11 @@
     color: #ffffff;
 }
 
+.role-devisi {
+    background: #fff4e5;
+    color: #c76b00;
+    border: 1px solid #f3d3a4;
+}
 
 /* =====================================================
    DIVISI
@@ -284,18 +286,26 @@
 
 .divisi-badge {
     display: inline-flex;
-    padding: 4px 9px;
-    border: 1px solid #d7e1ec;
-    border-radius: 5px;
-    background: #f2f5f8;
-    color: #64748b;
+    align-items: center;
+
+    padding: 5px 9px;
+
+    border-radius: 6px;
+
+    background: #f1f5f9;
+    color: #52657d;
+
     font-size: 11px;
+    font-weight: 600;
+}
+
+.divisi-badge:empty {
+    display: none;
 }
 
 .divisi-empty {
     color: #94a3b8;
 }
-
 
 /* =====================================================
    AKSI BUTTON
@@ -340,7 +350,6 @@
 .btn-hapus:hover {
     background: #ffebe9;
 }
-
 
 /* =====================================================
    TABLE FOOTER
@@ -393,7 +402,6 @@
     color: #43688e;
 }
 
-
 /* =====================================================
    MODAL OVERLAY
 ===================================================== */
@@ -413,7 +421,6 @@
     display: flex;
 }
 
-
 /* =====================================================
    MODAL BOX
 ===================================================== */
@@ -431,7 +438,6 @@
 .modal-akun {
     max-width: 560px;
 }
-
 
 /* =====================================================
    MODAL HEADER
@@ -468,7 +474,6 @@
 .modal-close:hover {
     background: #f1f5f9;
 }
-
 
 /* =====================================================
    MODAL BODY
@@ -524,7 +529,6 @@
     cursor: not-allowed;
 }
 
-
 /* =====================================================
    PASSWORD SECTION
 ===================================================== */
@@ -542,7 +546,6 @@
     color: #7b8797;
     font-size: 11px;
 }
-
 
 /* =====================================================
    ROLE SELECTOR
@@ -570,7 +573,6 @@
     background: #edf4fa;
     color: #3e6389;
 }
-
 
 /* =====================================================
    MODAL FOOTER
@@ -614,7 +616,6 @@
 .btn-modal-save:hover {
     background: #e66f00;
 }
-
 
 /* =====================================================
    MODAL HAPUS
@@ -679,13 +680,11 @@
     background: #d80c0c;
 }
 
-
 /* =====================================================
    RESPONSIVE
 ===================================================== */
 
 @media (max-width: 900px) {
-
     .akun-header {
         align-items: flex-start;
         flex-direction: column;
@@ -695,12 +694,9 @@
         width: 100%;
         justify-content: space-between;
     }
-
 }
 
-
 @media (max-width: 700px) {
-
     .akun-filter-card {
         grid-template-columns: 1fr;
     }
@@ -710,12 +706,9 @@
         flex-direction: column;
         gap: 14px;
     }
-
 }
 
-
 @media (max-width: 500px) {
-
     .akun-header-text h1 {
         font-size: 21px;
     }
@@ -745,5 +738,4 @@
         padding-left: 16px;
         padding-right: 16px;
     }
-
 }

@@ -16,9 +16,7 @@ class KategoriController extends Controller
         $user = Auth::User();
         $kategori = Kategori::latest()->get();
         $devisi = Devisi::all();
-        foreach ($kategori as $item) {
-            // dump($item->devisi->nama_devisi);
-        }
+
 
         return view(
             'admin.pages.kategori.index',
@@ -35,8 +33,8 @@ class KategoriController extends Controller
 
 
         $validated = $request->validate([
-            'kategori' => 'required',
-            'devisi' => 'required',
+            'kategori' => 'required|string|max:255',
+            'devisi' => 'required|exists:devisi,id_devisi',
         ]);
 
         Kategori::Create([
@@ -65,8 +63,26 @@ class KategoriController extends Controller
             ->route('admin.kategori.index')
             ->with('success', 'kategori berhasil diperbarui');
     }
+    public function delete(int $id_kategori)
+    {
+        $kategori = Kategori::findOrFail($id_kategori);
 
-    public function delete(Request $request,int $id) {
+        if ($kategori->laporan()->exists()) {
+            return redirect()
+                ->route('admin.kategori.index')
+                ->with(
+                    'error',
+                    'Kategori tidak dapat dihapus karena masih digunakan oleh laporan.'
+                );
+        }
 
+        $kategori->delete();
+
+        return redirect()
+            ->route('admin.kategori.index')
+            ->with(
+                'success',
+                'Kategori berhasil dihapus.'
+            );
     }
 }

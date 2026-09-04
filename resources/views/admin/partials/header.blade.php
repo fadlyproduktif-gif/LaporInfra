@@ -2,9 +2,6 @@
 
     <div class="header-left">
 
-        <p class="header-eyebrow">
-            Admin System
-        </p>
 
         <h1>
             @yield('page-title', 'Dashboard Admin')
@@ -26,7 +23,7 @@
 
             <strong>
                 {{ $user->nama_user }}
-            </strong>
+            </strong    >
 
             <span>
                 {{ $user->email }}

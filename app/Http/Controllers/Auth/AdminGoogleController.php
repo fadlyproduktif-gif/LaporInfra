@@ -35,4 +35,12 @@ class AdminGoogleController extends Controller
 
         return redirect()->route('admin.dashboard');
     }
+
+     public function logoutAdmin(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('auth.admin.login');
+    }
 }

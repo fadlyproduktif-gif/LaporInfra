@@ -71,7 +71,7 @@
     <!-- Bottom Navigation -->
     <div class="sidebar-bottom">
 
-        <a href="{{route('masyarakat.login')}}" class="sidebar-bottom-item portal">
+        <a href="{{route('home')}}" class="sidebar-bottom-item portal">
 
             <span>
                 ↗

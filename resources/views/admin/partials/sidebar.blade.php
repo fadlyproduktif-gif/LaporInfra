@@ -73,7 +73,7 @@
     <div class="sidebar-bottom">
 
         <a
-            href="{{ route('masyarakat.login') }}"
+            href="{{ route('home') }}"
             class="portal-link"
         >
             ↗ &nbsp; Portal Masyarakat
@@ -82,7 +82,7 @@
 
         <form
             method="POST"
-            action="{{ url('/logout') }}"
+            action="{{ route('logout.admin') }}"
         >
             @csrf
 

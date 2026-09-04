@@ -11,17 +11,25 @@ use App\Http\Controllers\Auth\AdminGoogleController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\LaporanController as AdminLaporanController;
 use App\Http\Controllers\Admin\KategoriController as AdminKategoriController;
+use App\Http\Controllers\Admin\DevisiController as AdminDevisiController;
+use App\Http\Controllers\Admin\AkunController as AdminAkunController;
 
 Route::get('/', function () {
-    return view('auth.masyarakat.login');
-});
+    return view('welcome');
+})->name('home');
+
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 
 //[MASYARAKAT-LOGIN]
 Route::get('/auth/login-masyarakat', function () {
     return view('auth.masyarakat.login');
-})->name('masyarakat.login');
+})->name('auth.masyarakat.login');
 
-Route::Post('/login-masyarakat', [AuthController::class, 'loginMasyarakat'])->name('login.masyarakat');
+Route::Post('/auth/register-masyarakat', [AuthController::class, 'loginMasyarakat'])->name('login.masyarakat');
 
 //[MASYARAKAT REGISTER]
 Route::get('/auth/register-masyarakat', function () {
@@ -101,35 +109,52 @@ Route::get('/auth/google/callback', [AdminGoogleController::class, 'callback'])
 //[ADMIN CONTENT]
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])
-    ->name('admin.dashboard');
+        ->name('admin.dashboard');
 
     Route::get('/admin/laporan', [AdminLaporanController::class, 'index'])
-    ->name('admin.laporan.index');
+        ->name('admin.laporan.index');
 
-    Route::get('/admin/laporan/{id_laporan}',[AdminLaporanController::class, 'show'])
-    ->name('admin.laporan.show');
+    Route::get('/admin/laporan/{id_laporan}', [AdminLaporanController::class, 'show'])
+        ->name('admin.laporan.show');
 
     Route::get('/admin/kategori', [AdminKategoriController::class, 'index'])
-    ->name('admin.kategori.index');
+        ->name('admin.kategori.index');
 
     Route::post('/admin/kategori/store', [AdminKategoriController::class, 'store'])
-    ->name('admin.kategori.store');
+        ->name('admin.kategori.store');
 
     Route::put('/admin/kategori/update/{id}', [AdminKategoriController::class, 'update'])
-    ->name('admin.kategori.update');
-   
+        ->name('admin.kategori.update');
+
     Route::delete('/admin/kategori/delete/{id}', [AdminKategoriController::class, 'delete'])
-    ->name('admin.kategori.delete');
+        ->name('admin.kategori.delete');
 
-    Route::get('/admin/devisi', function () {
-        return view('admin.pages.devisi.index');
-    })->name('admin.devisi.index');
+    Route::get('/admin/devisi', [AdminDevisiController::class, 'index'])
+        ->name('admin.devisi.index');
 
+    Route::post('/admin/devisi/store', [AdminDevisiController::class, 'store'])
+        ->name('admin.devisi.store');
 
-    Route::get('/admin/akun', function () {
-        return view('admin.pages.akun.index');
-    })->name('admin.akun.index');
+    Route::put('/admin/devisi/update/{id_devisi}', [AdminDevisiController::class, 'update'])
+        ->name('admin.devisi.update');
+
+    Route::delete('/admin/devisi/delete/{id_devisi}', [AdminDevisiController::class, 'delete'])
+        ->name('admin.devisi.delete');
+
+    Route::get('/admin/akun', [AdminAkunController::class, 'index'])
+        ->name('admin.akun.index');
+
+    Route::post('/admin/akun/store', [AdminAkunController::class, 'store'])
+        ->name('admin.akun.store');
+
+    Route::put('/admin/akun/update/{id_user}', [AdminAkunController::class, 'update'])
+        ->name('admin.akun.update');
+
+    Route::delete('/admin/akun/delete/{id_user}', [AdminAkunController::class, 'delete'])
+        ->name('admin.akun.delete');
 });
 
-//[ADMIN END]
+Route::Post('/logout-admin', [AdminGoogleController::class, 'logoutAdmin'])->name('logout.admin');
+ 
 
+//[ADMIN END]
