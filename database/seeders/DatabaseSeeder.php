@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 StatusLaporanSeeder::class,
                 DevisiSeeder::class,
                 KategoriSeeder::class,
+                AdminSeeder::class,
             ]
         );
     }
