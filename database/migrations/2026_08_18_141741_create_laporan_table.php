@@ -6,48 +6,34 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    /**
+     * Run the migrations.
+     */
     public function up(): void
     {
         Schema::create('laporan', function (Blueprint $table) {
-
             $table->id('id_laporan');
-
             $table->foreignId('id_user')
-                ->constrained(
-                    table: 'users',
-                    column: 'id_user'
-                )
-                ->restrictOnDelete();
-
+                ->constrained('users', 'id_user', 'id_user')
+                ->onDelete('cascade');
             $table->string('nama_laporan');
-
             $table->string('deskripsi');
-
             $table->string('lokasi');
-
             $table->string('foto_lokasi');
-
-            $table->foreignId('id_status')
-                ->nullable()
-                ->constrained(
-                    table: 'status_laporan',
-                    column: 'id_status'
-                )
-                ->nullOnDelete();
-
+            $table->foreignId('id_laporan')
+                ->constrained('status_laporan', 'id_status', 'id_status')
+                ->onDelete('cascade');
             $table->string('keterangan_proggress');
-
             $table->foreignId('id_kategori')
-                ->constrained(
-                    table: 'kategori',
-                    column: 'id_kategori'
-                )
-                ->restrictOnDelete();
-
+                ->constrained('kategori', 'id_kategori', 'id_kategori')
+                ->onDelete('cascade');
             $table->timestamps();
         });
     }
 
+    /**
+     * Reverse the migrations.
+     */
     public function down(): void
     {
         Schema::dropIfExists('laporan');
