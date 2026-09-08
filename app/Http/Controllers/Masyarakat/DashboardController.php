@@ -19,6 +19,11 @@ class DashboardController extends Controller
         ->latest()
         ->take(3)
         ->get();
+        foreach($laporan as $l){
+            
+            dump($l->id_laporan);
+        }
+
         return view('masyarakat.dashboard', compact('laporan'));
     }
 }

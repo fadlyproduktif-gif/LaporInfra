@@ -18,7 +18,6 @@ class LaporanController extends Controller
         $laporan = $user->laporan()
             ->latest()
             ->get();
-
         return view('masyarakat.laporan-saya', compact('laporan'));
     }
 
