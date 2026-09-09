@@ -155,6 +155,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::put('/admin/kategori/update/{id}', [AdminKategoriController::class, 'update'])
         ->name('admin.kategori.update');
 
+    Route::post(
+        '/admin/kategori/{id_kategori}/tambah-devisi',
+        [AdminKategoriController::class, 'tambahDevisi']
+    )->name('admin.kategori.tambah-devisi');
+
     Route::delete('/admin/kategori/delete/{id}', [AdminKategoriController::class, 'delete'])
         ->name('admin.kategori.delete');
 

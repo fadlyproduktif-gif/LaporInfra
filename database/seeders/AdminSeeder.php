@@ -15,7 +15,7 @@ class AdminSeeder extends Seeder
     {
         User::updateOrCreate(
             [
-                'email' => 'zidanhanzade01@gmail.com'
+                'email' => 'fadlyproduktif@gmail.com'
             ],
             [
                 'nip' => null,

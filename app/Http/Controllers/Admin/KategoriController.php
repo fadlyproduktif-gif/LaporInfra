@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Devisi;
 use App\Models\Kategori;
-use App\Models\Laporan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,10 +12,13 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $user = Auth::User();
-        $kategori = Kategori::latest()->get();
-        $devisi = Devisi::all();
+        $user = Auth::user();
 
+        $kategori = Kategori::with('devisi')
+            ->latest()
+            ->get();
+
+        $devisi = Devisi::all();
 
         return view(
             'admin.pages.kategori.index',
@@ -30,39 +32,54 @@ class KategoriController extends Controller
 
     public function store(Request $request)
     {
-
-
         $validated = $request->validate([
             'kategori' => 'required|string|max:255',
-            'devisi' => 'required|exists:devisi,id_devisi',
         ]);
 
-        Kategori::Create([
+        Kategori::create([
             'nama_kategori' => $validated['kategori'],
-            'id_devisi' => $validated['devisi'],
         ]);
 
-        return redirect()->route('admin.kategori.index')
-            ->with('success', 'kategori tersimpan');
+        return redirect()
+            ->route('admin.kategori.index')
+            ->with('success', 'Kategori berhasil disimpan.');
     }
 
     public function update(Request $request, int $id_kategori)
     {
         $validated = $request->validate([
             'kategori' => 'required|string|max:255',
-            'devisi' => 'required|exists:devisi,id_devisi',
         ]);
 
         $kategori = Kategori::findOrFail($id_kategori);
 
-        $kategori->nama_kategori = $validated['kategori'];
-        $kategori->id_devisi = $validated['devisi'];
-        $kategori->save();
+        $kategori->update([
+            'nama_kategori' => $validated['kategori'],
+        ]);
 
         return redirect()
             ->route('admin.kategori.index')
-            ->with('success', 'kategori berhasil diperbarui');
+            ->with('success', 'Kategori berhasil diperbarui.');
     }
+
+    public function tambahDevisi(Request $request, int $id_kategori)
+    {
+        $validated = $request->validate([
+            'devisi' => 'required|array|min:1',
+            'devisi.*' => 'required|exists:devisi,id_devisi',
+        ]);
+
+        $kategori = Kategori::findOrFail($id_kategori);
+
+        $kategori->devisi()->syncWithoutDetaching(
+            $validated['devisi']
+        );
+
+        return redirect()
+            ->route('admin.kategori.index')
+            ->with('success', 'OPD berhasil ditambahkan ke kategori.');
+    }
+
     public function delete(int $id_kategori)
     {
         $kategori = Kategori::findOrFail($id_kategori);

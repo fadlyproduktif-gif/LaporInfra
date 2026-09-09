@@ -1,22 +1,21 @@
 @extends('admin.layouts.app')
 
-
 @section('title', 'Dashboard Admin')
-
 
 @section('page-title', 'Dashboard Admin')
 
-
 @section('page-description', 'Kelola data dan pantau sistem pelaporan LAPORINFRA.')
-
 
 @push('styles')
     @vite('resources/css/admin/kategori.css')
 @endpush
 
-
 @section('content')
-    <!-- CONTENT -->
+
+    {{-- =========================
+        ALERT
+    ========================== --}}
+
     @if (session('success'))
         <div class="alert-success">
             {{ session('success') }}
@@ -28,14 +27,20 @@
             {{ session('error') }}
         </div>
     @endif
+
+
     <section class="content">
 
+        {{-- =========================
+            PAGE HEADING
+        ========================== --}}
 
-        <!-- PAGE TITLE -->
         <div class="page-heading">
 
             <div>
-                <h1>Kelola Kategori</h1>
+                <h1>
+                    Kelola Kategori
+                </h1>
 
                 <p>
                     Kelola kategori infrastruktur yang digunakan dalam sistem LAPORINFRA.
@@ -50,7 +55,11 @@
                     {{ $kategori->count() }} Kategori
                 </div>
 
-                <button type="button" class="btn-add" onclick="openAddModal()">
+                <button
+                    type="button"
+                    class="btn-add"
+                    onclick="openAddModal()"
+                >
                     <span>＋</span>
                     Tambah Kategori
                 </button>
@@ -60,40 +69,64 @@
         </div>
 
 
-        <!-- FILTER -->
+        {{-- =========================
+            FILTER
+        ========================== --}}
+
         <div class="filter-card">
 
             <div class="search-box">
 
-                <span class="search-icon">⌕</span>
+                <span class="search-icon">
+                    ⌕
+                </span>
 
-                <input type="text" id="searchInput" placeholder="Cari nama kategori..." onkeyup="searchCategory()">
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Cari nama kategori..."
+                    onkeyup="searchCategory()"
+                >
 
             </div>
 
 
             <div class="select-wrapper">
 
-                <select id="filterDivisi" name="devisi" onchange="filterCategory()">
+                <select
+                    id="filterDivisi"
+                    onchange="filterCategory()"
+                >
 
-                    <option value="">Semua OPD</option>
+                    <option value="">
+                        Semua OPD
+                    </option>
+
                     @forelse ($devisi as $item)
+
                         <option value="{{ $item->nama_devisi }}">
                             {{ $item->nama_devisi }}
                         </option>
+
                     @empty
+
                     @endforelse
 
                 </select>
 
-                <span class="select-arrow">⌄</span>
+                <span class="select-arrow">
+                    ⌄
+                </span>
 
             </div>
 
         </div>
 
 
-        <!-- TABLE -->
+        {{-- =========================
+            TABLE
+        ========================== --}}
+
         <div class="table-card">
 
             <table>
@@ -101,47 +134,117 @@
                 <thead>
 
                     <tr>
-                        <th class="number-column">NO.</th>
-                        <th>NAMA KATEGORI</th>
-                        <th>OPD</th>
-                        <th class="action-column">AKSI</th>
+
+                        <th class="number-column">
+                            NO.
+                        </th>
+
+                        <th>
+                            NAMA KATEGORI
+                        </th>
+
+                        <th>
+                            OPD
+                        </th>
+
+                        <th class="action-column">
+                            AKSI
+                        </th>
+
                     </tr>
 
                 </thead>
 
 
                 <tbody id="categoryTable">
+
                     @forelse ($kategori as $index => $item)
-                        <!-- DATA 1 -->
-                        <tr data-divisi="{{ $item->devisi->nama_devisi }}">
 
-                            <td>{{ $index + 1 }}</td>
+                        <tr
+                            data-divisi="{{ $item->devisi->pluck('nama_devisi')->implode('|') }}"
+                        >
 
+                            {{-- NO --}}
                             <td>
-                                <strong>{{ $item->nama_kategori }}</strong>
+                                {{ $index + 1 }}
                             </td>
 
+
+                            {{-- KATEGORI --}}
                             <td>
-                                <span class="division-badge">
-                                    {{ $item->devisi->nama_devisi }}
-                                </span>
+
+                                <strong>
+                                    {{ $item->nama_kategori }}
+                                </strong>
+
                             </td>
 
+
+                            {{-- OPD --}}
+                            <td>
+
+                                <div class="division-badges">
+
+                                    @forelse ($item->devisi as $opd)
+
+                                        <span class="division-badge">
+                                            {{ $opd->nama_devisi }}
+                                        </span>
+
+                                    @empty
+
+                                        <span class="division-badge">
+                                            Belum ada OPD
+                                        </span>
+
+                                    @endforelse
+
+                                </div>
+
+                            </td>
+
+
+                            {{-- AKSI --}}
                             <td>
 
                                 <div class="action-buttons">
 
-                                    <button class="btn-edit"
-                                        onclick="openEditModal(
-                                                '{{ $item->id_kategori }}',
-                                                '{{ $item->nama_kategori }}',
-                                                '{{ $item->id_devisi }}',
-                                            )">
+                                    {{-- EDIT --}}
+                                    <button
+                                        type="button"
+                                        class="btn-edit"
+                                        onclick='openEditModal(
+                                            @json($item->id_kategori),
+                                            @json($item->nama_kategori)
+                                        )'
+                                    >
                                         ✎ Edit
                                     </button>
 
-                                    <button class="btn-delete"
-                                        onclick="openDeleteModal('{{ $item->id_kategori }}', '{{ $item->nama_kategori }}')">
+
+                                    {{-- TAMBAH OPD --}}
+                                    <button
+                                        type="button"
+                                        class="btn-add-opd"
+                                        onclick='openOpdModal(
+                                            @json($item->id_kategori),
+                                            @json($item->nama_kategori),
+                                            @json($item->devisi->pluck("id_devisi")->values())
+                                        )'
+                                    >
+                                        ＋ OPD
+                                    </button>
+
+
+                                    {{-- HAPUS --}}
+                                    <button
+                                        type="button"
+                                        class="btn-delete"
+                                        onclick='openDeleteModal(
+                                            @json($item->id_kategori),
+                                            @json($item->nama_kategori)
+                                        )'
+                                    >
                                         ♜ Hapus
                                     </button>
 
@@ -150,9 +253,22 @@
                             </td>
 
                         </tr>
-                    @empty
-                    @endforelse
 
+                    @empty
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                style="text-align: center;"
+                            >
+                                Belum ada kategori.
+
+                            </td>
+
+                        </tr>
+
+                    @endforelse
 
                 </tbody>
 
@@ -169,104 +285,251 @@
 
 
 
+    {{-- =================================================
+        MODAL TAMBAH / EDIT KATEGORI
+    ================================================== --}}
 
-
-    <!-- ================================================= -->
-    <!-- MODAL TAMBAH / EDIT -->
-    <!-- ================================================= -->
-
-    <div class="modal-overlay" id="categoryModal" onclick="closeModalOutside(event)">
+    <div
+        class="modal-overlay"
+        id="categoryModal"
+        onclick="closeModalOutside(event)"
+    >
 
         <div class="modal">
 
+            {{-- HEADER --}}
             <div class="modal-header">
 
                 <h2 id="modalTitle">
                     Tambah Kategori
                 </h2>
 
-                <button class="modal-close" onclick="closeModal()">
+                <button
+                    type="button"
+                    class="modal-close"
+                    onclick="closeModal()"
+                >
                     ×
                 </button>
 
             </div>
 
 
+            {{-- BODY --}}
             <div class="modal-body">
 
-                <form action="{{ route('admin.kategori.store') }}" method="POST" id="categoryForm">
+                <form
+                    action="{{ route('admin.kategori.store') }}"
+                    method="POST"
+                    id="categoryForm"
+                >
+
                     @csrf
 
-                    <input type="hidden" name="_method" id="formMethod">
+                    <input
+                        type="hidden"
+                        name="_method"
+                        id="formMethod"
+                    >
+
+
                     <div class="form-group">
 
                         <label>
                             Nama Kategori <span>*</span>
                         </label>
 
-                        <input type="text" name="kategori" id="categoryName" placeholder="Masukkan nama kategori...">
+                        <input
+                            type="text"
+                            name="kategori"
+                            id="categoryName"
+                            placeholder="Masukkan nama kategori..."
+                        >
+
                         @error('kategori')
-                            <p>{{ $message }}</p>
+                            <p>
+                                {{ $message }}
+                            </p>
                         @enderror
-                    </div>
-
-
-                    <div class="form-group">
-
-                        <label>
-                            OPD <span>*</span>
-                        </label>
-
-                        <div class="modal-select">
-
-                            <select name="devisi" id="categoryDivision">
-
-                                <option value="">
-                                    Pilih OPD...
-                                </option>
-
-                                @forelse ($devisi as $item)
-                                    <option value="{{ $item->id_devisi }}">
-                                        {{ $item->nama_devisi }}
-                                    </option>
-                                @empty
-                                @endforelse
-
-                            </select>
-                            @error('devisi')
-                                <p>{{ $message }}</p>
-                            @enderror
-                            <span>⌄</span>
-
-                        </div>
 
                     </div>
+
+                </form>
 
             </div>
 
 
+            {{-- FOOTER --}}
             <div class="modal-footer">
 
-                <button type="button" class="btn-cancel" onclick="closeModal()">
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="closeModal()"
+                >
                     Batal
                 </button>
 
-                <button type="submit" class="btn-save">
+                <button
+                    type="submit"
+                    form="categoryForm"
+                    class="btn-save"
+                >
                     Simpan Kategori
                 </button>
 
             </div>
 
-            </form>
         </div>
+
     </div>
 
 
-    <!-- ================================================= -->
-    <!-- MODAL HAPUS -->
-    <!-- ================================================= -->
 
-    <div class="modal-overlay" id="deleteModal" onclick="closeDeleteOutside(event)">
+    {{-- =================================================
+        MODAL TAMBAH OPD
+    ================================================== --}}
+
+    <div
+        class="modal-overlay"
+        id="opdModal"
+        onclick="closeOpdModalOutside(event)"
+    >
+
+        <div class="modal">
+
+            {{-- HEADER --}}
+            <div class="modal-header">
+
+                <h2>
+                    Tambah Penanganan OPD
+                </h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    onclick="closeOpdModal()"
+                >
+                    ×
+                </button>
+
+            </div>
+
+
+            {{-- BODY --}}
+            <div class="modal-body">
+
+                {{-- NAMA KATEGORI --}}
+                <div class="form-group">
+
+                    <label>
+                        Kategori
+                    </label>
+
+                    <input
+                        type="text"
+                        id="opdCategoryName"
+                        readonly
+                    >
+
+                </div>
+
+
+                {{-- FORM OPD --}}
+                <form
+                    method="POST"
+                    id="opdForm"
+                >
+
+                    @csrf
+
+
+                    <div class="form-group">
+
+                        <label>
+                            OPD Penanganan
+                        </label>
+
+
+                        <div class="opd-checkbox-list">
+
+                            @forelse ($devisi as $item)
+
+                                <label class="opd-checkbox">
+
+                                    <input
+                                        type="checkbox"
+                                        name="devisi[]"
+                                        value="{{ $item->id_devisi }}"
+                                        class="opd-checkbox-input"
+                                    >
+
+                                    <span>
+                                        {{ $item->nama_devisi }}
+                                    </span>
+
+                                </label>
+
+                            @empty
+
+                                <p>
+                                    Belum ada OPD.
+                                </p>
+
+                            @endforelse
+
+                        </div>
+
+
+                        @error('devisi')
+                            <p>
+                                {{ $message }}
+                            </p>
+                        @enderror
+
+                    </div>
+
+                </form>
+
+            </div>
+
+
+            {{-- FOOTER --}}
+            <div class="modal-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="closeOpdModal()"
+                >
+                    Batal
+                </button>
+
+                <button
+                    type="submit"
+                    form="opdForm"
+                    class="btn-save"
+                >
+                    Simpan
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    {{-- =================================================
+        MODAL HAPUS
+    ================================================== --}}
+
+    <div
+        class="modal-overlay"
+        id="deleteModal"
+        onclick="closeDeleteOutside(event)"
+    >
 
         <div class="delete-modal">
 
@@ -274,83 +537,107 @@
                 ♜
             </div>
 
-            <h2>Hapus Kategori?</h2>
+
+            <h2>
+                Hapus Kategori?
+            </h2>
+
 
             <p>
                 Apakah Anda yakin ingin menghapus kategori ini?
             </p>
 
+
             <div class="delete-description">
 
                 Kategori
-                <strong id="deleteCategoryName">
-                    {{ $kategori }}
-                </strong>
+
+                <strong id="deleteCategoryName"></strong>
+
                 akan dihapus secara permanen dan tidak dapat dipulihkan.
 
             </div>
 
 
-            <form id="deleteForm" method="post">
+            <form
+                id="deleteForm"
+                method="POST"
+            >
+
+                @csrf
+                @method('DELETE')
+
                 <div class="delete-actions">
 
-                    <button type="button" class="btn-cancel" onclick="closeDeleteModal()">
+                    <button
+                        type="button"
+                        class="btn-cancel"
+                        onclick="closeDeleteModal()"
+                    >
                         Batal
                     </button>
-                    @csrf
-                    @method('DELETE')
-                    <button type="submit" class="btn-confirm-delete" onclick="deleteCategory()">
+
+
+                    <button
+                        type="submit"
+                        class="btn-confirm-delete"
+                    >
                         Hapus
+                    </button>
+
+                </div>
+
             </form>
-
-
-
 
         </div>
 
-        </button>
-    </div>
-
     </div>
 
 
+
+    {{-- =================================================
+        JAVASCRIPT
+    ================================================== --}}
 
     <script>
+
         /*
-                                            ------------------------------------------------------------------------
-                                            MODAL TAMBAH
-                                            --------------------------------------------------------------------------
-                                            */
+        |--------------------------------------------------------------------------
+        | MODAL TAMBAH KATEGORI
+        |--------------------------------------------------------------------------
+        */
 
         function openAddModal() {
 
             document.getElementById('modalTitle').innerText =
                 'Tambah Kategori';
 
-            document.getElementById('categoryName').value = '';
-
-            document.getElementById('categoryDivision').value = '';
+            document.getElementById('categoryName').value =
+                '';
 
             document.getElementById('categoryForm').action =
                 "{{ route('admin.kategori.store') }}";
 
-            document.getElementById('formMethod').value = '';
+            document.getElementById('formMethod').value =
+                '';
 
-            document.querySelector('.btn-save').innerText =
+            document.querySelector('#categoryModal .btn-save').innerText =
                 'Simpan Kategori';
 
             document.getElementById('categoryModal')
                 .classList.add('show');
+
         }
+
 
 
         /*
         |--------------------------------------------------------------------------
-        | MODAL EDIT
+        | MODAL EDIT KATEGORI
         |--------------------------------------------------------------------------
         */
 
-        function openEditModal(id, name, division) {
+        function openEditModal(id, name) {
 
             document.getElementById('modalTitle').innerText =
                 'Edit Kategori';
@@ -358,25 +645,25 @@
             document.getElementById('categoryName').value =
                 name;
 
-            document.getElementById('categoryDivision').value =
-                division;
-
             document.getElementById('categoryForm').action =
-                "/admin/kategori/update/" + id;
+                '/admin/kategori/update/' + id;
 
             document.getElementById('formMethod').value =
                 'PUT';
 
-            document.querySelector('.btn-save').innerText =
+            document.querySelector('#categoryModal .btn-save').innerText =
                 'Simpan Perubahan';
 
             document.getElementById('categoryModal')
                 .classList.add('show');
+
         }
+
+
 
         /*
         |--------------------------------------------------------------------------
-        | CLOSE MODAL
+        | TUTUP MODAL KATEGORI
         |--------------------------------------------------------------------------
         */
 
@@ -397,39 +684,65 @@
         }
 
 
+
         /*
         |--------------------------------------------------------------------------
-        | SIMPAN DUMMY
+        | MODAL TAMBAH OPD
         |--------------------------------------------------------------------------
         */
 
-        function saveCategory() {
+        function openOpdModal(id, name, currentDivisions) {
 
-            const name =
-                document.getElementById('categoryName').value;
+            document.getElementById('opdCategoryName').value =
+                name;
 
-            const division =
-                document.getElementById('categoryDivision').value;
+            document.getElementById('opdForm').action =
+                '/admin/kategori/' + id + '/tambah-devisi';
 
-            if (!name || !division) {
 
-                alert('Nama kategori dan divisi wajib diisi.');
+            const checkboxes =
+                document.querySelectorAll(
+                    '.opd-checkbox-input'
+                );
 
-                return;
-            }
 
-            alert(
-                'Data berhasil disimpan sebagai tampilan dummy.'
-            );
+            checkboxes.forEach(function (checkbox) {
 
-            closeModal();
+                checkbox.checked =
+                    currentDivisions.includes(
+                        Number(checkbox.value)
+                    );
+
+            });
+
+
+            document.getElementById('opdModal')
+                .classList.add('show');
 
         }
 
 
+        function closeOpdModal() {
+
+            document.getElementById('opdModal')
+                .classList.remove('show');
+
+        }
+
+
+        function closeOpdModalOutside(event) {
+
+            if (event.target === event.currentTarget) {
+                closeOpdModal();
+            }
+
+        }
+
+
+
         /*
         |--------------------------------------------------------------------------
-        | DELETE MODAL
+        | MODAL HAPUS
         |--------------------------------------------------------------------------
         */
 
@@ -439,7 +752,7 @@
                 .innerText = name;
 
             document.getElementById('deleteForm').action =
-                "/admin/kategori/delete/" + id;
+                '/admin/kategori/delete/' + id;
 
             document.getElementById('deleteModal')
                 .classList.add('show');
@@ -464,20 +777,10 @@
         }
 
 
-        function deleteCategory(id, name) {
-
-            // alert(
-            //     'Kategori dihapus.'
-            // );
-
-            closeDeleteModal();
-
-        }
-
 
         /*
         |--------------------------------------------------------------------------
-        | SEARCH
+        | SEARCH KATEGORI
         |--------------------------------------------------------------------------
         */
 
@@ -489,32 +792,43 @@
                 .value
                 .toLowerCase();
 
+
             const rows =
                 document.querySelectorAll(
                     '#categoryTable tr'
                 );
 
-            rows.forEach(function(row) {
+
+            rows.forEach(function (row) {
+
+                const categoryCell =
+                    row.querySelector('td:nth-child(2)');
+
+
+                if (!categoryCell) {
+                    return;
+                }
+
 
                 const name =
-                    row
-                    .querySelector('td:nth-child(2)')
-                    .innerText
+                    categoryCell.innerText
                     .toLowerCase();
 
+
                 row.style.display =
-                    name.includes(keyword) ?
-                    '' :
-                    'none';
+                    name.includes(keyword)
+                        ? ''
+                        : 'none';
 
             });
 
         }
 
 
+
         /*
         |--------------------------------------------------------------------------
-        | FILTER DIVISI
+        | FILTER OPD
         |--------------------------------------------------------------------------
         */
 
@@ -525,19 +839,28 @@
                 .getElementById('filterDivisi')
                 .value;
 
+
             const rows =
                 document.querySelectorAll(
                     '#categoryTable tr'
                 );
 
-            rows.forEach(function(row) {
+
+            rows.forEach(function (row) {
 
                 const division =
-                    row.dataset.divisi;
+                    row.dataset.divisi || '';
+
+
+                const divisions =
+                    division
+                    .split('|')
+                    .filter(Boolean);
+
 
                 if (
                     selected === '' ||
-                    division === selected
+                    divisions.includes(selected)
                 ) {
 
                     row.style.display = '';
@@ -553,29 +876,28 @@
         }
 
 
+
         /*
         |--------------------------------------------------------------------------
-        | ESCAPE MODAL
+        | ESCAPE
         |--------------------------------------------------------------------------
         */
 
         document.addEventListener(
             'keydown',
-            function(event) {
+            function (event) {
 
                 if (event.key === 'Escape') {
 
                     closeModal();
+                    closeOpdModal();
                     closeDeleteModal();
 
                 }
 
             }
         );
+
     </script>
-
-    </body>
-
-    </html>
 
 @endsection

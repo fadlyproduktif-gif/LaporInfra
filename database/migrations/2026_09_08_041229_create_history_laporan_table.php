@@ -8,24 +8,22 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('laporan', function (Blueprint $table) {
+        Schema::create('history_laporan', function (Blueprint $table) {
+            $table->id('id_history');
 
-            $table->id('id_laporan');
+            $table->foreignId('id_laporan')
+                ->constrained(
+                    table: 'laporan',
+                    column: 'id_laporan'
+                )
+                ->cascadeOnDelete();
 
-            $table->foreignId('id_user')
+            $table->foreignId('id_user_pengubah')
                 ->constrained(
                     table: 'users',
                     column: 'id_user'
                 )
                 ->restrictOnDelete();
-
-            $table->string('nama_laporan');
-
-            $table->string('deskripsi');
-
-            $table->string('lokasi');
-
-            $table->string('foto_lokasi');
 
             $table->foreignId('id_status')
                 ->nullable()
@@ -37,12 +35,8 @@ return new class extends Migration
 
             $table->string('keterangan_proggress');
 
-            $table->foreignId('id_kategori')
-                ->constrained(
-                    table: 'kategori',
-                    column: 'id_kategori'
-                )
-                ->restrictOnDelete();
+            $table->string('history_foto')
+                ->nullable();
 
             $table->timestamps();
         });
@@ -50,6 +44,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('laporan');
+        Schema::dropIfExists('history_laporan');
     }
 };

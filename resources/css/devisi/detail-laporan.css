@@ -8,7 +8,6 @@
     padding: 10px;
 }
 
-
 /* ==================================================
    TOP
 ================================================== */
@@ -57,7 +56,6 @@
     margin: 0 5px;
 }
 
-
 /* ==================================================
    STATUS
 ================================================== */
@@ -102,7 +100,6 @@
     color: #24539c;
 
     border: 1px solid #295bab;
-
 }
 
 .status-processing span {
@@ -147,7 +144,6 @@
     color: #16805c;
 
     border: 1px solid #29ab45;
-
 }
 
 .status-accepted span {
@@ -183,7 +179,6 @@
     gap: 16px;
 }
 
-
 /* ==================================================
    CARD
 ================================================== */
@@ -203,7 +198,6 @@
 .detail-side .detail-card {
     margin-bottom: 0;
 }
-
 
 /* ==================================================
    CARD HEADER
@@ -248,7 +242,6 @@
     font-size: 14px;
 }
 
-
 /* ==================================================
    CARD BODY
 ================================================== */
@@ -256,7 +249,6 @@
 .card-body {
     padding: 18px;
 }
-
 
 /* ==================================================
    INFORMATION ROW
@@ -300,7 +292,6 @@
     line-height: 1.5;
 }
 
-
 /* ==================================================
    CATEGORY
 ================================================== */
@@ -322,7 +313,6 @@
     font-weight: 600;
 }
 
-
 /* ==================================================
    DESCRIPTION
 ================================================== */
@@ -340,7 +330,6 @@
 
     line-height: 1.7;
 }
-
 
 /* ==================================================
    PHOTO
@@ -365,7 +354,6 @@
 
     border-radius: 8px;
 }
-
 
 /* ==================================================
    REPORTER
@@ -433,7 +421,6 @@
     font-size: 13px;
 }
 
-
 /* ==================================================
    HANDLING
 ================================================== */
@@ -499,7 +486,6 @@
     box-shadow: 0 0 0 3px rgba(40, 84, 164, 0.08);
 }
 
-
 /* ==================================================
    SAVE BUTTON
 ================================================== */
@@ -538,7 +524,6 @@
     transform: translateY(1px);
 }
 
-
 /* ==================================================
    LAST UPDATE
 ================================================== */
@@ -556,7 +541,6 @@
 
     line-height: 1.5;
 }
-
 
 /* ==================================================
    BOTTOM BUTTON
@@ -598,13 +582,472 @@
     background: #173764;
 }
 
+/* MODAL HISTORY */
+
+.history-button {
+    width: 34px;
+    height: 34px;
+
+    padding: 0;
+    margin-left: auto;
+
+    border: 1px solid #dce2ea;
+    background: white;
+
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+    font-size: 15px;
+    color: #1b2d4f;
+}
+/* =========================================================
+   ADMIN READ ONLY BADGE
+   ========================================================= */
+
+.admin-readonly-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+
+    padding: 7px 12px;
+
+    border: 1px solid #dbe3ee;
+    border-radius: 999px;
+
+    background: #f8fafc;
+    color: #94a3b8;
+
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+
+    white-space: nowrap;
+}
+
+.admin-readonly-badge .readonly-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 10px;
+    color: #94a3b8;
+}
+
+/* =========================================================
+   HISTORY BUTTON
+========================================================= */
+
+.history-button {
+    width: 34px;
+    height: 34px;
+
+    margin-left: auto;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #dbe3ee;
+    border-radius: 8px;
+
+    background: #ffffff;
+    color: #334155;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.history-button:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+/* =========================================================
+   HISTORY MODAL
+========================================================= */
+
+.history-modal {
+    position: fixed;
+    inset: 0;
+
+    z-index: 2000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(15, 23, 42, 0.48);
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.2s ease,
+        visibility 0.2s ease;
+}
+
+.history-modal.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =========================================================
+   HISTORY MODAL CONTENT
+========================================================= */
+
+.history-modal-content {
+    width: min(620px, 100%);
+    max-height: 82vh;
+
+    display: flex;
+    flex-direction: column;
+
+    background: #ffffff;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
+}
+
+/* =========================================================
+   HISTORY HEADER
+========================================================= */
+
+.history-modal-header {
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 18px 20px;
+
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.history-modal-header h2 {
+    margin: 0;
+
+    font-size: 18px;
+    line-height: 1.4;
+    font-weight: 700;
+
+    color: #0f172a;
+}
+
+.history-modal-header p {
+    margin: 4px 0 0;
+
+    font-size: 12px;
+
+    color: #94a3b8;
+}
+
+.history-modal-header button {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    border: 0;
+    border-radius: 7px;
+
+    background: transparent;
+
+    color: #64748b;
+
+    font-size: 22px;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+}
+
+.history-modal-header button:hover {
+    background: #f1f5f9;
+}
+
+/* =========================================================
+   HISTORY BODY
+========================================================= */
+
+.history-modal-body {
+    min-height: 0;
+
+    padding: 18px 20px 20px;
+
+    overflow-y: auto;
+}
+
+/* =========================================================
+   CURRENT STATUS
+========================================================= */
+
+.history-current {
+    padding: 14px 16px;
+
+    margin-bottom: 20px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 10px;
+
+    background: #f8fafc;
+}
+
+.history-title {
+    margin-bottom: 5px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.04em;
+
+    color: #94a3b8;
+}
+
+.history-status {
+    margin-bottom: 5px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    color: #0f172a;
+}
+
+.history-current p {
+    margin: 0;
+
+    font-size: 13px;
+    line-height: 1.5;
+
+    color: #475569;
+}
+
+/* =========================================================
+   HISTORY LIST
+========================================================= */
+
+.history-list {
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================================
+   HISTORY ITEM
+========================================================= */
+
+.history-item {
+    display: flex;
+    gap: 11px;
+
+    position: relative;
+
+    padding-bottom: 20px;
+}
+
+.history-item:last-child {
+    padding-bottom: 0;
+}
+
+.history-timeline {
+    position: relative;
+
+    width: 14px;
+
+    flex-shrink: 0;
+}
+
+.history-timeline::after {
+    content: "";
+
+    position: absolute;
+
+    top: 15px;
+    left: 6px;
+
+    width: 1px;
+    height: calc(100% + 4px);
+
+    background: #dbe3ee;
+}
+
+.history-item:last-child .history-timeline::after {
+    display: none;
+}
+
+.history-dot {
+    position: relative;
+    z-index: 1;
+
+    display: block;
+
+    width: 11px;
+    height: 11px;
+
+    margin-top: 4px;
+
+    border-radius: 50%;
+
+    background: #2563eb;
+}
+
+/* =========================================================
+   USER
+========================================================= */
+
+.history-item-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.history-user {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.history-user strong {
+    font-size: 13px;
+    font-weight: 700;
+
+    color: #0f172a;
+}
+
+.history-user span {
+    font-size: 12px;
+
+    color: #64748b;
+}
+
+.history-date {
+    display: block;
+
+    margin-top: 2px;
+
+    font-size: 11px;
+
+    color: #94a3b8;
+}
+
+/* =========================================================
+   HISTORY CARD
+========================================================= */
+
+.history-card {
+    margin-top: 8px;
+
+    padding: 12px 13px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 9px;
+
+    background: #ffffff;
+}
+
+.history-row + .history-row {
+    margin-top: 10px;
+}
+
+.history-row > span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    letter-spacing: 0.03em;
+
+    color: #94a3b8;
+}
+
+.history-row > strong {
+    display: block;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    color: #334155;
+}
+
+.history-row p {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.55;
+
+    color: #475569;
+}
+
+/* =========================================================
+   HISTORY PHOTO
+========================================================= */
+
+.history-thumbnail {
+    display: block;
+
+    width: 100px;
+    height: 70px;
+
+    margin-top: 7px;
+
+    object-fit: cover;
+
+    border-radius: 7px;
+
+    border: 1px solid #e2e8f0;
+}
+
+.history-no-photo {
+    margin: 0;
+
+    font-size: 12px;
+
+    color: #94a3b8;
+}
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.history-empty {
+    padding: 30px 10px;
+
+    text-align: center;
+
+    font-size: 13px;
+
+    color: #94a3b8;
+}
 
 /* ==================================================
    RESPONSIVE
 ================================================== */
 
 @media (max-width: 1000px) {
-
     .detail-grid {
         grid-template-columns: 1fr;
     }
@@ -614,12 +1057,9 @@
 
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
 }
 
-
 @media (max-width: 700px) {
-
     .detail-heading {
         flex-direction: column;
     }
@@ -642,12 +1082,9 @@
     .photo-body img {
         height: 220px;
     }
-
 }
 
-
 @media (max-width: 480px) {
-
     .detail-heading h1 {
         font-size: 19px;
     }
@@ -663,5 +1100,4 @@
     .photo-body img {
         height: 190px;
     }
-
 }

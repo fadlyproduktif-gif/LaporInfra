@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\Devisi;
 use App\Models\Kategori;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class KategoriSeeder extends Seeder
 {
@@ -56,8 +57,12 @@ class KategoriSeeder extends Seeder
 
             foreach ($kategoriList as $namaKategori) {
 
-                Kategori::firstOrCreate([
+                $kategori = Kategori::firstOrCreate([
                     'nama_kategori' => $namaKategori,
+                ]);
+
+                DB::table('kategori_devisi')->insertOrIgnore([
+                    'id_kategori' => $kategori->id_kategori,
                     'id_devisi' => $opd->id_devisi,
                 ]);
             }

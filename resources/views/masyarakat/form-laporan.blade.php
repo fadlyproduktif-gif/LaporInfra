@@ -4,6 +4,8 @@
 
 @push('styles')
     @vite('resources/css/masyarakat/form-laporan.css')
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 @endpush
 
 @section('content')
@@ -123,6 +125,22 @@
 
                 </div>
 
+                <div class="form-group">
+
+                    <label>
+                        Titik Lokasi <span>*</span>
+                    </label>
+
+                    <div id="map" style="height: 350px; border-radius: 10px;"></div>
+
+                    <small>
+                        Klik pada peta untuk menentukan lokasi kerusakan.
+                    </small>
+
+                    <input type="hidden" name="latitude" id="latitude">
+                    <input type="hidden" name="longitude" id="longitude">
+
+                </div>
                 <!-- Foto Infrastruktur -->
                 <div class="form-group">
 
@@ -232,6 +250,65 @@
                 };
 
                 reader.readAsDataURL(file);
+            });
+        </script>
+
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+        <script>
+            const defaultLocation = [-0.2167, 100.6333];
+
+            const map = L.map('map').setView(defaultLocation, 14);
+
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; OpenStreetMap contributors'
+            }).addTo(map);
+
+            let marker;
+
+            function setLocation(latitude, longitude) {
+
+                const position = [latitude, longitude];
+
+                if (marker) {
+                    marker.setLatLng(position);
+                } else {
+                    marker = L.marker(position).addTo(map);
+                }
+
+                map.setView(position, 17);
+
+                document.getElementById('latitude').value = latitude;
+                document.getElementById('longitude').value = longitude;
+            }
+
+            if (navigator.geolocation) {
+
+                navigator.geolocation.getCurrentPosition(
+                    function(position) {
+
+                        const latitude = position.coords.latitude;
+                        const longitude = position.coords.longitude;
+
+                        setLocation(latitude, longitude);
+
+                    },
+                    function() {
+
+                        console.log('Lokasi pengguna tidak dapat diperoleh.');
+
+                    }
+                );
+
+            }
+
+            map.on('click', function(e) {
+
+                setLocation(
+                    e.latlng.lat,
+                    e.latlng.lng
+                );
+
             });
         </script>
     @endpush

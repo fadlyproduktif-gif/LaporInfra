@@ -34,6 +34,8 @@ class LaporanController extends Controller
             'nama_laporan' => 'required|string|max:255',
             'id_kategori' => 'required|exists:kategori,id_kategori',
             'lokasi' => 'required|string|max:255',
+            'latitude' => 'required|numeric|between:-90,90',
+            'longitude' => 'required|numeric|between:-180,180',
             'foto_lokasi' => 'required|image|mimes:jpg,jpeg,png|max:2048',
             'deskripsi' => 'required|string|max:1000',
         ]);
@@ -45,6 +47,8 @@ class LaporanController extends Controller
             'nama_laporan' => $validated['nama_laporan'],
             'id_kategori' => $validated['id_kategori'],
             'lokasi' => $validated['lokasi'],
+            'latitude' => $validated['latitude'],
+            'longitude' => $validated['longitude'],
             'foto_lokasi' => $pathfoto,
             'deskripsi' => $validated['deskripsi'],
             'id_status' => 1,
@@ -54,10 +58,13 @@ class LaporanController extends Controller
         return redirect()->route('masyarakat.laporan-saya');
     }
 
-    public function detailLaporan(int $id_laporan) {
-        $laporan = Laporan::findOrFail($id_laporan);
+    public function detailLaporan(int $id_laporan)
+    {
+        $laporan = Laporan::with([
+            'history.userPengubah.devisi',
+            'history.statusLaporan',
+        ])->findOrFail($id_laporan);
+
         return view('masyarakat.detail-laporan', compact('laporan'));
     }
 }
-
-

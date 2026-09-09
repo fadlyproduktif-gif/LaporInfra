@@ -12,7 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('laporan', function (Blueprint $table) {
-            $table->dropColumn('status_laporan');
+            $table->decimal('latitude', 10, 7)
+                ->nullable()
+                ->after('lokasi');
+
+            $table->decimal('longitude', 10, 7)
+                ->nullable()
+                ->after('latitude');
+
+            $table->string('foto_progress')
+                ->nullable()
+                ->after('keterangan_proggress');
         });
     }
 
@@ -22,7 +32,11 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('laporan', function (Blueprint $table) {
-            $table->string('status_laporan')->nullable();
+            $table->dropColumn([
+                'latitude',
+                'longitude',
+                'foto_progress',
+            ]);
         });
     }
 };
