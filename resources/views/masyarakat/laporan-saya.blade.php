@@ -21,7 +21,7 @@
 
             <div class="laporan-count">
                 <span>▣</span>
-                <strong>{{$laporan->count()}}</strong>
+                <strong>{{ $laporan->count() }}</strong>
                 <span>Laporan</span>
             </div>
 
@@ -58,24 +58,24 @@
                 <article class="laporan-card processing-card">
 
                     <div class="laporan-number">
-                        {{$index + 1}}
+                        {{ $index + 1 }}
                     </div>
 
 
                     <div class="laporan-info">
 
                         <h2>
-                            {{$item->nama_laporan}}
+                            {{ $item->nama_laporan }}
                         </h2>
 
                         <div class="laporan-meta">
 
                             <span class="kategori">
-                                {{$item->kategori->nama_kategori}}
+                                {{ $item->kategori->nama_kategori }}
                             </span>
 
                             <span>
-                               {{$item->created_at}}
+                                {{ $item->created_at }}
                             </span>
 
                         </div>
@@ -84,14 +84,27 @@
 
 
                     <div class="laporan-action">
+                        @php
+                            $statusKey = match ($item->id_status) {
+                                1 => 'waiting',
+                                2 => 'postponed',
+                                3 => 'rejected',
+                                4 => 'accepted',
+                                5 => 'processing',
+                                6 => 'completed',
+                                default => 'unknown',
+                            };
+                        @endphp
 
-                        <span class="status processing-status">
-                            {{$item->StatusLaporan->nama_status}}
-                        </span>
+                        <td>
+                            <span class="status-pill status-{{ $statusKey }}">
+                                ● {{ $item->statusLaporan->nama_status }}
+                            </span>
+                        </td>
 
-                            <a href="{{ route('masyarakat.detail-laporan', $item->id_laporan) }}" class="btn-detail">
-                                Lihat Detail
-                            </a>
+                        <a href="{{ route('masyarakat.detail-laporan', $item->id_laporan) }}" class="btn-detail">
+                            Lihat Detail
+                        </a>
 
                     </div>
 

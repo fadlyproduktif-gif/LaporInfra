@@ -381,7 +381,6 @@
     visibility: visible;
 }
 
-
 /* =========================================================
    HISTORY MODAL CONTENT
 ========================================================= */
@@ -399,10 +398,8 @@
 
     overflow: hidden;
 
-    box-shadow:
-        0 20px 50px rgba(15, 23, 42, 0.18);
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.18);
 }
-
 
 /* =========================================================
    HISTORY HEADER
@@ -469,7 +466,6 @@
     background: #f1f5f9;
 }
 
-
 /* =========================================================
    HISTORY BODY
 ========================================================= */
@@ -481,7 +477,6 @@
 
     overflow-y: auto;
 }
-
 
 /* =========================================================
    CURRENT STATUS
@@ -527,7 +522,6 @@
     color: #475569;
 }
 
-
 /* =========================================================
    HISTORY LIST
 ========================================================= */
@@ -536,7 +530,6 @@
     display: flex;
     flex-direction: column;
 }
-
 
 /* =========================================================
    HISTORY ITEM
@@ -597,7 +590,6 @@
     background: #2563eb;
 }
 
-
 /* =========================================================
    USER
 ========================================================= */
@@ -636,7 +628,6 @@
 
     color: #94a3b8;
 }
-
 
 /* =========================================================
    HISTORY CARD
@@ -688,7 +679,6 @@
     color: #475569;
 }
 
-
 /* =========================================================
    HISTORY PHOTO
 ========================================================= */
@@ -716,7 +706,6 @@
     color: #94a3b8;
 }
 
-
 /* =========================================================
    EMPTY
 ========================================================= */
@@ -729,4 +718,76 @@
     font-size: 13px;
 
     color: #94a3b8;
+}
+
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+    border-radius: 16px;
+    font-size: 15px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.status-pill i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.status-waiting {
+    background: #fff8e5;
+    color: #d18a00;
+}
+
+.status-waiting i {
+    background: #ffb000;
+}
+
+.status-processing {
+    background: #edf3fc;
+    color: #24539c;
+}
+
+.status-processing i {
+    background: #2854a4;
+}
+
+.status-completed {
+    background: #e7faf3;
+    color: #00a66f;
+}
+
+.status-completed i {
+    background: #00b879;
+}
+
+.status-postponed {
+    background: #fff4e5;
+    color: #c76b00;
+}
+
+.status-postponed i {
+    background: #f59e0b;
+}
+
+.status-rejected {
+    background: #fff0f0;
+    color: #c53030;
+}
+
+.status-rejected i {
+    background: #e53e3e;
+}
+
+.status-accepted {
+    background: #e7faf3;
+    color: #16805c;
+}
+
+.status-accepted i {
+    background: #20a875;
 }

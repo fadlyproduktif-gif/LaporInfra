@@ -15,7 +15,6 @@
     line-height: 1.6;
 }
 
-
 /* =========================
    REPORT BANNER
 ========================= */
@@ -82,7 +81,6 @@
     white-space: nowrap;
 }
 
-
 /* =========================
    REPORT SECTION
 ========================= */
@@ -131,7 +129,7 @@
     gap: 22px;
 
     margin: 16px 0;
-    
+
     color: #8993a7;
     font-size: 14px;
 }
@@ -162,7 +160,6 @@
 .completed {
     background: #00b879;
 }
-
 
 /* =========================
    REPORT CARD
@@ -249,30 +246,77 @@
     gap: 10px;
 }
 
-.status {
-    padding: 7px 12px;
-
-    border-radius: 20px;
-
-    font-size: 13px;
-    font-weight: 600;
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 9px;
+    border-radius: 16px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
 }
 
-.processing-status {
-    background: #edf3fc;
-    color: #24539c;
+.status-pill i {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
-.waiting-status {
+.status-waiting {
     background: #fff8e5;
     color: #d18a00;
 }
 
-.completed-status {
+.status-waiting i {
+    background: #ffb000;
+}
+
+.status-processing {
+    background: #edf3fc;
+    color: #24539c;
+}
+
+.status-processing i {
+    background: #2854a4;
+}
+
+.status-completed {
     background: #e7faf3;
     color: #00a66f;
 }
 
+.status-completed i {
+    background: #00b879;
+}
+
+.status-postponed {
+    background: #fff4e5;
+    color: #c76b00;
+}
+
+.status-postponed i {
+    background: #f59e0b;
+}
+
+.status-rejected {
+    background: #fff0f0;
+    color: #c53030;
+}
+
+.status-rejected i {
+    background: #e53e3e;
+}
+
+.status-accepted {
+    background: #e7faf3;
+    color: #16805c;
+}
+
+.status-accepted i {
+    background: #20a875;
+}
 .btn-detail {
     border: 1px solid #b9c9e2;
 
@@ -293,7 +337,6 @@
 ========================= */
 
 @media (max-width: 768px) {
-
     .navbar {
         padding: 0 20px;
     }
@@ -322,6 +365,5 @@
     .footer {
         flex-direction: column;
         gap: 8px;
-        
     }
 }

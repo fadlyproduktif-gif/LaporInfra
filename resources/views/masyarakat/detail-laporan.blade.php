@@ -43,8 +43,19 @@
 
             </div>
 
+            @php
+                $statusKey = match ($laporan->id_status) {
+                    1 => 'waiting',
+                    2 => 'postponed',
+                    3 => 'rejected',
+                    4 => 'accepted',
+                    5 => 'processing',
+                    6 => 'completed',
+                    default => 'unknown',
+                };
+            @endphp
 
-            <span class="detail-status">
+            <span class="status-pill status-{{$statusKey}}">
                 ● {{ $laporan->statusLaporan->nama_status }}
             </span>
 
@@ -269,7 +280,7 @@
 
                     </div>
 
-                    
+
                     <div class="status-content">
                         <span class="status-label">
                             STATUS SAAT INI
@@ -286,7 +297,7 @@
                         @endif
 
 
-                        <span class="detail-status">
+                        <span class="status-pill status-{{$statusKey}}">
                             ● {{ $laporan->statusLaporan->nama_status }}
                         </span>
 
@@ -321,8 +332,8 @@
 
 
     <!-- =========================
-                                     MODAL HISTORY
-                                ========================== -->
+                                         MODAL HISTORY
+                                    ========================== -->
 
     <div id="historyModal" class="history-modal">
 
@@ -480,8 +491,8 @@
 
 
     <!-- =========================
-                                     SCRIPTS
-                                ========================== -->
+                                         SCRIPTS
+                                    ========================== -->
 
     @push('scripts')
 

@@ -123,10 +123,22 @@
 
                     </div>
 
+                    @php
+                        $statusKey = match ($item->id_status) {
+                            1 => 'waiting',
+                            2 => 'postponed',
+                            3 => 'rejected',
+                            4 => 'accepted',
+                            5 => 'processing',
+                            6 => 'completed',
+                            default => 'unknown',
+                        };
+                    @endphp
+
                     <div class="report-action">
 
-                        <span class="status processing-status">
-                            {{ $item->statusLaporan->nama_status }}
+                        <span class="status-pill status-{{$statusKey}}">
+                           ● {{ $item->statusLaporan->nama_status }}
                         </span>
 
                         <a href="{{ route('masyarakat.detail-laporan', $item->id_laporan) }}" class="btn-detail">
@@ -136,7 +148,7 @@
                     </div>
 
                 </article>
-                @empty 
+            @empty
                 <p>kosong</p>
             @endforelse
 
