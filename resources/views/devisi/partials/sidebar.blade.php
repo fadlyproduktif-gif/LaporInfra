@@ -6,7 +6,7 @@
     <!-- Logo -->
     <div class="sidebar-logo">
 
-        <a href="{{ url('/devisi/dashboard') }}" class="sidebar-logo-link">
+        <a href="{{ route('devisi.dashboard') }}" class="sidebar-logo-link">
 
             <div class="sidebar-logo-icon">
                 ⚡
