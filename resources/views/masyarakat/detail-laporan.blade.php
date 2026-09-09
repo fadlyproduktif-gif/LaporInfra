@@ -266,7 +266,7 @@
 
                         <div class="card-icon">
                             ✓
-                        </div>
+                        </div>  
 
                         <h2>
                             Status Laporan

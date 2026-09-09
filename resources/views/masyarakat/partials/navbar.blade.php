@@ -5,7 +5,7 @@ $user = auth()->user();
 
     <div class="navbar-left">
 
-        <a href="{{ url('/masyarakat/dashboard') }}" class="logo-link">
+        <a href="{{ route('masyarakat.dashboard') }}" class="logo-link">
 
             <div class="logo-icon">
                 ⚡
@@ -23,13 +23,13 @@ $user = auth()->user();
     <nav class="navbar-menu">
 
         <a
-            href="{{ url('/masyarakat/dashboard') }}"
+            href="{{ route('masyarakat.dashboard') }}"
             class="{{ request()->is('masyarakat/dashboard') ? 'active' : '' }}">
             Beranda
         </a>
 
         <a
-            href="{{ url('/masyarakat/laporan-saya') }}"
+            href="{{ route('masyarakat.laporan-saya') }}"
             class="{{ request()->is('masyarakat/laporan*') ? 'active' : '' }}">
             Laporan Saya
         </a>
