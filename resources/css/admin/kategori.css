@@ -20,7 +20,6 @@ select {
     font-family: inherit;
 }
 
-
 /* =========================================================
    LAYOUT
 ========================================================= */
@@ -29,7 +28,6 @@ select {
     display: flex;
     min-height: 100vh;
 }
-
 
 /* =========================================================
    SIDEBAR
@@ -49,7 +47,6 @@ select {
     bottom: 0;
     left: 0;
 }
-
 
 /* BRAND */
 
@@ -91,7 +88,6 @@ select {
     color: #12294e;
 }
 
-
 /* ADMIN LABEL */
 
 .admin-label {
@@ -119,7 +115,6 @@ select {
 
     margin-right: 7px;
 }
-
 
 /* MENU */
 
@@ -169,7 +164,6 @@ select {
     text-align: center;
 }
 
-
 /* SIDEBAR BOTTOM */
 
 .sidebar-bottom {
@@ -206,7 +200,6 @@ select {
     color: #ff3c42;
 }
 
-
 /* =========================================================
    MAIN
 ========================================================= */
@@ -218,7 +211,6 @@ select {
 
     min-height: 100vh;
 }
-
 
 /* =========================================================
    HEADER
@@ -297,7 +289,6 @@ select {
     font-weight: 700;
 }
 
-
 /* =========================================================
    CONTENT
 ========================================================= */
@@ -305,7 +296,6 @@ select {
 .content {
     padding: 25px 38px;
 }
-
 
 /* PAGE HEADING */
 
@@ -337,7 +327,6 @@ select {
     gap: 10px;
 }
 
-
 /* TOTAL BADGE */
 
 .total-badge {
@@ -364,7 +353,6 @@ select {
 .total-badge span {
     font-size: 14px;
 }
-
 
 /* ADD BUTTON */
 
@@ -397,7 +385,6 @@ select {
     background: #e87500;
 }
 
-
 /* =========================================================
    FILTER
 ========================================================= */
@@ -418,7 +405,6 @@ select {
 
     margin-bottom: 15px;
 }
-
 
 /* SEARCH */
 
@@ -461,7 +447,6 @@ select {
 .search-box input::placeholder {
     color: #a0adbf;
 }
-
 
 /* SELECT */
 
@@ -508,7 +493,6 @@ select {
 
     pointer-events: none;
 }
-
 
 /* =========================================================
    TABLE
@@ -588,7 +572,6 @@ td strong {
     text-align: center;
 }
 
-
 /* DIVISION BADGE */
 
 .division-badge {
@@ -612,7 +595,6 @@ td strong {
 
     font-weight: 600;
 }
-
 
 /* ACTION */
 
@@ -659,7 +641,6 @@ td strong {
     background: #ffe9e9;
 }
 
-
 /* FOOTER */
 
 .table-footer {
@@ -679,7 +660,6 @@ td strong {
 
     font-size: 11px;
 }
-
 
 /* =========================================================
    MODAL GENERAL
@@ -711,7 +691,6 @@ td strong {
 
     visibility: visible;
 }
-
 
 /* =========================================================
    ADD / EDIT MODAL
@@ -810,7 +789,6 @@ td strong {
     box-shadow: 0 0 0 2px rgba(47, 107, 197, 0.08);
 }
 
-
 /* MODAL SELECT */
 
 .modal-select {
@@ -855,7 +833,6 @@ td strong {
     pointer-events: none;
 }
 
-
 /* MODAL FOOTER */
 
 .modal-footer {
@@ -882,7 +859,6 @@ td strong {
     cursor: pointer;
 }
 
-
 /* CANCEL */
 
 .btn-cancel {
@@ -897,7 +873,6 @@ td strong {
     background: #f7f8fa;
 }
 
-
 /* SAVE */
 
 .btn-save {
@@ -911,7 +886,6 @@ td strong {
 .btn-save:hover {
     background: #e97500;
 }
-
 
 /* =========================================================
    DELETE MODAL
@@ -1016,13 +990,11 @@ td strong {
     background: #d90008;
 }
 
-
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
 @media (max-width: 900px) {
-
     .sidebar {
         width: 190px;
         min-width: 190px;
@@ -1055,12 +1027,9 @@ td strong {
     .action-column {
         width: auto;
     }
-
 }
 
-
 @media (max-width: 700px) {
-
     .sidebar {
         width: 70px;
         min-width: 70px;
@@ -1120,5 +1089,71 @@ td strong {
     table {
         min-width: 700px;
     }
+}
 
+/* =========================
+   MODAL TAMBAH OPD
+========================= */
+
+#opdModal .modal {
+    width: 400px;
+    max-width: 90%;
+}
+
+#opdModal .modal-header {
+    padding: 14px 18px;
+}
+
+#opdModal .modal-body {
+    padding: 16px 18px;
+}
+
+#opdModal .form-group {
+    margin-bottom: 14px;
+}
+
+#opdModal .form-group label {
+    font-size: 12px;
+    margin-bottom: 6px;
+}
+
+#opdModal #opdCategoryName {
+    height: 36px;
+    box-sizing: border-box;
+}
+
+#opdModal .opd-checkbox-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#opdModal .opd-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+
+    min-height: 34px;
+    padding: 6px 9px;
+
+    border: 1px solid #e2e8f0;
+    border-radius: 7px;
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+#opdModal .opd-checkbox:hover {
+    background: #f8fafc;
+}
+
+#opdModal .opd-checkbox-input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+}
+
+#opdModal .modal-footer {
+    padding: 12px 18px;
 }
