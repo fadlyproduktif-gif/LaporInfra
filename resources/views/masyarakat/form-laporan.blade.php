@@ -116,11 +116,17 @@
                         Lokasi Infrastruktur <span>*</span>
                     </label>
 
-                    <input type="text" id="lokasi" name="lokasi"
-                        placeholder="Masukkan alamat atau lokasi kerusakan..." value="{{ old('lokasi') }}">
+                    <div class="lokasi-search">
+                        <input type="text" id="lokasi" name="lokasi" placeholder="Masukkan alamat atau nama jalan..."
+                            value="{{ old('lokasi') }}">
 
-                    <small>
-                        Contoh: Jl. Merdeka No. 12, dekat Kantor Desa
+                        <button type="button" id="btnCariLokasi">
+                            Cari
+                        </button>
+                    </div>
+
+                    <small id="lokasiInfo">
+                        Contoh: Jl. Merdeka No. 12, Payakumbuh
                     </small>
 
                 </div>
@@ -255,6 +261,8 @@
 
         <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
         <script>
             const defaultLocation = [-0.2167, 100.6333];
 
@@ -282,6 +290,7 @@
                 document.getElementById('longitude').value = longitude;
             }
 
+            // Ambil lokasi perangkat
             if (navigator.geolocation) {
 
                 navigator.geolocation.getCurrentPosition(
@@ -302,12 +311,99 @@
 
             }
 
+            // Klik manual pada peta
             map.on('click', function(e) {
 
                 setLocation(
                     e.latlng.lat,
                     e.latlng.lng
                 );
+
+            });
+
+            // =========================
+            // CARI LOKASI BERDASARKAN ALAMAT
+            // =========================
+
+            const lokasiInput = document.getElementById('lokasi');
+            const btnCariLokasi = document.getElementById('btnCariLokasi');
+            const lokasiInfo = document.getElementById('lokasiInfo');
+
+            function cariLokasi() {
+
+                const query = lokasiInput.value.trim();
+
+                if (!query) {
+                    lokasiInfo.textContent = 'Masukkan alamat atau nama jalan terlebih dahulu.';
+                    return;
+                }
+
+                lokasiInfo.textContent = 'Sedang mencari lokasi...';
+
+                const url =
+                    'https://nominatim.openstreetmap.org/search' +
+                    '?format=jsonv2' +
+                    '&q=' + encodeURIComponent(query + ', Payakumbuh, Indonesia') +
+                    '&limit=1';
+
+                fetch(url, {
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    })
+                    .then(response => {
+
+                        if (!response.ok) {
+                            throw new Error('Gagal menghubungi layanan pencarian lokasi.');
+                        }
+
+                        return response.json();
+
+                    })
+                    .then(data => {
+
+                        if (data.length === 0) {
+
+                            lokasiInfo.textContent =
+                                'Lokasi tidak ditemukan. Coba masukkan alamat yang lebih lengkap.';
+
+                            return;
+                        }
+
+                        const hasil = data[0];
+
+                        const latitude = parseFloat(hasil.lat);
+                        const longitude = parseFloat(hasil.lon);
+
+                        setLocation(latitude, longitude);
+
+                        lokasiInfo.textContent =
+                            'Lokasi ditemukan: ' + hasil.display_name;
+
+                    })
+                    .catch(error => {
+
+                        console.error(error);
+
+                        lokasiInfo.textContent =
+                            'Terjadi kesalahan saat mencari lokasi.';
+
+                    });
+            }
+
+            // Klik tombol Cari
+            btnCariLokasi.addEventListener('click', cariLokasi);
+
+            // Tekan Enter pada input lokasi
+            lokasiInput.addEventListener('keydown', function(event) {
+
+                if (event.key === 'Enter') {
+
+                    event.preventDefault();
+
+                    cariLokasi();
+
+                }
 
             });
         </script>
