@@ -37,7 +37,7 @@
         "setup": [
             "@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
             "@php artisan key:generate",
-            "@php artisan migrate --seed",
+            "@php artisan migrate:fresh --seed",
             "npm install",
             "@php artisan storage:link --force",
             "npm run build"
