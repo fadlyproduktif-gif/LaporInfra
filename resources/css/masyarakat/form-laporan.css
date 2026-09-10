@@ -429,3 +429,19 @@ form {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+.lokasi-search {
+    display: flex;
+    gap: 8px;
+}
+
+.lokasi-search input {
+    flex: 1;
+}
+
+.lokasi-search button {
+    padding: 0 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
